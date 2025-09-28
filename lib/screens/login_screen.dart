@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             const Icon(Icons.opacity, color: Colors.red, size: 36),
             const SizedBox(width: 8),
-            const Text("Donor Day"),
+            const Text("Bloody"),
           ],
         ),
         actions: [
