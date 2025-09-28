@@ -78,7 +78,9 @@ class _HomeScreenState extends State<HomeScreen> {
   void _openProfile() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => const ProfileScreen()),
+      MaterialPageRoute(
+        builder: (_) => ProfileScreen(onLocaleChanged: widget.onLocaleChanged),
+      ),
     );
   }
 
@@ -115,9 +117,8 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => SettingsScreen(
-                    onLocaleChanged: widget.onLocaleChanged,
-                  ),
+                  builder: (_) =>
+                      SettingsScreen(onLocaleChanged: widget.onLocaleChanged),
                 ),
               );
             },

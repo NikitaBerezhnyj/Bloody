@@ -6,7 +6,8 @@ import '../services/database_service.dart';
 import '../l10n/app_localizations.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+  final Function(Locale) onLocaleChanged;
+  const ProfileScreen({super.key, required this.onLocaleChanged});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -22,7 +23,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String? _bloodType;
 
   late Map<String, String> genderMap;
-  final List<String> bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "0+", "0-"];
+  final List<String> bloodTypes = [
+    "A+",
+    "A-",
+    "B+",
+    "B-",
+    "AB+",
+    "AB-",
+    "0+",
+    "0-",
+  ];
 
   @override
   void initState() {
@@ -34,10 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final user = await UserService.getUser();
     final t = AppLocalizations.of(context)!;
 
-    genderMap = {
-      "male": t.male,
-      "female": t.female,
-    };
+    genderMap = {"male": t.male, "female": t.female};
 
     if (user != null) {
       setState(() {
@@ -65,9 +72,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     final t = AppLocalizations.of(context)!;
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(t.profileUpdated)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(t.profileUpdated)));
 
     setState(() {
       _user = updatedUser;
@@ -89,10 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            child: Text(
-              t.logout,
-              style: const TextStyle(color: Colors.red),
-            ),
+            child: Text(t.logout, style: const TextStyle(color: Colors.red)),
           ),
         ],
       ),
@@ -107,11 +111,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-          builder: (_) => LoginScreen(
-            onLocaleChanged: (locale) {},
-          ),
+          builder: (_) => LoginScreen(onLocaleChanged: widget.onLocaleChanged),
         ),
-            (route) => false,
+        (route) => false,
       );
     }
   }
@@ -121,9 +123,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final t = AppLocalizations.of(context)!;
 
     if (_user == null) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
     return Scaffold(
@@ -138,7 +138,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 controller: _nameController,
                 decoration: InputDecoration(labelText: t.nameLabel),
                 validator: (value) =>
-                value == null || value.isEmpty ? t.enterName : null,
+                    value == null || value.isEmpty ? t.enterName : null,
               ),
               const SizedBox(height: 12),
               TextFormField(
@@ -158,11 +158,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 decoration: InputDecoration(labelText: t.genderLabel),
                 items: genderMap.entries
                     .map(
-                      (e) => DropdownMenuItem(
-                    value: e.key,
-                    child: Text(e.value),
-                  ),
-                )
+                      (e) =>
+                          DropdownMenuItem(value: e.key, child: Text(e.value)),
+                    )
                     .toList(),
                 onChanged: (val) => setState(() => _genderKey = val),
                 validator: (value) => value == null ? t.selectGender : null,
@@ -178,16 +176,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 validator: (value) => value == null ? t.selectBloodType : null,
               ),
               const SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: _saveUser,
-                child: Text(t.saveChanges),
-              ),
+              ElevatedButton(onPressed: _saveUser, child: Text(t.saveChanges)),
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: _logout,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
-                  foregroundColor: Colors.white
+                  foregroundColor: Colors.white,
                 ),
                 child: Text(t.logout),
               ),
