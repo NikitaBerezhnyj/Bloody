@@ -95,5 +95,39 @@
     "cancel": "Cancel",
 
     "settingsTitle": "Settings",
-    "languageLabel": "Language:"
+    "languageLabel": "Language:",
+
+    "achievementsTitle": "Achievements",
+    "achievementTotalTitle": "Total Donations",
+    "achievementWholeBlood1": "Rookie",
+      "achievementWholeBlood3": "Experienced",
+      "achievementWholeBlood5": "Regular Donor",
+      "achievementWholeBlood10": "Blood Veteran",
+      "achievementWholeBlood25": "Super Donor",
+      "achievementWholeBlood50": "Blood Legend",
+      "achievementWholeBlood100": "Blood Master",
+
+      "achievementPlasma1": "Plasma Rookie",
+      "achievementPlasma3": "Plasma Friend",
+      "achievementPlasma5": "Plasma Hero",
+      "achievementPlasma10": "Plasma Veteran",
+      "achievementPlasma25": "Plasma Superhero",
+      "achievementPlasma50": "Plasma Master",
+      "achievementPlasma100": "Plasma Legend",
+
+      "achievementPlatelets1": "Platelet Rookie",
+      "achievementPlatelets3": "Platelet Friend",
+      "achievementPlatelets5": "Platelet Hero",
+      "achievementPlatelets10": "Platelet Veteran",
+      "achievementPlatelets25": "Platelet Superhero",
+      "achievementPlatelets50": "Platelet Master",
+      "achievementPlatelets100": "Platelet Legend",
+
+      "achievementTotal1": "First Step",
+      "achievementTotal3": "Experienced Step",
+      "achievementTotal5": "Regular",
+      "achievementTotal10": "Veteran",
+      "achievementTotal25": "Super Donor",
+      "achievementTotal50": "Legend",
+      "achievementTotal100": "Master"
 }

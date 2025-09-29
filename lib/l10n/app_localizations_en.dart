@@ -287,4 +287,94 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get languageLabel => 'Language:';
+
+  @override
+  String get achievementsTitle => 'Achievements';
+
+  @override
+  String get achievementTotalTitle => 'Total Donations';
+
+  @override
+  String get achievementWholeBlood1 => 'Rookie';
+
+  @override
+  String get achievementWholeBlood3 => 'Experienced';
+
+  @override
+  String get achievementWholeBlood5 => 'Regular Donor';
+
+  @override
+  String get achievementWholeBlood10 => 'Blood Veteran';
+
+  @override
+  String get achievementWholeBlood25 => 'Super Donor';
+
+  @override
+  String get achievementWholeBlood50 => 'Blood Legend';
+
+  @override
+  String get achievementWholeBlood100 => 'Blood Master';
+
+  @override
+  String get achievementPlasma1 => 'Plasma Rookie';
+
+  @override
+  String get achievementPlasma3 => 'Plasma Friend';
+
+  @override
+  String get achievementPlasma5 => 'Plasma Hero';
+
+  @override
+  String get achievementPlasma10 => 'Plasma Veteran';
+
+  @override
+  String get achievementPlasma25 => 'Plasma Superhero';
+
+  @override
+  String get achievementPlasma50 => 'Plasma Master';
+
+  @override
+  String get achievementPlasma100 => 'Plasma Legend';
+
+  @override
+  String get achievementPlatelets1 => 'Platelet Rookie';
+
+  @override
+  String get achievementPlatelets3 => 'Platelet Friend';
+
+  @override
+  String get achievementPlatelets5 => 'Platelet Hero';
+
+  @override
+  String get achievementPlatelets10 => 'Platelet Veteran';
+
+  @override
+  String get achievementPlatelets25 => 'Platelet Superhero';
+
+  @override
+  String get achievementPlatelets50 => 'Platelet Master';
+
+  @override
+  String get achievementPlatelets100 => 'Platelet Legend';
+
+  @override
+  String get achievementTotal1 => 'First Step';
+
+  @override
+  String get achievementTotal3 => 'Experienced Step';
+
+  @override
+  String get achievementTotal5 => 'Regular';
+
+  @override
+  String get achievementTotal10 => 'Veteran';
+
+  @override
+  String get achievementTotal25 => 'Super Donor';
+
+  @override
+  String get achievementTotal50 => 'Legend';
+
+  @override
+  String get achievementTotal100 => 'Master';
 }

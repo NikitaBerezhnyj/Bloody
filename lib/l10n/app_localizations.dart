@@ -597,6 +597,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Language:'**
   String get languageLabel;
+
+  /// No description provided for @achievementsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievements'**
+  String get achievementsTitle;
+
+  /// No description provided for @achievementTotalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Donations'**
+  String get achievementTotalTitle;
+
+  /// No description provided for @achievementWholeBlood1.
+  ///
+  /// In en, this message translates to:
+  /// **'Rookie'**
+  String get achievementWholeBlood1;
+
+  /// No description provided for @achievementWholeBlood3.
+  ///
+  /// In en, this message translates to:
+  /// **'Experienced'**
+  String get achievementWholeBlood3;
+
+  /// No description provided for @achievementWholeBlood5.
+  ///
+  /// In en, this message translates to:
+  /// **'Regular Donor'**
+  String get achievementWholeBlood5;
+
+  /// No description provided for @achievementWholeBlood10.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood Veteran'**
+  String get achievementWholeBlood10;
+
+  /// No description provided for @achievementWholeBlood25.
+  ///
+  /// In en, this message translates to:
+  /// **'Super Donor'**
+  String get achievementWholeBlood25;
+
+  /// No description provided for @achievementWholeBlood50.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood Legend'**
+  String get achievementWholeBlood50;
+
+  /// No description provided for @achievementWholeBlood100.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood Master'**
+  String get achievementWholeBlood100;
+
+  /// No description provided for @achievementPlasma1.
+  ///
+  /// In en, this message translates to:
+  /// **'Plasma Rookie'**
+  String get achievementPlasma1;
+
+  /// No description provided for @achievementPlasma3.
+  ///
+  /// In en, this message translates to:
+  /// **'Plasma Friend'**
+  String get achievementPlasma3;
+
+  /// No description provided for @achievementPlasma5.
+  ///
+  /// In en, this message translates to:
+  /// **'Plasma Hero'**
+  String get achievementPlasma5;
+
+  /// No description provided for @achievementPlasma10.
+  ///
+  /// In en, this message translates to:
+  /// **'Plasma Veteran'**
+  String get achievementPlasma10;
+
+  /// No description provided for @achievementPlasma25.
+  ///
+  /// In en, this message translates to:
+  /// **'Plasma Superhero'**
+  String get achievementPlasma25;
+
+  /// No description provided for @achievementPlasma50.
+  ///
+  /// In en, this message translates to:
+  /// **'Plasma Master'**
+  String get achievementPlasma50;
+
+  /// No description provided for @achievementPlasma100.
+  ///
+  /// In en, this message translates to:
+  /// **'Plasma Legend'**
+  String get achievementPlasma100;
+
+  /// No description provided for @achievementPlatelets1.
+  ///
+  /// In en, this message translates to:
+  /// **'Platelet Rookie'**
+  String get achievementPlatelets1;
+
+  /// No description provided for @achievementPlatelets3.
+  ///
+  /// In en, this message translates to:
+  /// **'Platelet Friend'**
+  String get achievementPlatelets3;
+
+  /// No description provided for @achievementPlatelets5.
+  ///
+  /// In en, this message translates to:
+  /// **'Platelet Hero'**
+  String get achievementPlatelets5;
+
+  /// No description provided for @achievementPlatelets10.
+  ///
+  /// In en, this message translates to:
+  /// **'Platelet Veteran'**
+  String get achievementPlatelets10;
+
+  /// No description provided for @achievementPlatelets25.
+  ///
+  /// In en, this message translates to:
+  /// **'Platelet Superhero'**
+  String get achievementPlatelets25;
+
+  /// No description provided for @achievementPlatelets50.
+  ///
+  /// In en, this message translates to:
+  /// **'Platelet Master'**
+  String get achievementPlatelets50;
+
+  /// No description provided for @achievementPlatelets100.
+  ///
+  /// In en, this message translates to:
+  /// **'Platelet Legend'**
+  String get achievementPlatelets100;
+
+  /// No description provided for @achievementTotal1.
+  ///
+  /// In en, this message translates to:
+  /// **'First Step'**
+  String get achievementTotal1;
+
+  /// No description provided for @achievementTotal3.
+  ///
+  /// In en, this message translates to:
+  /// **'Experienced Step'**
+  String get achievementTotal3;
+
+  /// No description provided for @achievementTotal5.
+  ///
+  /// In en, this message translates to:
+  /// **'Regular'**
+  String get achievementTotal5;
+
+  /// No description provided for @achievementTotal10.
+  ///
+  /// In en, this message translates to:
+  /// **'Veteran'**
+  String get achievementTotal10;
+
+  /// No description provided for @achievementTotal25.
+  ///
+  /// In en, this message translates to:
+  /// **'Super Donor'**
+  String get achievementTotal25;
+
+  /// No description provided for @achievementTotal50.
+  ///
+  /// In en, this message translates to:
+  /// **'Legend'**
+  String get achievementTotal50;
+
+  /// No description provided for @achievementTotal100.
+  ///
+  /// In en, this message translates to:
+  /// **'Master'**
+  String get achievementTotal100;
 }
 
 class _AppLocalizationsDelegate

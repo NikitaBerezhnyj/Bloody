@@ -10,6 +10,7 @@ import 'add_donation.dart';
 import '../widgets/home_banner.dart';
 import '../l10n/app_localizations.dart';
 import '../screens/settings_screen.dart';
+import 'achievements_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final Function(Locale) onLocaleChanged;
@@ -81,6 +82,13 @@ class _HomeScreenState extends State<HomeScreen> {
       MaterialPageRoute(
         builder: (_) => ProfileScreen(onLocaleChanged: widget.onLocaleChanged),
       ),
+    );
+  }
+
+  void _openAchievements() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => const AchievementsScreen()),
     );
   }
 
@@ -189,6 +197,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       const Icon(Icons.bar_chart),
                       const SizedBox(width: 16),
                       Text(t.statsTitle),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            GestureDetector(
+              onTap: _openAchievements,
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.celebration),
+                      const SizedBox(width: 16),
+                      Text(t.achievementsTitle),
                     ],
                   ),
                 ),

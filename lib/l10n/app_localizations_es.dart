@@ -288,4 +288,94 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get languageLabel => 'Idioma:';
+
+  @override
+  String get achievementsTitle => 'Logros';
+
+  @override
+  String get achievementTotalTitle => 'Total Donations';
+
+  @override
+  String get achievementWholeBlood1 => 'Principiante';
+
+  @override
+  String get achievementWholeBlood3 => 'Experimentado';
+
+  @override
+  String get achievementWholeBlood5 => 'Donante Regular';
+
+  @override
+  String get achievementWholeBlood10 => 'Veterano de Sangre';
+
+  @override
+  String get achievementWholeBlood25 => 'Super Donante';
+
+  @override
+  String get achievementWholeBlood50 => 'Leyenda de Sangre';
+
+  @override
+  String get achievementWholeBlood100 => 'Maestro de Sangre';
+
+  @override
+  String get achievementPlasma1 => 'Principiante de Plasma';
+
+  @override
+  String get achievementPlasma3 => 'Amigo del Plasma';
+
+  @override
+  String get achievementPlasma5 => 'Héroe del Plasma';
+
+  @override
+  String get achievementPlasma10 => 'Veterano del Plasma';
+
+  @override
+  String get achievementPlasma25 => 'Superhéroe del Plasma';
+
+  @override
+  String get achievementPlasma50 => 'Maestro del Plasma';
+
+  @override
+  String get achievementPlasma100 => 'Leyenda del Plasma';
+
+  @override
+  String get achievementPlatelets1 => 'Principiante de Plaquetas';
+
+  @override
+  String get achievementPlatelets3 => 'Amigo de Plaquetas';
+
+  @override
+  String get achievementPlatelets5 => 'Héroe de Plaquetas';
+
+  @override
+  String get achievementPlatelets10 => 'Veterano de Plaquetas';
+
+  @override
+  String get achievementPlatelets25 => 'Superhéroe de Plaquetas';
+
+  @override
+  String get achievementPlatelets50 => 'Maestro de Plaquetas';
+
+  @override
+  String get achievementPlatelets100 => 'Leyenda de Plaquetas';
+
+  @override
+  String get achievementTotal1 => 'Primer Paso';
+
+  @override
+  String get achievementTotal3 => 'Paso Experimentado';
+
+  @override
+  String get achievementTotal5 => 'Regular';
+
+  @override
+  String get achievementTotal10 => 'Veterano';
+
+  @override
+  String get achievementTotal25 => 'Super Donante';
+
+  @override
+  String get achievementTotal50 => 'Leyenda';
+
+  @override
+  String get achievementTotal100 => 'Maestro';
 }

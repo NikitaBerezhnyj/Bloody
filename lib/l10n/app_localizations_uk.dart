@@ -288,4 +288,94 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get languageLabel => 'Мова:';
+
+  @override
+  String get achievementsTitle => 'Досягення';
+
+  @override
+  String get achievementTotalTitle => 'Загальна кількість донацій';
+
+  @override
+  String get achievementWholeBlood1 => 'Новачок';
+
+  @override
+  String get achievementWholeBlood3 => 'Досвідчений';
+
+  @override
+  String get achievementWholeBlood5 => 'Регулярний донор';
+
+  @override
+  String get achievementWholeBlood10 => 'Ветеран крові';
+
+  @override
+  String get achievementWholeBlood25 => 'Супердонор';
+
+  @override
+  String get achievementWholeBlood50 => 'Легенда крові';
+
+  @override
+  String get achievementWholeBlood100 => 'Майстер крові';
+
+  @override
+  String get achievementPlasma1 => 'Плазмовий новачок';
+
+  @override
+  String get achievementPlasma3 => 'Плазмовий друг';
+
+  @override
+  String get achievementPlasma5 => 'Плазмовий герой';
+
+  @override
+  String get achievementPlasma10 => 'Плазмовий ветеран';
+
+  @override
+  String get achievementPlasma25 => 'Плазмовий супергерой';
+
+  @override
+  String get achievementPlasma50 => 'Плазмовий майстер';
+
+  @override
+  String get achievementPlasma100 => 'Плазмовий легендар';
+
+  @override
+  String get achievementPlatelets1 => 'Тромбоцитовий новачок';
+
+  @override
+  String get achievementPlatelets3 => 'Тромбоцитовий друг';
+
+  @override
+  String get achievementPlatelets5 => 'Тромбоцитовий герой';
+
+  @override
+  String get achievementPlatelets10 => 'Тромбоцитовий ветеран';
+
+  @override
+  String get achievementPlatelets25 => 'Тромбоцитовий супергерой';
+
+  @override
+  String get achievementPlatelets50 => 'Тромбоцитовий майстер';
+
+  @override
+  String get achievementPlatelets100 => 'Тромбоцитовий легендар';
+
+  @override
+  String get achievementTotal1 => 'Перший крок';
+
+  @override
+  String get achievementTotal3 => 'Досвідчений крок';
+
+  @override
+  String get achievementTotal5 => 'Регулярний';
+
+  @override
+  String get achievementTotal10 => 'Ветеран';
+
+  @override
+  String get achievementTotal25 => 'Супердонор';
+
+  @override
+  String get achievementTotal50 => 'Легенда';
+
+  @override
+  String get achievementTotal100 => 'Майстер';
 }

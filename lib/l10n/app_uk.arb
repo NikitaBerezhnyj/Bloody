@@ -94,5 +94,39 @@
     "cancel": "Скасувати",
 
     "settingsTitle": "Налаштування",
-    "languageLabel": "Мова:"
+    "languageLabel": "Мова:",
+
+    "achievementsTitle": "Досягення",
+      "achievementTotalTitle": "Загальна кількість донацій",
+    "achievementWholeBlood1": "Новачок",
+      "achievementWholeBlood3": "Досвідчений",
+      "achievementWholeBlood5": "Регулярний донор",
+      "achievementWholeBlood10": "Ветеран крові",
+      "achievementWholeBlood25": "Супердонор",
+      "achievementWholeBlood50": "Легенда крові",
+      "achievementWholeBlood100": "Майстер крові",
+
+      "achievementPlasma1": "Плазмовий новачок",
+      "achievementPlasma3": "Плазмовий друг",
+      "achievementPlasma5": "Плазмовий герой",
+      "achievementPlasma10": "Плазмовий ветеран",
+      "achievementPlasma25": "Плазмовий супергерой",
+      "achievementPlasma50": "Плазмовий майстер",
+      "achievementPlasma100": "Плазмовий легендар",
+
+      "achievementPlatelets1": "Тромбоцитовий новачок",
+      "achievementPlatelets3": "Тромбоцитовий друг",
+      "achievementPlatelets5": "Тромбоцитовий герой",
+      "achievementPlatelets10": "Тромбоцитовий ветеран",
+      "achievementPlatelets25": "Тромбоцитовий супергерой",
+      "achievementPlatelets50": "Тромбоцитовий майстер",
+      "achievementPlatelets100": "Тромбоцитовий легендар",
+
+      "achievementTotal1": "Перший крок",
+      "achievementTotal3": "Досвідчений крок",
+      "achievementTotal5": "Регулярний",
+      "achievementTotal10": "Ветеран",
+      "achievementTotal25": "Супердонор",
+      "achievementTotal50": "Легенда",
+      "achievementTotal100": "Майстер"
 }

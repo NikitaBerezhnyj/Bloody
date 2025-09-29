@@ -95,5 +95,39 @@
     "cancel": "Cancelar",
 
     "settingsTitle": "Configuración",
-    "languageLabel": "Idioma:"
+    "languageLabel": "Idioma:",
+
+    "achievementsTitle": "Logros",
+    "achievementTotalTitle": "Total Donations",
+    "achievementWholeBlood1": "Principiante",
+    "achievementWholeBlood3": "Experimentado",
+    "achievementWholeBlood5": "Donante Regular",
+    "achievementWholeBlood10": "Veterano de Sangre",
+    "achievementWholeBlood25": "Super Donante",
+    "achievementWholeBlood50": "Leyenda de Sangre",
+    "achievementWholeBlood100": "Maestro de Sangre",
+
+    "achievementPlasma1": "Principiante de Plasma",
+    "achievementPlasma3": "Amigo del Plasma",
+    "achievementPlasma5": "Héroe del Plasma",
+    "achievementPlasma10": "Veterano del Plasma",
+    "achievementPlasma25": "Superhéroe del Plasma",
+    "achievementPlasma50": "Maestro del Plasma",
+    "achievementPlasma100": "Leyenda del Plasma",
+
+    "achievementPlatelets1": "Principiante de Plaquetas",
+    "achievementPlatelets3": "Amigo de Plaquetas",
+    "achievementPlatelets5": "Héroe de Plaquetas",
+    "achievementPlatelets10": "Veterano de Plaquetas",
+    "achievementPlatelets25": "Superhéroe de Plaquetas",
+    "achievementPlatelets50": "Maestro de Plaquetas",
+    "achievementPlatelets100": "Leyenda de Plaquetas",
+
+    "achievementTotal1": "Primer Paso",
+    "achievementTotal3": "Paso Experimentado",
+    "achievementTotal5": "Regular",
+    "achievementTotal10": "Veterano",
+    "achievementTotal25": "Super Donante",
+    "achievementTotal50": "Leyenda",
+    "achievementTotal100": "Maestro"
 }
