@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bloody/l10n/app_localizations.dart';
 import 'screens/home_screen.dart';
 import 'screens/login_screen.dart';
@@ -20,7 +21,26 @@ class BloodyApp extends StatefulWidget {
 class _BloodyAppState extends State<BloodyApp> {
   Locale? _locale;
 
-  void _updateLocale(Locale locale) {
+  @override
+  void initState() {
+    super.initState();
+    _loadSavedLocale();
+  }
+
+  Future<void> _loadSavedLocale() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? langCode = prefs.getString('locale');
+    if (langCode != null) {
+      setState(() {
+        _locale = Locale(langCode);
+      });
+    }
+  }
+
+  Future<void> _updateLocale(Locale locale) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('locale', locale.languageCode);
+
     setState(() {
       _locale = locale;
     });
@@ -34,7 +54,6 @@ class _BloodyAppState extends State<BloodyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         useMaterial3: true,
       ),
-      home: InitialScreen(onLocaleChanged: _updateLocale),
       locale: _locale,
       supportedLocales: const [
         Locale('en'),
@@ -47,6 +66,7 @@ class _BloodyAppState extends State<BloodyApp> {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      home: InitialScreen(onLocaleChanged: _updateLocale),
     );
   }
 }
@@ -81,4 +101,3 @@ class InitialScreen extends StatelessWidget {
     );
   }
 }
-
