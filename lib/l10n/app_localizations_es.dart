@@ -293,111 +293,89 @@ class AppLocalizationsEs extends AppLocalizations {
   String get achievementsTitle => 'Logros';
 
   @override
-  String get achievementTotalTitle => 'Total Donations';
+  String get achievementWholeBlood1 => 'Primer Paso';
 
   @override
-  String get achievementWholeBlood1 => 'Principiante';
+  String get achievementWholeBlood3 => 'Valiente';
 
   @override
-  String get achievementWholeBlood3 => 'Experimentado';
+  String get achievementWholeBlood5 => 'Guardián Rojo';
 
   @override
-  String get achievementWholeBlood5 => 'Donante Regular';
+  String get achievementWholeBlood10 => 'Corazón de Acero';
 
   @override
-  String get achievementWholeBlood10 => 'Veterano de Sangre';
+  String get achievementWholeBlood25 => 'Héroe de la Sangre';
 
   @override
-  String get achievementWholeBlood25 => 'Super Donante';
+  String get achievementWholeBlood50 => 'Donante Incansable';
 
   @override
-  String get achievementWholeBlood50 => 'Leyenda de Sangre';
+  String get achievementWholeBlood100 => 'Leyenda de la Vida';
 
   @override
-  String get achievementWholeBlood100 => 'Maestro de Sangre';
+  String get achievementPlasma1 => 'Gota de Bondad';
 
   @override
-  String get achievementPlasma1 => 'Principiante de Plasma';
+  String get achievementPlasma3 => 'Ola de Plata';
 
   @override
-  String get achievementPlasma3 => 'Amigo del Plasma';
+  String get achievementPlasma5 => 'Rayo de Esperanza';
 
   @override
-  String get achievementPlasma5 => 'Héroe del Plasma';
+  String get achievementPlasma10 => 'Protector de la Vida';
 
   @override
-  String get achievementPlasma10 => 'Veterano del Plasma';
+  String get achievementPlasma25 => 'Corriente Dorada';
 
   @override
-  String get achievementPlasma25 => 'Superhéroe del Plasma';
+  String get achievementPlasma50 => 'Guardián del Plasma';
 
   @override
-  String get achievementPlasma50 => 'Maestro del Plasma';
+  String get achievementPlasma100 => 'Donante Inmortal';
 
   @override
-  String get achievementPlasma100 => 'Leyenda del Plasma';
+  String get achievementPlatelets1 => 'Pequeño Héroe';
 
   @override
-  String get achievementPlatelets1 => 'Principiante de Plaquetas';
+  String get achievementPlatelets3 => 'Pequeño Salvador';
 
   @override
-  String get achievementPlatelets3 => 'Amigo de Plaquetas';
+  String get achievementPlatelets5 => 'Caballero Blanco';
 
   @override
-  String get achievementPlatelets5 => 'Héroe de Plaquetas';
+  String get achievementPlatelets10 => 'Defensor de la Sangre';
 
   @override
-  String get achievementPlatelets10 => 'Veterano de Plaquetas';
+  String get achievementPlatelets25 => 'Trombo-Maestro';
 
   @override
-  String get achievementPlatelets25 => 'Superhéroe de Plaquetas';
+  String get achievementPlatelets50 => 'Guardián de la Vida';
 
   @override
-  String get achievementPlatelets50 => 'Maestro de Plaquetas';
-
-  @override
-  String get achievementPlatelets100 => 'Leyenda de Plaquetas';
-
-  @override
-  String get achievementTotal1 => 'Primer Paso';
-
-  @override
-  String get achievementTotal3 => 'Paso Experimentado';
-
-  @override
-  String get achievementTotal5 => 'Regular';
-
-  @override
-  String get achievementTotal10 => 'Veterano';
-
-  @override
-  String get achievementTotal25 => 'Super Donante';
-
-  @override
-  String get achievementTotal50 => 'Leyenda';
-
-  @override
-  String get achievementTotal100 => 'Maestro';
+  String get achievementPlatelets100 => 'Leyenda del Rescate';
 
   @override
   String get achievementOtherTitle => 'Otros';
 
   @override
-  String get achievementFirstStep => 'Перший крок';
+  String get achievementFirstStep => 'Primer Paso';
 
   @override
-  String get achievementFirstStepDescription => 'Створення профілю в додатку';
+  String get achievementFirstStepDescription =>
+      'Creación de un perfil en la aplicación';
 
   @override
-  String get achievementUniversal => 'Універсал';
+  String get achievementUniversal => 'Donante Universal';
 
   @override
-  String get achievementUniversalDescription => 'Здав усі типи донацій';
+  String get achievementUniversalDescription =>
+      'Realizó todos los tipos de donación';
 
   @override
-  String get achievementHolidayDonor => 'Святковий донор';
+  String get achievementHolidayDonor => 'Donante Festivo';
 
   @override
   String get achievementHolidayDonorDescription =>
-      'Здача крові в святковий день';
+      'Hizo una donación en un día festivo';
 }

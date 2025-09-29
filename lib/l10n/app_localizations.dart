@@ -604,179 +604,131 @@ abstract class AppLocalizations {
   /// **'Achievements'**
   String get achievementsTitle;
 
-  /// No description provided for @achievementTotalTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Total Donations'**
-  String get achievementTotalTitle;
-
   /// No description provided for @achievementWholeBlood1.
   ///
   /// In en, this message translates to:
-  /// **'Rookie'**
+  /// **'First Step'**
   String get achievementWholeBlood1;
 
   /// No description provided for @achievementWholeBlood3.
   ///
   /// In en, this message translates to:
-  /// **'Experienced'**
+  /// **'Braveheart'**
   String get achievementWholeBlood3;
 
   /// No description provided for @achievementWholeBlood5.
   ///
   /// In en, this message translates to:
-  /// **'Regular Donor'**
+  /// **'Red Guardian'**
   String get achievementWholeBlood5;
 
   /// No description provided for @achievementWholeBlood10.
   ///
   /// In en, this message translates to:
-  /// **'Blood Veteran'**
+  /// **'Steel Heart'**
   String get achievementWholeBlood10;
 
   /// No description provided for @achievementWholeBlood25.
   ///
   /// In en, this message translates to:
-  /// **'Super Donor'**
+  /// **'Blood Hero'**
   String get achievementWholeBlood25;
 
   /// No description provided for @achievementWholeBlood50.
   ///
   /// In en, this message translates to:
-  /// **'Blood Legend'**
+  /// **'Tireless Donor'**
   String get achievementWholeBlood50;
 
   /// No description provided for @achievementWholeBlood100.
   ///
   /// In en, this message translates to:
-  /// **'Blood Master'**
+  /// **'Legend of Life'**
   String get achievementWholeBlood100;
 
   /// No description provided for @achievementPlasma1.
   ///
   /// In en, this message translates to:
-  /// **'Plasma Rookie'**
+  /// **'Drop of Kindness'**
   String get achievementPlasma1;
 
   /// No description provided for @achievementPlasma3.
   ///
   /// In en, this message translates to:
-  /// **'Plasma Friend'**
+  /// **'Silver Wave'**
   String get achievementPlasma3;
 
   /// No description provided for @achievementPlasma5.
   ///
   /// In en, this message translates to:
-  /// **'Plasma Hero'**
+  /// **'Ray of Hope'**
   String get achievementPlasma5;
 
   /// No description provided for @achievementPlasma10.
   ///
   /// In en, this message translates to:
-  /// **'Plasma Veteran'**
+  /// **'Life Protector'**
   String get achievementPlasma10;
 
   /// No description provided for @achievementPlasma25.
   ///
   /// In en, this message translates to:
-  /// **'Plasma Superhero'**
+  /// **'Golden Stream'**
   String get achievementPlasma25;
 
   /// No description provided for @achievementPlasma50.
   ///
   /// In en, this message translates to:
-  /// **'Plasma Master'**
+  /// **'Plasma Keeper'**
   String get achievementPlasma50;
 
   /// No description provided for @achievementPlasma100.
   ///
   /// In en, this message translates to:
-  /// **'Plasma Legend'**
+  /// **'Immortal Donor'**
   String get achievementPlasma100;
 
   /// No description provided for @achievementPlatelets1.
   ///
   /// In en, this message translates to:
-  /// **'Platelet Rookie'**
+  /// **'Tiny Hero'**
   String get achievementPlatelets1;
 
   /// No description provided for @achievementPlatelets3.
   ///
   /// In en, this message translates to:
-  /// **'Platelet Friend'**
+  /// **'Little Rescuer'**
   String get achievementPlatelets3;
 
   /// No description provided for @achievementPlatelets5.
   ///
   /// In en, this message translates to:
-  /// **'Platelet Hero'**
+  /// **'White Knight'**
   String get achievementPlatelets5;
 
   /// No description provided for @achievementPlatelets10.
   ///
   /// In en, this message translates to:
-  /// **'Platelet Veteran'**
+  /// **'Blood Defender'**
   String get achievementPlatelets10;
 
   /// No description provided for @achievementPlatelets25.
   ///
   /// In en, this message translates to:
-  /// **'Platelet Superhero'**
+  /// **'Thrombo-Master'**
   String get achievementPlatelets25;
 
   /// No description provided for @achievementPlatelets50.
   ///
   /// In en, this message translates to:
-  /// **'Platelet Master'**
+  /// **'Guardian of Life'**
   String get achievementPlatelets50;
 
   /// No description provided for @achievementPlatelets100.
   ///
   /// In en, this message translates to:
-  /// **'Platelet Legend'**
+  /// **'Rescue Legend'**
   String get achievementPlatelets100;
-
-  /// No description provided for @achievementTotal1.
-  ///
-  /// In en, this message translates to:
-  /// **'First Step'**
-  String get achievementTotal1;
-
-  /// No description provided for @achievementTotal3.
-  ///
-  /// In en, this message translates to:
-  /// **'Experienced Step'**
-  String get achievementTotal3;
-
-  /// No description provided for @achievementTotal5.
-  ///
-  /// In en, this message translates to:
-  /// **'Regular'**
-  String get achievementTotal5;
-
-  /// No description provided for @achievementTotal10.
-  ///
-  /// In en, this message translates to:
-  /// **'Veteran'**
-  String get achievementTotal10;
-
-  /// No description provided for @achievementTotal25.
-  ///
-  /// In en, this message translates to:
-  /// **'Super Donor'**
-  String get achievementTotal25;
-
-  /// No description provided for @achievementTotal50.
-  ///
-  /// In en, this message translates to:
-  /// **'Legend'**
-  String get achievementTotal50;
-
-  /// No description provided for @achievementTotal100.
-  ///
-  /// In en, this message translates to:
-  /// **'Master'**
-  String get achievementTotal100;
 
   /// No description provided for @achievementOtherTitle.
   ///
@@ -787,37 +739,37 @@ abstract class AppLocalizations {
   /// No description provided for @achievementFirstStep.
   ///
   /// In en, this message translates to:
-  /// **'Перший крок'**
+  /// **'First Step'**
   String get achievementFirstStep;
 
   /// No description provided for @achievementFirstStepDescription.
   ///
   /// In en, this message translates to:
-  /// **'Створення профілю в додатку'**
+  /// **'Creating a profile in the app'**
   String get achievementFirstStepDescription;
 
   /// No description provided for @achievementUniversal.
   ///
   /// In en, this message translates to:
-  /// **'Універсал'**
+  /// **'Universal Donor'**
   String get achievementUniversal;
 
   /// No description provided for @achievementUniversalDescription.
   ///
   /// In en, this message translates to:
-  /// **'Здав усі типи донацій'**
+  /// **'Donated all types of donations'**
   String get achievementUniversalDescription;
 
   /// No description provided for @achievementHolidayDonor.
   ///
   /// In en, this message translates to:
-  /// **'Святковий донор'**
+  /// **'Holiday Donor'**
   String get achievementHolidayDonor;
 
   /// No description provided for @achievementHolidayDonorDescription.
   ///
   /// In en, this message translates to:
-  /// **'Здача крові в святковий день'**
+  /// **'Made a donation on a holiday'**
   String get achievementHolidayDonorDescription;
 }
 

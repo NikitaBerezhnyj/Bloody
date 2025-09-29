@@ -293,91 +293,67 @@ class AppLocalizationsUk extends AppLocalizations {
   String get achievementsTitle => 'Досягення';
 
   @override
-  String get achievementTotalTitle => 'Загальна кількість донацій';
+  String get achievementWholeBlood1 => 'Перший крок';
 
   @override
-  String get achievementWholeBlood1 => 'Новачок';
+  String get achievementWholeBlood3 => 'Сміливець';
 
   @override
-  String get achievementWholeBlood3 => 'Досвідчений';
+  String get achievementWholeBlood5 => 'Червоний захисник';
 
   @override
-  String get achievementWholeBlood5 => 'Регулярний донор';
+  String get achievementWholeBlood10 => 'Сталеве серце';
 
   @override
-  String get achievementWholeBlood10 => 'Ветеран крові';
+  String get achievementWholeBlood25 => 'Кровний герой';
 
   @override
-  String get achievementWholeBlood25 => 'Супердонор';
+  String get achievementWholeBlood50 => 'Невтомний донор';
 
   @override
-  String get achievementWholeBlood50 => 'Легенда крові';
+  String get achievementWholeBlood100 => 'Легенда життя';
 
   @override
-  String get achievementWholeBlood100 => 'Майстер крові';
+  String get achievementPlasma1 => 'Краплина добра';
 
   @override
-  String get achievementPlasma1 => 'Плазмовий новачок';
+  String get achievementPlasma3 => 'Срібна хвиля';
 
   @override
-  String get achievementPlasma3 => 'Плазмовий друг';
+  String get achievementPlasma5 => 'Промінь надії';
 
   @override
-  String get achievementPlasma5 => 'Плазмовий герой';
+  String get achievementPlasma10 => 'Захисник життя';
 
   @override
-  String get achievementPlasma10 => 'Плазмовий ветеран';
+  String get achievementPlasma25 => 'Золотий струм';
 
   @override
-  String get achievementPlasma25 => 'Плазмовий супергерой';
+  String get achievementPlasma50 => 'Хранитель плазми';
 
   @override
-  String get achievementPlasma50 => 'Плазмовий майстер';
+  String get achievementPlasma100 => 'Безсмертний донор';
 
   @override
-  String get achievementPlasma100 => 'Плазмовий легендар';
+  String get achievementPlatelets1 => 'Крихітний герой';
 
   @override
-  String get achievementPlatelets1 => 'Тромбоцитовий новачок';
+  String get achievementPlatelets3 => 'Маленький рятівник';
 
   @override
-  String get achievementPlatelets3 => 'Тромбоцитовий друг';
+  String get achievementPlatelets5 => 'Білий лицар';
 
   @override
-  String get achievementPlatelets5 => 'Тромбоцитовий герой';
+  String get achievementPlatelets10 => 'Захисник крові';
 
   @override
-  String get achievementPlatelets10 => 'Тромбоцитовий ветеран';
+  String get achievementPlatelets25 => 'Тромбо-майстер';
 
   @override
-  String get achievementPlatelets25 => 'Тромбоцитовий супергерой';
+  String get achievementPlatelets50 => 'Вартовий життя';
 
   @override
-  String get achievementPlatelets50 => 'Тромбоцитовий майстер';
-
-  @override
-  String get achievementPlatelets100 => 'Тромбоцитовий легендар';
-
-  @override
-  String get achievementTotal1 => 'Перший крок';
-
-  @override
-  String get achievementTotal3 => 'Досвідчений крок';
-
-  @override
-  String get achievementTotal5 => 'Регулярний';
-
-  @override
-  String get achievementTotal10 => 'Ветеран';
-
-  @override
-  String get achievementTotal25 => 'Супердонор';
-
-  @override
-  String get achievementTotal50 => 'Легенда';
-
-  @override
-  String get achievementTotal100 => 'Майстер';
+  String get achievementPlatelets100 => 'Легенда порятунку';
 
   @override
   String get achievementOtherTitle => 'Інше';
