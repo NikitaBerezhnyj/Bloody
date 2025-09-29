@@ -4,6 +4,10 @@ Repository has [ukrainian :ukraine:](#bloody-ukraine) and [english :uk:](#bloody
 
 ## Bloody :ukraine:
 
+<p align="center">
+  <img src="./assets/icon.png" alt="App logo" width="200"/>
+</p>
+
 Bloody — це простий застосунок для донорів крові, який дозволяє:
 
 - Фіксувати здачі крові, плазми та тромбоцитів.
@@ -68,6 +72,10 @@ chore: setup commitlint
 ---
 
 ## Bloody :uk:
+
+<p align="center">
+  <img src="./assets/icon.png" alt="App logo" width="200"/>
+</p>
 
 Bloody is a simple app for blood donors that allows you to:
 
