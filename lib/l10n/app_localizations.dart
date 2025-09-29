@@ -777,6 +777,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Master'**
   String get achievementTotal100;
+
+  /// No description provided for @achievementOtherTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get achievementOtherTitle;
+
+  /// No description provided for @achievementFirstStep.
+  ///
+  /// In en, this message translates to:
+  /// **'Перший крок'**
+  String get achievementFirstStep;
+
+  /// No description provided for @achievementFirstStepDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Створення профілю в додатку'**
+  String get achievementFirstStepDescription;
+
+  /// No description provided for @achievementUniversal.
+  ///
+  /// In en, this message translates to:
+  /// **'Універсал'**
+  String get achievementUniversal;
+
+  /// No description provided for @achievementUniversalDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Здав усі типи донацій'**
+  String get achievementUniversalDescription;
+
+  /// No description provided for @achievementHolidayDonor.
+  ///
+  /// In en, this message translates to:
+  /// **'Святковий донор'**
+  String get achievementHolidayDonor;
+
+  /// No description provided for @achievementHolidayDonorDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Здача крові в святковий день'**
+  String get achievementHolidayDonorDescription;
 }
 
 class _AppLocalizationsDelegate

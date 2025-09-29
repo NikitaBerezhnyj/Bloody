@@ -29,7 +29,8 @@ class AchievementTile extends StatelessWidget {
             shape: BoxShape.circle,
           ),
           child: Center(
-            child: Column(
+            child: subtitle.isNotEmpty
+                ? Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(
@@ -48,6 +49,11 @@ class AchievementTile extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ],
+            )
+                : Icon(
+              icon,
+              size: 40,
+              color: color,
             ),
           ),
         ),

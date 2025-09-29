@@ -378,4 +378,26 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get achievementTotal100 => 'Maestro';
+
+  @override
+  String get achievementOtherTitle => 'Otros';
+
+  @override
+  String get achievementFirstStep => 'Перший крок';
+
+  @override
+  String get achievementFirstStepDescription => 'Створення профілю в додатку';
+
+  @override
+  String get achievementUniversal => 'Універсал';
+
+  @override
+  String get achievementUniversalDescription => 'Здав усі типи донацій';
+
+  @override
+  String get achievementHolidayDonor => 'Святковий донор';
+
+  @override
+  String get achievementHolidayDonorDescription =>
+      'Здача крові в святковий день';
 }

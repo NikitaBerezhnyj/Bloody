@@ -4,6 +4,7 @@ class User {
   final int age;
   final String gender;
   final String bloodType;
+  final String? createdAt; // Додано для ачівки "Перший крок"
 
   User({
     this.id,
@@ -11,6 +12,7 @@ class User {
     required this.age,
     required this.gender,
     required this.bloodType,
+    this.createdAt,
   });
 
   Map<String, dynamic> toMap() {
@@ -20,6 +22,7 @@ class User {
       'age': age,
       'gender': gender,
       'bloodType': bloodType,
+      'createdAt': createdAt,
     };
   }
 
@@ -30,6 +33,7 @@ class User {
       age: map['age'],
       gender: map['gender'],
       bloodType: map['bloodType'],
+      createdAt: map['createdAt'] as String?,
     );
   }
 }

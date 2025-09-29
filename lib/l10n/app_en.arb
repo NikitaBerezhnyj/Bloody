@@ -129,5 +129,15 @@
       "achievementTotal10": "Veteran",
       "achievementTotal25": "Super Donor",
       "achievementTotal50": "Legend",
-      "achievementTotal100": "Master"
+      "achievementTotal100": "Master",
+
+        "achievementOtherTitle": "Other",
+       "achievementFirstStep": "Перший крок",
+         "achievementFirstStepDescription": "Створення профілю в додатку",
+
+         "achievementUniversal": "Універсал",
+         "achievementUniversalDescription": "Здав усі типи донацій",
+
+         "achievementHolidayDonor": "Святковий донор",
+         "achievementHolidayDonorDescription": "Здача крові в святковий день"
 }

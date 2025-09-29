@@ -97,7 +97,7 @@
     "languageLabel": "Мова:",
 
     "achievementsTitle": "Досягення",
-      "achievementTotalTitle": "Загальна кількість донацій",
+    "achievementTotalTitle": "Загальна кількість донацій",
     "achievementWholeBlood1": "Новачок",
       "achievementWholeBlood3": "Досвідчений",
       "achievementWholeBlood5": "Регулярний донор",
@@ -128,5 +128,15 @@
       "achievementTotal10": "Ветеран",
       "achievementTotal25": "Супердонор",
       "achievementTotal50": "Легенда",
-      "achievementTotal100": "Майстер"
+      "achievementTotal100": "Майстер",
+
+      "achievementOtherTitle": "Інше",
+      "achievementFirstStep": "Перший крок",
+        "achievementFirstStepDescription": "Створення профілю в додатку",
+
+        "achievementUniversal": "Універсал",
+        "achievementUniversalDescription": "Здав усі типи донацій",
+
+        "achievementHolidayDonor": "Святковий донор",
+        "achievementHolidayDonorDescription": "Здача крові в святковий день"
 }
