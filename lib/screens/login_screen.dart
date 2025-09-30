@@ -16,7 +16,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _ageController = TextEditingController();
+  final TextEditingController _birthdayController = TextEditingController();
+
+  DateTime? _birthday;
   String? _genderKey;
   String? _bloodType;
 
@@ -36,11 +38,32 @@ class _LoginScreenState extends State<LoginScreen> {
     bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "0+", "0-"];
   }
 
+  void _pickBirthday(BuildContext context) async {
+    final now = DateTime.now();
+    final firstDate = DateTime(now.year - 100);
+    final lastDate = now;
+
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: _birthday ?? DateTime(now.year - 18),
+      firstDate: firstDate,
+      lastDate: lastDate,
+    );
+
+    if (picked != null) {
+      setState(() {
+        _birthday = picked;
+        _birthdayController.text =
+        "${picked.day.toString().padLeft(2, '0')}.${picked.month.toString().padLeft(2, '0')}.${picked.year}";
+      });
+    }
+  }
+
   void _saveUser() async {
     if (_formKey.currentState!.validate()) {
       final user = User(
         name: _nameController.text,
-        age: int.parse(_ageController.text),
+        birthday: _birthday!,
         gender: _genderKey!,
         bloodType: _bloodType!,
       );
@@ -112,13 +135,20 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   const SizedBox(height: 16),
                   TextFormField(
-                    controller: _ageController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(labelText: t.age),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) return t.enterAge;
-                      final age = int.tryParse(value);
-                      if (age == null || age < 18) return t.ageValidation;
+                    controller: _birthdayController,
+                    readOnly: true,
+                    decoration: InputDecoration(labelText: t.birthdayLabel),
+                    onTap: () => _pickBirthday(context),
+                    validator: (_) {
+                      if (_birthday == null) return t.enterBirthday;
+                      final now = DateTime.now();
+                      final age = now.year - _birthday!.year -
+                          ((now.month < _birthday!.month ||
+                              (now.month == _birthday!.month &&
+                                  now.day < _birthday!.day))
+                              ? 1
+                              : 0);
+                      if (age < 18) return t.ageValidation;
                       return null;
                     },
                   ),
@@ -139,7 +169,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   DropdownButtonFormField<String>(
                     decoration: InputDecoration(labelText: t.bloodType),
                     items: bloodTypes
-                        .map((bt) => DropdownMenuItem(value: bt, child: Text(bt)))
+                        .map((bt) =>
+                        DropdownMenuItem(value: bt, child: Text(bt)))
                         .toList(),
                     onChanged: (val) => setState(() => _bloodType = val),
                     validator: (value) =>

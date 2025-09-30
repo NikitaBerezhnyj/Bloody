@@ -226,17 +226,17 @@ abstract class AppLocalizations {
   /// **'Enter your name'**
   String get enterName;
 
-  /// No description provided for @age.
+  /// No description provided for @birthdayLabel.
   ///
   /// In en, this message translates to:
-  /// **'Age'**
-  String get age;
+  /// **'Birthday'**
+  String get birthdayLabel;
 
-  /// No description provided for @enterAge.
+  /// No description provided for @enterBirthday.
   ///
   /// In en, this message translates to:
-  /// **'Enter your age'**
-  String get enterAge;
+  /// **'Enter your birthday'**
+  String get enterBirthday;
 
   /// No description provided for @ageValidation.
   ///
@@ -531,6 +531,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Age'**
   String get ageLabel;
+
+  /// No description provided for @enterAge.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your age'**
+  String get enterAge;
 
   /// No description provided for @ageMin18.
   ///

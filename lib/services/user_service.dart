@@ -14,13 +14,11 @@ class UserService {
   static Future<void> saveUser(User user) async {
     final db = await DatabaseService.getDatabase();
     final existing = await db.query('users', limit: 1);
-
     if (existing.isEmpty) {
-      // При створенні нового користувача додаємо час створення
       final userWithTimestamp = User(
         id: user.id,
         name: user.name,
-        age: user.age,
+        birthday: user.birthday,
         gender: user.gender,
         bloodType: user.bloodType,
         createdAt: user.createdAt ?? DateTime.now().toIso8601String(),

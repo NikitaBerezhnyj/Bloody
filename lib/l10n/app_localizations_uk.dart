@@ -93,10 +93,10 @@ class AppLocalizationsUk extends AppLocalizations {
   String get enterName => 'Введіть ім’я';
 
   @override
-  String get age => 'Вік';
+  String get birthdayLabel => 'Дата народження';
 
   @override
-  String get enterAge => 'Введіть вік';
+  String get enterBirthday => 'Введіть дату народження';
 
   @override
   String get ageValidation => 'Вік має бути від 18 років';
@@ -253,7 +253,10 @@ class AppLocalizationsUk extends AppLocalizations {
   String get nameLabel => 'Ім’я';
 
   @override
-  String get ageLabel => 'Вік';
+  String get ageLabel => 'Age';
+
+  @override
+  String get enterAge => 'Введіть вік';
 
   @override
   String get ageMin18 => 'Вік має бути від 18 років';

@@ -10,6 +10,7 @@ class CalculationService {
 
   static const int maxDonationsPerYearMale = 5;
   static const int maxDonationsPerYearFemale = 4;
+  static const int maxAgeForDonation = 65;
 
   static Future<int> calculateDaysLeft(List<Donation> donations) async {
     if (donations.isEmpty) return 0;
@@ -18,8 +19,15 @@ class CalculationService {
     final lastDonation = donations.first;
 
     final user = await UserService.getUser();
-    final gender = user?.gender ?? 'male';
+    if (user == null) return 0;
+
+    final gender = user.gender;
     final now = DateTime.now();
+
+    int userCurrentAge = user.age;
+    if (userCurrentAge >= maxAgeForDonation) {
+      return -1;
+    }
 
     final cooldownDays = donationCooldownDays[lastDonation.type] ?? 60;
     final nextPossibleDateByType = lastDonation.date.add(Duration(days: cooldownDays));

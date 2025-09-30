@@ -92,10 +92,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get enterName => 'Ingrese su nombre';
 
   @override
-  String get age => 'Edad';
+  String get birthdayLabel => 'Fecha de nacimiento';
 
   @override
-  String get enterAge => 'Ingrese su edad';
+  String get enterBirthday => 'Ingrese su fecha de nacimiento';
 
   @override
   String get ageValidation => 'La edad debe ser al menos 18';
@@ -254,6 +254,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ageLabel => 'Edad';
+
+  @override
+  String get enterAge => 'Ingrese su edad';
 
   @override
   String get ageMin18 => 'La edad debe ser al menos 18';

@@ -12,13 +12,13 @@ class DatabaseService {
 
     _database = await openDatabase(
       path,
-      version: 3, // Збільшили версію до 3
+      version: 4,
       onCreate: (db, version) async {
         await db.execute('''
           CREATE TABLE users(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
-            age INTEGER,
+            birthday TEXT,
             gender TEXT,
             bloodType TEXT,
             createdAt TEXT
@@ -41,8 +41,10 @@ class DatabaseService {
           await db.execute('ALTER TABLE users ADD COLUMN createdAt TEXT');
         }
         if (oldVersion < 3) {
-          // Додаємо колонку time для існуючих записів
           await db.execute('ALTER TABLE donations ADD COLUMN time TEXT DEFAULT "12:00"');
+        }
+        if (oldVersion < 4) {
+          await db.execute('ALTER TABLE users ADD COLUMN birthday TEXT');
         }
       },
     );

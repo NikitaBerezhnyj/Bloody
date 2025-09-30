@@ -18,7 +18,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   User? _user;
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _ageController = TextEditingController();
+  DateTime? _birthday;
   String? _genderKey;
   String? _bloodType;
 
@@ -50,9 +50,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
       setState(() {
         _user = user;
         _nameController.text = user.name;
-        _ageController.text = user.age.toString();
+        _birthday = user.birthday;
         _genderKey = user.gender;
         _bloodType = user.bloodType;
+      });
+    }
+  }
+
+  Future<void> _pickBirthday() async {
+    final now = DateTime.now();
+    final initialDate = _birthday ?? DateTime(now.year - 18);
+    final firstDate = DateTime(now.year - 100);
+    final lastDate = DateTime(now.year - 18);
+
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: initialDate,
+      firstDate: firstDate,
+      lastDate: lastDate,
+    );
+
+    if (picked != null) {
+      setState(() {
+        _birthday = picked;
       });
     }
   }
@@ -60,10 +80,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _saveUser() async {
     if (!_formKey.currentState!.validate()) return;
 
+    if (_birthday == null) {
+      final t = AppLocalizations.of(context)!;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(t.enterBirthday)),
+      );
+      return;
+    }
+
     final updatedUser = User(
       id: _user?.id,
       name: _nameController.text,
-      age: int.parse(_ageController.text),
+      birthday: _birthday!,
       gender: _genderKey!,
       bloodType: _bloodType!,
     );
@@ -71,10 +99,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     await UserService.saveUser(updatedUser);
 
     final t = AppLocalizations.of(context)!;
-
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(t.profileUpdated)));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(t.profileUpdated)),
+    );
 
     setState(() {
       _user = updatedUser;
@@ -113,7 +140,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         MaterialPageRoute(
           builder: (_) => LoginScreen(onLocaleChanged: widget.onLocaleChanged),
         ),
-        (route) => false,
+            (route) => false,
       );
     }
   }
@@ -138,20 +165,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 controller: _nameController,
                 decoration: InputDecoration(labelText: t.nameLabel),
                 validator: (value) =>
-                    value == null || value.isEmpty ? t.enterName : null,
+                value == null || value.isEmpty ? t.enterName : null,
               ),
               const SizedBox(height: 12),
-              TextFormField(
-                controller: _ageController,
-                decoration: InputDecoration(labelText: t.ageLabel),
-                keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value == null || value.isEmpty) return t.enterAge;
-                  final age = int.tryParse(value);
-                  if (age == null || age < 18) return t.ageMin18;
-                  return null;
-                },
+
+              // Birthday picker
+              GestureDetector(
+                onTap: _pickBirthday,
+                child: AbsorbPointer(
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      labelText: t.birthdayLabel,
+                      hintText: t.enterBirthday,
+                    ),
+                    controller: TextEditingController(
+                      text: _birthday != null
+                          ? "${_birthday!.day.toString().padLeft(2, '0')}.${_birthday!.month.toString().padLeft(2, '0')}.${_birthday!.year}"
+                          : '',
+                    ),
+                    validator: (_) =>
+                    _birthday == null ? t.enterBirthday : null,
+                  ),
+                ),
               ),
+
               const SizedBox(height: 12),
               DropdownButtonFormField<String>(
                 value: _genderKey,
@@ -159,8 +196,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 items: genderMap.entries
                     .map(
                       (e) =>
-                          DropdownMenuItem(value: e.key, child: Text(e.value)),
-                    )
+                      DropdownMenuItem(value: e.key, child: Text(e.value)),
+                )
                     .toList(),
                 onChanged: (val) => setState(() => _genderKey = val),
                 validator: (value) => value == null ? t.selectGender : null,

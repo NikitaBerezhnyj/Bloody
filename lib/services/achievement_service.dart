@@ -8,12 +8,28 @@ import '../l10n/app_localizations.dart';
 class AchievementService {
   static const List<int> levels = [1, 3, 5, 10, 25, 50, 100];
 
-  static final List<DateTime> holidays = [
-    DateTime(DateTime.now().year, 1, 1), // Новий рік
-    DateTime(DateTime.now().year, 3, 8), // Міжнародний жіночий день
-    DateTime(DateTime.now().year, 6, 14), // Всесвітній день донора крові
-    DateTime(DateTime.now().year, 12, 25), // Різдво
-  ];
+  // static final List<DateTime> holidays = [
+  //   DateTime(DateTime.now().year, 1, 1), // Новий рік
+  //   DateTime(DateTime.now().year, 3, 8), // Міжнародний жіночий день
+  //   DateTime(DateTime.now().year, 6, 14), // Всесвітній день донора крові
+  //   DateTime(DateTime.now().year, 12, 25), // Різдво
+  // ];
+
+  static List<DateTime> _getHolidays(User? user) {
+    final now = DateTime.now().year;
+    final holidays = [
+      DateTime(now, 1, 1),   // Новий рік
+      DateTime(now, 3, 8),   // Міжнародний жіночий день
+      DateTime(now, 6, 14),  // Всесвітній день донора крові
+      DateTime(now, 12, 25), // Різдво
+    ];
+
+    if (user != null) {
+      holidays.add(DateTime(now, user.birthday.month, user.birthday.day));
+    }
+
+    return holidays;
+  }
 
   static Future<Map<String, AchievementCategory>> getAchievements(
       AppLocalizations t) async {
@@ -116,6 +132,22 @@ class AchievementService {
       description: t.achievementUniversalDescription,
       icon: Icons.all_inclusive,
     ));
+
+    // final hasHolidayDonation = donations.any((donation) {
+    //   final donationDate = donation.date;
+    //   return holidays.any((holiday) =>
+    //   holiday.year == donationDate.year &&
+    //       holiday.month == donationDate.month &&
+    //       holiday.day == donationDate.day);
+    // });
+    //
+    // achievements.add(Achievement(
+    //   title: t.achievementHolidayDonor,
+    //   achieved: hasHolidayDonation,
+    //   description: t.achievementHolidayDonorDescription,
+    //   icon: Icons.celebration,
+    // ));
+    final holidays = _getHolidays(user);
 
     final hasHolidayDonation = donations.any((donation) {
       final donationDate = donation.date;
