@@ -4,7 +4,7 @@ class User {
   final int age;
   final String gender;
   final String bloodType;
-  final String? createdAt; // Додано для ачівки "Перший крок"
+  final String? createdAt;
 
   User({
     this.id,

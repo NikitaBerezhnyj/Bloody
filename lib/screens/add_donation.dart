@@ -14,12 +14,12 @@ class AddDonationScreen extends StatefulWidget {
 class _AddDonationScreenState extends State<AddDonationScreen> {
   final _formKey = GlobalKey<FormState>();
   DateTime? _selectedDate;
+  TimeOfDay? _selectedTime;
   String? _selectedTypeKey;
   String? _selectedFeelingKey;
   final TextEditingController _notesController = TextEditingController();
 
   final List<String> donationTypeKeys = ["donationWholeBlood", "donationPlasma", "donationPlatelets"];
-
   final List<String> feelingKeys = ["feelingGood", "feelingNormal", "feelingTired"];
 
   void _pickDate() async {
@@ -37,15 +37,31 @@ class _AddDonationScreenState extends State<AddDonationScreen> {
     }
   }
 
+  void _pickTime() async {
+    final now = TimeOfDay.now();
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: _selectedTime ?? now,
+    );
+    if (picked != null) {
+      setState(() {
+        _selectedTime = picked;
+      });
+    }
+  }
+
   void _saveDonation() async {
     final t = AppLocalizations.of(context)!;
 
     if (_formKey.currentState!.validate() &&
         _selectedDate != null &&
+        _selectedTime != null &&
         _selectedTypeKey != null &&
         _selectedFeelingKey != null) {
+
       final donation = Donation(
         date: _selectedDate!,
+        time: _selectedTime!,
         type: _selectedTypeKey!,
         feeling: _selectedFeelingKey!,
         notes: _notesController.text,
@@ -88,8 +104,20 @@ class _AddDonationScreenState extends State<AddDonationScreen> {
                   onPressed: _pickDate,
                 ),
               ),
-              const SizedBox(height: 16),
 
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: const Text("Час донації"),
+                subtitle: Text(_selectedTime != null
+                    ? "${_selectedTime!.hour.toString().padLeft(2, '0')}:${_selectedTime!.minute.toString().padLeft(2, '0')}"
+                    : "Оберіть час"),
+                trailing: IconButton(
+                  icon: const Icon(Icons.access_time),
+                  onPressed: _pickTime,
+                ),
+              ),
+
+              const SizedBox(height: 16),
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(labelText: t.donationType),
                 items: donationTypeKeys.map((key) {
@@ -101,8 +129,8 @@ class _AddDonationScreenState extends State<AddDonationScreen> {
                 onChanged: (val) => setState(() => _selectedTypeKey = val),
                 validator: (value) => value == null ? t.selectDonationType : null,
               ),
-              const SizedBox(height: 16),
 
+              const SizedBox(height: 16),
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(labelText: t.feeling),
                 items: feelingKeys.map((key) {
@@ -114,8 +142,8 @@ class _AddDonationScreenState extends State<AddDonationScreen> {
                 onChanged: (val) => setState(() => _selectedFeelingKey = val),
                 validator: (value) => value == null ? t.selectFeeling : null,
               ),
-              const SizedBox(height: 16),
 
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _notesController,
                 decoration: InputDecoration(
@@ -124,8 +152,8 @@ class _AddDonationScreenState extends State<AddDonationScreen> {
                 ),
                 maxLines: 3,
               ),
-              const SizedBox(height: 24),
 
+              const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: _saveDonation,
                 child: Text(t.saveDonation),

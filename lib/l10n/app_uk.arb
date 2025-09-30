@@ -128,5 +128,7 @@
     "achievementUniversal": "Універсал",
     "achievementUniversalDescription": "Здав усі типи донацій",
     "achievementHolidayDonor": "Святковий донор",
-    "achievementHolidayDonorDescription": "Здача крові в святковий день"
+    "achievementHolidayDonorDescription": "Здача крові в святковий день",
+    "achievementEarlyBird": "Рання пташка",
+    "achievementEarlyBirdDescription": "Здійсніть донацію до 10:00 ранку"
 }

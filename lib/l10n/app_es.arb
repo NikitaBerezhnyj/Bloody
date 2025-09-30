@@ -129,5 +129,7 @@
     "achievementUniversal": "Donante Universal",
     "achievementUniversalDescription": "Realizó todos los tipos de donación",
     "achievementHolidayDonor": "Donante Festivo",
-    "achievementHolidayDonorDescription": "Hizo una donación en un día festivo"
+    "achievementHolidayDonorDescription": "Hizo una donación en un día festivo",
+    "achievementEarlyBird": "Ave madrugadora",
+    "achievementEarlyBirdDescription": "Haz una donación antes de las 10:00 de la mañana"
 }

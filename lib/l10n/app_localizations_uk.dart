@@ -376,4 +376,11 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get achievementHolidayDonorDescription =>
       'Здача крові в святковий день';
+
+  @override
+  String get achievementEarlyBird => 'Рання пташка';
+
+  @override
+  String get achievementEarlyBirdDescription =>
+      'Здійсніть донацію до 10:00 ранку';
 }

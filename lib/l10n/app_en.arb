@@ -129,5 +129,7 @@
     "achievementUniversal": "Universal Donor",
     "achievementUniversalDescription": "Donated all types of donations",
     "achievementHolidayDonor": "Holiday Donor",
-    "achievementHolidayDonorDescription": "Made a donation on a holiday"
+    "achievementHolidayDonorDescription": "Made a donation on a holiday",
+    "achievementEarlyBird": "Early Bird",
+    "achievementEarlyBirdDescription": "Make a donation before 10:00 AM"
 }

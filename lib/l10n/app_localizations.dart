@@ -771,6 +771,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Made a donation on a holiday'**
   String get achievementHolidayDonorDescription;
+
+  /// No description provided for @achievementEarlyBird.
+  ///
+  /// In en, this message translates to:
+  /// **'Early Bird'**
+  String get achievementEarlyBird;
+
+  /// No description provided for @achievementEarlyBirdDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Make a donation before 10:00 AM'**
+  String get achievementEarlyBirdDescription;
 }
 
 class _AppLocalizationsDelegate

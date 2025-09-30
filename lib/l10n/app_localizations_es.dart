@@ -378,4 +378,11 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get achievementHolidayDonorDescription =>
       'Hizo una donación en un día festivo';
+
+  @override
+  String get achievementEarlyBird => 'Ave madrugadora';
+
+  @override
+  String get achievementEarlyBirdDescription =>
+      'Haz una donación antes de las 10:00 de la mañana';
 }

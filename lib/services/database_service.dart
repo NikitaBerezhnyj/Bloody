@@ -12,7 +12,7 @@ class DatabaseService {
 
     _database = await openDatabase(
       path,
-      version: 2, // Збільшено версію
+      version: 3, // Збільшили версію до 3
       onCreate: (db, version) async {
         await db.execute('''
           CREATE TABLE users(
@@ -24,10 +24,12 @@ class DatabaseService {
             createdAt TEXT
           )
         ''');
+
         await db.execute('''
           CREATE TABLE donations(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             date TEXT,
+            time TEXT,
             type TEXT,
             feeling TEXT,
             notes TEXT
@@ -36,8 +38,11 @@ class DatabaseService {
       },
       onUpgrade: (db, oldVersion, newVersion) async {
         if (oldVersion < 2) {
-          // Додаємо поле createdAt до існуючої таблиці
           await db.execute('ALTER TABLE users ADD COLUMN createdAt TEXT');
+        }
+        if (oldVersion < 3) {
+          // Додаємо колонку time для існуючих записів
+          await db.execute('ALTER TABLE donations ADD COLUMN time TEXT DEFAULT "12:00"');
         }
       },
     );

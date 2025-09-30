@@ -32,6 +32,10 @@ class _JournalScreenState extends State<JournalScreen> {
     return "${date.day.toString().padLeft(2,'0')}.${date.month.toString().padLeft(2,'0')}.${date.year}";
   }
 
+  String _formatTime(TimeOfDay time) {
+    return "${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}";
+  }
+
   String _translateDonationType(AppLocalizations t, String key) {
     switch (key) {
       case "donationWholeBlood":
@@ -93,7 +97,7 @@ class _JournalScreenState extends State<JournalScreen> {
             child: ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               leading: _getDonationIcon(donation.type),
-              title: Text("${_translateDonationType(t, donation.type)} — ${_formatDate(donation.date)}"),
+              title: Text("${_translateDonationType(t, donation.type)} — ${_formatDate(donation.date)} ${_formatTime(donation.time)}"),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

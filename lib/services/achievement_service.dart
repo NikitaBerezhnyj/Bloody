@@ -132,6 +132,17 @@ class AchievementService {
       icon: Icons.celebration,
     ));
 
+    final hasEarlyBirdDonation = donations.any((donation) {
+      return donation.time.hour < 10;
+    });
+
+    achievements.add(Achievement(
+      title: "Рання пташка",
+      achieved: hasEarlyBirdDonation,
+      description: "Здійсніть донацію до 10:00 ранку",
+      icon: Icons.wb_sunny,
+    ));
+
     return achievements;
   }
 
