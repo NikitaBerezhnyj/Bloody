@@ -123,7 +123,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            child: Text(t.logout, style: const TextStyle(color: Colors.red)),
+            child: Text(
+              t.logout,
+              style: const TextStyle(color: Colors.red),
+            ),
           ),
         ],
       ),
@@ -155,75 +158,85 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     return Scaffold(
       appBar: AppBar(title: Text(t.profileTitle)),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Form(
-          key: _formKey,
-          child: ListView(
-            children: [
-              TextFormField(
-                controller: _nameController,
-                decoration: InputDecoration(labelText: t.nameLabel),
-                validator: (value) =>
-                value == null || value.isEmpty ? t.enterName : null,
-              ),
-              const SizedBox(height: 12),
-
-              // Birthday picker
-              GestureDetector(
-                onTap: _pickBirthday,
-                child: AbsorbPointer(
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      labelText: t.birthdayLabel,
-                      hintText: t.enterBirthday,
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextFormField(
+                  controller: _nameController,
+                  decoration: InputDecoration(labelText: t.nameLabel),
+                  validator: (value) =>
+                  value == null || value.isEmpty ? t.enterName : null,
+                ),
+                const SizedBox(height: 12),
+                GestureDetector(
+                  onTap: _pickBirthday,
+                  child: AbsorbPointer(
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        labelText: t.birthdayLabel,
+                        hintText: t.enterBirthday,
+                      ),
+                      controller: TextEditingController(
+                        text: _birthday != null
+                            ? "${_birthday!.day.toString().padLeft(2, '0')}.${_birthday!.month.toString().padLeft(2, '0')}.${_birthday!.year}"
+                            : '',
+                      ),
+                      validator: (_) =>
+                      _birthday == null ? t.enterBirthday : null,
                     ),
-                    controller: TextEditingController(
-                      text: _birthday != null
-                          ? "${_birthday!.day.toString().padLeft(2, '0')}.${_birthday!.month.toString().padLeft(2, '0')}.${_birthday!.year}"
-                          : '',
-                    ),
-                    validator: (_) =>
-                    _birthday == null ? t.enterBirthday : null,
                   ),
                 ),
-              ),
-
-              const SizedBox(height: 12),
-              DropdownButtonFormField<String>(
-                value: _genderKey,
-                decoration: InputDecoration(labelText: t.genderLabel),
-                items: genderMap.entries
-                    .map(
-                      (e) =>
-                      DropdownMenuItem(value: e.key, child: Text(e.value)),
-                )
-                    .toList(),
-                onChanged: (val) => setState(() => _genderKey = val),
-                validator: (value) => value == null ? t.selectGender : null,
-              ),
-              const SizedBox(height: 12),
-              DropdownButtonFormField<String>(
-                value: _bloodType,
-                decoration: InputDecoration(labelText: t.bloodTypeLabel),
-                items: bloodTypes
-                    .map((bt) => DropdownMenuItem(value: bt, child: Text(bt)))
-                    .toList(),
-                onChanged: (val) => setState(() => _bloodType = val),
-                validator: (value) => value == null ? t.selectBloodType : null,
-              ),
-              const SizedBox(height: 24),
-              ElevatedButton(onPressed: _saveUser, child: Text(t.saveChanges)),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: _logout,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  foregroundColor: Colors.white,
+                const SizedBox(height: 12),
+                DropdownButtonFormField<String>(
+                  value: _genderKey,
+                  decoration: InputDecoration(labelText: t.genderLabel),
+                  items: genderMap.entries
+                      .map((e) =>
+                      DropdownMenuItem(value: e.key, child: Text(e.value)))
+                      .toList(),
+                  onChanged: (val) => setState(() => _genderKey = val),
+                  validator: (value) =>
+                  value == null ? t.selectGender : null,
                 ),
-                child: Text(t.logout),
-              ),
-            ],
+                const SizedBox(height: 12),
+                DropdownButtonFormField<String>(
+                  value: _bloodType,
+                  decoration: InputDecoration(labelText: t.bloodTypeLabel),
+                  items: bloodTypes
+                      .map((bt) =>
+                      DropdownMenuItem(value: bt, child: Text(bt)))
+                      .toList(),
+                  onChanged: (val) => setState(() => _bloodType = val),
+                  validator: (value) =>
+                  value == null ? t.selectBloodType : null,
+                ),
+                const SizedBox(height: 24),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: _saveUser,
+                    child: Text(t.saveChanges),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: _logout,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      foregroundColor: Colors.white,
+                    ),
+                    child: Text(t.logout),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
