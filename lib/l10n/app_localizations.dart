@@ -736,6 +736,132 @@ abstract class AppLocalizations {
   /// **'Rescue Legend'**
   String get achievementPlatelets100;
 
+  /// No description provided for @achievementWholeBlood1Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Brave beginner – your first drop of whole blood has saved a life.'**
+  String get achievementWholeBlood1Description;
+
+  /// No description provided for @achievementWholeBlood3Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Three steps of courage: you are already on the path of a true donor.'**
+  String get achievementWholeBlood3Description;
+
+  /// No description provided for @achievementWholeBlood5Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Red protector: five donations – five lives saved.'**
+  String get achievementWholeBlood5Description;
+
+  /// No description provided for @achievementWholeBlood10Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Steel heart: ten times you’ve given hope to those in need.'**
+  String get achievementWholeBlood10Description;
+
+  /// No description provided for @achievementWholeBlood25Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood hero: twenty-five donations – your contribution saves hundreds.'**
+  String get achievementWholeBlood25Description;
+
+  /// No description provided for @achievementWholeBlood50Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Tireless donor: fifty times you showed true dedication.'**
+  String get achievementWholeBlood50Description;
+
+  /// No description provided for @achievementWholeBlood100Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Legend of life: a hundred donations – a legendary feat for humanity.'**
+  String get achievementWholeBlood100Description;
+
+  /// No description provided for @achievementPlasma1Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Drop of kindness: your first plasma donation – small but meaningful.'**
+  String get achievementPlasma1Description;
+
+  /// No description provided for @achievementPlasma3Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Silver wave: three plasma donations – you already feel the power of helping.'**
+  String get achievementPlasma3Description;
+
+  /// No description provided for @achievementPlasma5Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Ray of hope: five times your plasma became a ray of life.'**
+  String get achievementPlasma5Description;
+
+  /// No description provided for @achievementPlasma10Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Life defender: ten donations – a reliable shield for those in need.'**
+  String get achievementPlasma10Description;
+
+  /// No description provided for @achievementPlasma25Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Golden stream: twenty-five times your plasma gave hope.'**
+  String get achievementPlasma25Description;
+
+  /// No description provided for @achievementPlasma50Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Plasma guardian: fifty donations – your help is invaluable.'**
+  String get achievementPlasma50Description;
+
+  /// No description provided for @achievementPlasma100Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Immortal donor: a hundred donations – your kindness leaves a mark in time.'**
+  String get achievementPlasma100Description;
+
+  /// No description provided for @achievementPlatelets1Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Tiny hero: first platelets – the first step to a great deed.'**
+  String get achievementPlatelets1Description;
+
+  /// No description provided for @achievementPlatelets3Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Little rescuer: three platelet donations – you are already changing the world.'**
+  String get achievementPlatelets3Description;
+
+  /// No description provided for @achievementPlatelets5Description.
+  ///
+  /// In en, this message translates to:
+  /// **'White knight: five times your platelets became a shield for life.'**
+  String get achievementPlatelets5Description;
+
+  /// No description provided for @achievementPlatelets10Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood defender: ten donations – you are a reliable protector of humanity.'**
+  String get achievementPlatelets10Description;
+
+  /// No description provided for @achievementPlatelets25Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Thrombo-master: twenty-five donations – mastery in every drop.'**
+  String get achievementPlatelets25Description;
+
+  /// No description provided for @achievementPlatelets50Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Life sentinel: fifty platelet donations – your dedication is impressive.'**
+  String get achievementPlatelets50Description;
+
+  /// No description provided for @achievementPlatelets100Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Legend of rescue: a hundred donations – you are a true hero of humanity.'**
+  String get achievementPlatelets100Description;
+
   /// No description provided for @achievementOtherTitle.
   ///
   /// In en, this message translates to:

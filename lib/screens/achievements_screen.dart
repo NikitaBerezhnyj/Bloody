@@ -63,30 +63,22 @@ class _AchievementsScreenState extends State<AchievementsScreen> {
               const SizedBox(height: 12),
               LayoutBuilder(
                 builder: (context, constraints) {
-                  const tileWidth = 100.0;
-                  const minSpacing = 16.0;
-                  final availableWidth = constraints.maxWidth;
-
-                  int columns =
-                  (availableWidth / (tileWidth + minSpacing))
-                      .floor();
-                  columns = columns.clamp(2, 4);
-
-                  final totalTileWidth = tileWidth * columns;
-                  final totalSpacing = availableWidth - totalTileWidth;
-                  final spacing = totalSpacing / (columns + 1);
+                  const columns = 3;
+                  final spacing = 16.0;
+                  final totalSpacing = spacing * (columns - 1);
+                  final tileWidth = (constraints.maxWidth - totalSpacing) / columns;
 
                   return Wrap(
                     spacing: spacing,
-                    runSpacing: 16,
-                    children:
-                    category.achievements.map<Widget>((achievement) {
+                    runSpacing: spacing,
+                    children: category.achievements.map<Widget>((achievement) {
                       return SizedBox(
                         width: tileWidth,
                         child: AchievementTile(
                           icon: achievement.icon ?? category.icon,
                           title: achievement.title,
                           subtitle: achievement.level?.toString() ?? "",
+                          description: achievement.description ?? "",
                           achieved: achievement.achieved,
                         ),
                       );

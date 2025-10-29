@@ -296,7 +296,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get achievementsTitle => 'Досягення';
 
   @override
-  String get achievementWholeBlood1 => 'Перший крок';
+  String get achievementWholeBlood1 => 'Перша кров';
 
   @override
   String get achievementWholeBlood3 => 'Сміливець';
@@ -357,6 +357,90 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get achievementPlatelets100 => 'Легенда порятунку';
+
+  @override
+  String get achievementWholeBlood1Description =>
+      'Відважний початківець – твоя перша крапля цільової крові врятувала життя.';
+
+  @override
+  String get achievementWholeBlood3Description =>
+      'Три кроки від сміливості: ти вже на шляху справжнього донора.';
+
+  @override
+  String get achievementWholeBlood5Description =>
+      'Червоний захисник: п’ять донацій – п’ять врятованих життів.';
+
+  @override
+  String get achievementWholeBlood10Description =>
+      'Сталеве серце: десять разів ти подарував надію тим, хто потребує.';
+
+  @override
+  String get achievementWholeBlood25Description =>
+      'Кровний герой: двадцять п’ять донацій – твій внесок у порятунок сотень.';
+
+  @override
+  String get achievementWholeBlood50Description =>
+      'Невтомний донор: півсотні разів ти проявив справжню відданість.';
+
+  @override
+  String get achievementWholeBlood100Description =>
+      'Легенда життя: сто донацій – легендарний подвиг на користь людства.';
+
+  @override
+  String get achievementPlasma1Description =>
+      'Краплина добра: перша донація плазми – маленький, але важливий внесок.';
+
+  @override
+  String get achievementPlasma3Description =>
+      'Срібна хвиля: три донації плазми – ти вже відчуваєш силу допомоги.';
+
+  @override
+  String get achievementPlasma5Description =>
+      'Промінь надії: п’ять разів твоя плазма стала променем життя.';
+
+  @override
+  String get achievementPlasma10Description =>
+      'Захисник життя: десять донацій – ти надійний щит для тих, хто потребує.';
+
+  @override
+  String get achievementPlasma25Description =>
+      'Золотий струм: двадцять п’ять разів твоя плазма дарувала надію.';
+
+  @override
+  String get achievementPlasma50Description =>
+      'Хранитель плазми: півсотні донацій – твоя допомога безцінна.';
+
+  @override
+  String get achievementPlasma100Description =>
+      'Безсмертний донор: сто донацій – твоя доброта залишає слід у часі.';
+
+  @override
+  String get achievementPlatelets1Description =>
+      'Крихітний герой: перші тромбоцити – перший крок до великої справи.';
+
+  @override
+  String get achievementPlatelets3Description =>
+      'Маленький рятівник: три донації тромбоцитів – ти вже змінюєш світ.';
+
+  @override
+  String get achievementPlatelets5Description =>
+      'Білий лицар: п’ять разів твої тромбоцити стали щитом для життя.';
+
+  @override
+  String get achievementPlatelets10Description =>
+      'Захисник крові: десять донацій – ти надійний оборонець людства.';
+
+  @override
+  String get achievementPlatelets25Description =>
+      'Тромбо-майстер: двадцять п’ять донацій – майстерність у кожній краплі.';
+
+  @override
+  String get achievementPlatelets50Description =>
+      'Вартовий життя: півсотні донацій тромбоцитів – твоя відданість вражає.';
+
+  @override
+  String get achievementPlatelets100Description =>
+      'Легенда порятунку: сто донацій – ти справжній герой людства.';
 
   @override
   String get achievementOtherTitle => 'Інше';

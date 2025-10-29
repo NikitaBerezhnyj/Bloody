@@ -8,13 +8,6 @@ import '../l10n/app_localizations.dart';
 class AchievementService {
   static const List<int> levels = [1, 3, 5, 10, 25, 50, 100];
 
-  // static final List<DateTime> holidays = [
-  //   DateTime(DateTime.now().year, 1, 1), // Новий рік
-  //   DateTime(DateTime.now().year, 3, 8), // Міжнародний жіночий день
-  //   DateTime(DateTime.now().year, 6, 14), // Всесвітній день донора крові
-  //   DateTime(DateTime.now().year, 12, 25), // Різдво
-  // ];
-
   static List<DateTime> _getHolidays(User? user) {
     final now = DateTime.now().year;
     final holidays = [
@@ -90,6 +83,45 @@ class AchievementService {
     return achievements;
   }
 
+  static String _getAchievementDescription(AppLocalizations t, String type, int level) {
+    switch (type) {
+      case 'wholeBlood':
+        switch (level) {
+          case 1: return t.achievementWholeBlood1Description;
+          case 3: return t.achievementWholeBlood3Description;
+          case 5: return t.achievementWholeBlood5Description;
+          case 10: return t.achievementWholeBlood10Description;
+          case 25: return t.achievementWholeBlood25Description;
+          case 50: return t.achievementWholeBlood50Description;
+          case 100: return t.achievementWholeBlood100Description;
+        }
+        break;
+      case 'plasma':
+        switch (level) {
+          case 1: return t.achievementPlasma1Description;
+          case 3: return t.achievementPlasma3Description;
+          case 5: return t.achievementPlasma5Description;
+          case 10: return t.achievementPlasma10Description;
+          case 25: return t.achievementPlasma25Description;
+          case 50: return t.achievementPlasma50Description;
+          case 100: return t.achievementPlasma100Description;
+        }
+        break;
+      case 'platelets':
+        switch (level) {
+          case 1: return t.achievementPlatelets1Description;
+          case 3: return t.achievementPlatelets3Description;
+          case 5: return t.achievementPlatelets5Description;
+          case 10: return t.achievementPlatelets10Description;
+          case 25: return t.achievementPlatelets25Description;
+          case 50: return t.achievementPlatelets50Description;
+          case 100: return t.achievementPlatelets100Description;
+        }
+        break;
+    }
+    return '';
+  }
+
   static List<Achievement> _buildAchievementsForType(
       int count,
       String type,
@@ -100,7 +132,7 @@ class AchievementService {
         title: _getAchievementTitle(t, type, level),
         level: level,
         achieved: count >= level,
-        description: null,
+        description: _getAchievementDescription(t, type, level),
       );
     }).toList();
   }

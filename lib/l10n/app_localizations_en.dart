@@ -358,6 +358,90 @@ class AppLocalizationsEn extends AppLocalizations {
   String get achievementPlatelets100 => 'Rescue Legend';
 
   @override
+  String get achievementWholeBlood1Description =>
+      'Brave beginner – your first drop of whole blood has saved a life.';
+
+  @override
+  String get achievementWholeBlood3Description =>
+      'Three steps of courage: you are already on the path of a true donor.';
+
+  @override
+  String get achievementWholeBlood5Description =>
+      'Red protector: five donations – five lives saved.';
+
+  @override
+  String get achievementWholeBlood10Description =>
+      'Steel heart: ten times you’ve given hope to those in need.';
+
+  @override
+  String get achievementWholeBlood25Description =>
+      'Blood hero: twenty-five donations – your contribution saves hundreds.';
+
+  @override
+  String get achievementWholeBlood50Description =>
+      'Tireless donor: fifty times you showed true dedication.';
+
+  @override
+  String get achievementWholeBlood100Description =>
+      'Legend of life: a hundred donations – a legendary feat for humanity.';
+
+  @override
+  String get achievementPlasma1Description =>
+      'Drop of kindness: your first plasma donation – small but meaningful.';
+
+  @override
+  String get achievementPlasma3Description =>
+      'Silver wave: three plasma donations – you already feel the power of helping.';
+
+  @override
+  String get achievementPlasma5Description =>
+      'Ray of hope: five times your plasma became a ray of life.';
+
+  @override
+  String get achievementPlasma10Description =>
+      'Life defender: ten donations – a reliable shield for those in need.';
+
+  @override
+  String get achievementPlasma25Description =>
+      'Golden stream: twenty-five times your plasma gave hope.';
+
+  @override
+  String get achievementPlasma50Description =>
+      'Plasma guardian: fifty donations – your help is invaluable.';
+
+  @override
+  String get achievementPlasma100Description =>
+      'Immortal donor: a hundred donations – your kindness leaves a mark in time.';
+
+  @override
+  String get achievementPlatelets1Description =>
+      'Tiny hero: first platelets – the first step to a great deed.';
+
+  @override
+  String get achievementPlatelets3Description =>
+      'Little rescuer: three platelet donations – you are already changing the world.';
+
+  @override
+  String get achievementPlatelets5Description =>
+      'White knight: five times your platelets became a shield for life.';
+
+  @override
+  String get achievementPlatelets10Description =>
+      'Blood defender: ten donations – you are a reliable protector of humanity.';
+
+  @override
+  String get achievementPlatelets25Description =>
+      'Thrombo-master: twenty-five donations – mastery in every drop.';
+
+  @override
+  String get achievementPlatelets50Description =>
+      'Life sentinel: fifty platelet donations – your dedication is impressive.';
+
+  @override
+  String get achievementPlatelets100Description =>
+      'Legend of rescue: a hundred donations – you are a true hero of humanity.';
+
+  @override
   String get achievementOtherTitle => 'Other';
 
   @override

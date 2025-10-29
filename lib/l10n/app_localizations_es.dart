@@ -359,6 +359,90 @@ class AppLocalizationsEs extends AppLocalizations {
   String get achievementPlatelets100 => 'Leyenda del Rescate';
 
   @override
+  String get achievementWholeBlood1Description =>
+      'Valiente principiante: tu primera gota de sangre entera ha salvado una vida.';
+
+  @override
+  String get achievementWholeBlood3Description =>
+      'Tres pasos de valor: ya estás en el camino de un verdadero donante.';
+
+  @override
+  String get achievementWholeBlood5Description =>
+      'Protector rojo: cinco donaciones – cinco vidas salvadas.';
+
+  @override
+  String get achievementWholeBlood10Description =>
+      'Corazón de acero: diez veces has dado esperanza a quienes lo necesitan.';
+
+  @override
+  String get achievementWholeBlood25Description =>
+      'Héroe de la sangre: veinticinco donaciones – tu contribución salva cientos.';
+
+  @override
+  String get achievementWholeBlood50Description =>
+      'Donante incansable: cincuenta veces mostraste verdadera dedicación.';
+
+  @override
+  String get achievementWholeBlood100Description =>
+      'Leyenda de la vida: cien donaciones – una hazaña legendaria para la humanidad.';
+
+  @override
+  String get achievementPlasma1Description =>
+      'Gota de bondad: tu primera donación de plasma – pequeña pero significativa.';
+
+  @override
+  String get achievementPlasma3Description =>
+      'Ola plateada: tres donaciones de plasma – ya sientes el poder de ayudar.';
+
+  @override
+  String get achievementPlasma5Description =>
+      'Rayo de esperanza: cinco veces tu plasma se convirtió en un rayo de vida.';
+
+  @override
+  String get achievementPlasma10Description =>
+      'Defensor de la vida: diez donaciones – un escudo confiable para quienes lo necesitan.';
+
+  @override
+  String get achievementPlasma25Description =>
+      'Corriente dorada: veinticinco veces tu plasma dio esperanza.';
+
+  @override
+  String get achievementPlasma50Description =>
+      'Guardián del plasma: cincuenta donaciones – tu ayuda es invaluable.';
+
+  @override
+  String get achievementPlasma100Description =>
+      'Donante inmortal: cien donaciones – tu bondad deja huella en el tiempo.';
+
+  @override
+  String get achievementPlatelets1Description =>
+      'Pequeño héroe: primeras plaquetas – el primer paso hacia una gran hazaña.';
+
+  @override
+  String get achievementPlatelets3Description =>
+      'Pequeño salvador: tres donaciones de plaquetas – ya estás cambiando el mundo.';
+
+  @override
+  String get achievementPlatelets5Description =>
+      'Caballero blanco: cinco veces tus plaquetas se convirtieron en un escudo para la vida.';
+
+  @override
+  String get achievementPlatelets10Description =>
+      'Defensor de la sangre: diez donaciones – eres un protector confiable de la humanidad.';
+
+  @override
+  String get achievementPlatelets25Description =>
+      'Maestro trombo: veinticinco donaciones – maestría en cada gota.';
+
+  @override
+  String get achievementPlatelets50Description =>
+      'Centinela de la vida: cincuenta donaciones de plaquetas – tu dedicación impresiona.';
+
+  @override
+  String get achievementPlatelets100Description =>
+      'Leyenda del rescate: cien donaciones – eres un verdadero héroe de la humanidad.';
+
+  @override
   String get achievementOtherTitle => 'Otros';
 
   @override

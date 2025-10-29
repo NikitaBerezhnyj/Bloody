@@ -98,7 +98,7 @@
 
     "achievementsTitle": "Досягення",
 
-    "achievementWholeBlood1": "Перший крок",
+    "achievementWholeBlood1": "Перша кров",
     "achievementWholeBlood3": "Сміливець",
     "achievementWholeBlood5": "Червоний захисник",
     "achievementWholeBlood10": "Сталеве серце",
@@ -121,6 +121,30 @@
     "achievementPlatelets25": "Тромбо-майстер",
     "achievementPlatelets50": "Вартовий життя",
     "achievementPlatelets100": "Легенда порятунку",
+
+    "achievementWholeBlood1Description": "Відважний початківець – твоя перша крапля цільової крові врятувала життя.",
+    "achievementWholeBlood3Description": "Три кроки від сміливості: ти вже на шляху справжнього донора.",
+    "achievementWholeBlood5Description": "Червоний захисник: п’ять донацій – п’ять врятованих життів.",
+    "achievementWholeBlood10Description": "Сталеве серце: десять разів ти подарував надію тим, хто потребує.",
+    "achievementWholeBlood25Description": "Кровний герой: двадцять п’ять донацій – твій внесок у порятунок сотень.",
+    "achievementWholeBlood50Description": "Невтомний донор: півсотні разів ти проявив справжню відданість.",
+    "achievementWholeBlood100Description": "Легенда життя: сто донацій – легендарний подвиг на користь людства.",
+
+    "achievementPlasma1Description": "Краплина добра: перша донація плазми – маленький, але важливий внесок.",
+    "achievementPlasma3Description": "Срібна хвиля: три донації плазми – ти вже відчуваєш силу допомоги.",
+    "achievementPlasma5Description": "Промінь надії: п’ять разів твоя плазма стала променем життя.",
+    "achievementPlasma10Description": "Захисник життя: десять донацій – ти надійний щит для тих, хто потребує.",
+    "achievementPlasma25Description": "Золотий струм: двадцять п’ять разів твоя плазма дарувала надію.",
+    "achievementPlasma50Description": "Хранитель плазми: півсотні донацій – твоя допомога безцінна.",
+    "achievementPlasma100Description": "Безсмертний донор: сто донацій – твоя доброта залишає слід у часі.",
+
+    "achievementPlatelets1Description": "Крихітний герой: перші тромбоцити – перший крок до великої справи.",
+    "achievementPlatelets3Description": "Маленький рятівник: три донації тромбоцитів – ти вже змінюєш світ.",
+    "achievementPlatelets5Description": "Білий лицар: п’ять разів твої тромбоцити стали щитом для життя.",
+    "achievementPlatelets10Description": "Захисник крові: десять донацій – ти надійний оборонець людства.",
+    "achievementPlatelets25Description": "Тромбо-майстер: двадцять п’ять донацій – майстерність у кожній краплі.",
+    "achievementPlatelets50Description": "Вартовий життя: півсотні донацій тромбоцитів – твоя відданість вражає.",
+    "achievementPlatelets100Description": "Легенда порятунку: сто донацій – ти справжній герой людства.",
 
     "achievementOtherTitle": "Інше",
     "achievementFirstStep": "Перший крок",
