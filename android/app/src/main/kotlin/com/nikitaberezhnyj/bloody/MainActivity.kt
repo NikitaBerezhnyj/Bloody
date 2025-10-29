@@ -1,4 +1,4 @@
-package com.example.bloody
+package com.nikitaberezhnyj.bloody
 
 import io.flutter.embedding.android.FlutterActivity
 
