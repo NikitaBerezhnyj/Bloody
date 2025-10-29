@@ -25,13 +25,11 @@ class _SplashScreenState extends State<SplashScreen>
       duration: const Duration(seconds: 2),
     );
 
-    // Пульсуючий масштаб
     _scaleAnimation = TweenSequence<double>([
       TweenSequenceItem(tween: Tween(begin: 0.95, end: 1.05), weight: 50),
       TweenSequenceItem(tween: Tween(begin: 1.05, end: 1.0), weight: 50),
     ]).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
-    // Плавна зміна прозорості назви
     _alphaAnimation = TweenSequence<double>([
       TweenSequenceItem(tween: Tween(begin: 0.5, end: 1.0), weight: 50),
       TweenSequenceItem(tween: Tween(begin: 1.0, end: 0.5), weight: 50),
@@ -39,7 +37,6 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.repeat(reverse: true);
 
-    // Завершуємо splash через 2.5 секунди
     Timer(const Duration(milliseconds: 2500), () {
       _controller.stop();
       widget.onFinish();
@@ -69,9 +66,9 @@ class _SplashScreenState extends State<SplashScreen>
                 );
               },
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(24), // закруглені кути
+                borderRadius: BorderRadius.circular(24),
                 child: Container(
-                  color: Colors.white, // фон під логотипом
+                  color: Colors.white,
                   padding: const EdgeInsets.all(8),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
@@ -89,10 +86,7 @@ class _SplashScreenState extends State<SplashScreen>
             AnimatedBuilder(
               animation: _alphaAnimation,
               builder: (context, child) {
-                return Opacity(
-                  opacity: _alphaAnimation.value,
-                  child: child,
-                );
+                return Opacity(opacity: _alphaAnimation.value, child: child);
               },
               child: const Text(
                 'Bloody',

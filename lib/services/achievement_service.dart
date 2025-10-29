@@ -11,9 +11,9 @@ class AchievementService {
   static List<DateTime> _getHolidays(User? user) {
     final now = DateTime.now().year;
     final holidays = [
-      DateTime(now, 1, 1),   // Новий рік
-      DateTime(now, 3, 8),   // Міжнародний жіночий день
-      DateTime(now, 6, 14),  // Всесвітній день донора крові
+      DateTime(now, 1, 1), // Новий рік
+      DateTime(now, 3, 8), // Міжнародний жіночий день
+      DateTime(now, 6, 14), // Всесвітній день донора крові
       DateTime(now, 12, 25), // Різдво
     ];
 
@@ -25,16 +25,19 @@ class AchievementService {
   }
 
   static Future<Map<String, AchievementCategory>> getAchievements(
-      AppLocalizations t) async {
+    AppLocalizations t,
+  ) async {
     final donations = await DonationService.getDonations();
     final user = await UserService.getUser();
 
     final Map<String, List<Donation>> donationsByType = {
-      'wholeBlood':
-      donations.where((d) => d.type == 'donationWholeBlood').toList(),
+      'wholeBlood': donations
+          .where((d) => d.type == 'donationWholeBlood')
+          .toList(),
       'plasma': donations.where((d) => d.type == 'donationPlasma').toList(),
-      'platelets':
-      donations.where((d) => d.type == 'donationPlatelets').toList(),
+      'platelets': donations
+          .where((d) => d.type == 'donationPlatelets')
+          .toList(),
     };
 
     final Map<String, AchievementCategory> achievements = {};
@@ -83,39 +86,64 @@ class AchievementService {
     return achievements;
   }
 
-  static String _getAchievementDescription(AppLocalizations t, String type, int level) {
+  static String _getAchievementDescription(
+    AppLocalizations t,
+    String type,
+    int level,
+  ) {
     switch (type) {
       case 'wholeBlood':
         switch (level) {
-          case 1: return t.achievementWholeBlood1Description;
-          case 3: return t.achievementWholeBlood3Description;
-          case 5: return t.achievementWholeBlood5Description;
-          case 10: return t.achievementWholeBlood10Description;
-          case 25: return t.achievementWholeBlood25Description;
-          case 50: return t.achievementWholeBlood50Description;
-          case 100: return t.achievementWholeBlood100Description;
+          case 1:
+            return t.achievementWholeBlood1Description;
+          case 3:
+            return t.achievementWholeBlood3Description;
+          case 5:
+            return t.achievementWholeBlood5Description;
+          case 10:
+            return t.achievementWholeBlood10Description;
+          case 25:
+            return t.achievementWholeBlood25Description;
+          case 50:
+            return t.achievementWholeBlood50Description;
+          case 100:
+            return t.achievementWholeBlood100Description;
         }
         break;
       case 'plasma':
         switch (level) {
-          case 1: return t.achievementPlasma1Description;
-          case 3: return t.achievementPlasma3Description;
-          case 5: return t.achievementPlasma5Description;
-          case 10: return t.achievementPlasma10Description;
-          case 25: return t.achievementPlasma25Description;
-          case 50: return t.achievementPlasma50Description;
-          case 100: return t.achievementPlasma100Description;
+          case 1:
+            return t.achievementPlasma1Description;
+          case 3:
+            return t.achievementPlasma3Description;
+          case 5:
+            return t.achievementPlasma5Description;
+          case 10:
+            return t.achievementPlasma10Description;
+          case 25:
+            return t.achievementPlasma25Description;
+          case 50:
+            return t.achievementPlasma50Description;
+          case 100:
+            return t.achievementPlasma100Description;
         }
         break;
       case 'platelets':
         switch (level) {
-          case 1: return t.achievementPlatelets1Description;
-          case 3: return t.achievementPlatelets3Description;
-          case 5: return t.achievementPlatelets5Description;
-          case 10: return t.achievementPlatelets10Description;
-          case 25: return t.achievementPlatelets25Description;
-          case 50: return t.achievementPlatelets50Description;
-          case 100: return t.achievementPlatelets100Description;
+          case 1:
+            return t.achievementPlatelets1Description;
+          case 3:
+            return t.achievementPlatelets3Description;
+          case 5:
+            return t.achievementPlatelets5Description;
+          case 10:
+            return t.achievementPlatelets10Description;
+          case 25:
+            return t.achievementPlatelets25Description;
+          case 50:
+            return t.achievementPlatelets50Description;
+          case 100:
+            return t.achievementPlatelets100Description;
         }
         break;
     }
@@ -123,10 +151,10 @@ class AchievementService {
   }
 
   static List<Achievement> _buildAchievementsForType(
-      int count,
-      String type,
-      AppLocalizations t,
-      ) {
+    int count,
+    String type,
+    AppLocalizations t,
+  ) {
     return levels.map((level) {
       return Achievement(
         title: _getAchievementTitle(t, type, level),
@@ -138,80 +166,79 @@ class AchievementService {
   }
 
   static List<Achievement> _buildSpecialAchievements(
-      List<Donation> donations,
-      Map<String, List<Donation>> donationsByType,
-      User? user,
-      AppLocalizations t,
-      ) {
+    List<Donation> donations,
+    Map<String, List<Donation>> donationsByType,
+    User? user,
+    AppLocalizations t,
+  ) {
     final achievements = <Achievement>[];
 
     final hasProfile = user != null;
-    achievements.add(Achievement(
-      title: t.achievementFirstStep,
-      achieved: hasProfile,
-      description: t.achievementFirstStepDescription,
-      icon: Icons.person_add,
-    ));
+    achievements.add(
+      Achievement(
+        title: t.achievementFirstStep,
+        achieved: hasProfile,
+        description: t.achievementFirstStepDescription,
+        icon: Icons.person_add,
+      ),
+    );
 
     final hasWholeBlood = donationsByType['wholeBlood']!.isNotEmpty;
     final hasPlasma = donationsByType['plasma']!.isNotEmpty;
     final hasPlatelets = donationsByType['platelets']!.isNotEmpty;
     final isUniversal = hasWholeBlood && hasPlasma && hasPlatelets;
 
-    achievements.add(Achievement(
-      title: t.achievementUniversal,
-      achieved: isUniversal,
-      description: t.achievementUniversalDescription,
-      icon: Icons.all_inclusive,
-    ));
+    achievements.add(
+      Achievement(
+        title: t.achievementUniversal,
+        achieved: isUniversal,
+        description: t.achievementUniversalDescription,
+        icon: Icons.all_inclusive,
+      ),
+    );
 
-    // final hasHolidayDonation = donations.any((donation) {
-    //   final donationDate = donation.date;
-    //   return holidays.any((holiday) =>
-    //   holiday.year == donationDate.year &&
-    //       holiday.month == donationDate.month &&
-    //       holiday.day == donationDate.day);
-    // });
-    //
-    // achievements.add(Achievement(
-    //   title: t.achievementHolidayDonor,
-    //   achieved: hasHolidayDonation,
-    //   description: t.achievementHolidayDonorDescription,
-    //   icon: Icons.celebration,
-    // ));
     final holidays = _getHolidays(user);
 
     final hasHolidayDonation = donations.any((donation) {
       final donationDate = donation.date;
-      return holidays.any((holiday) =>
-      holiday.year == donationDate.year &&
-          holiday.month == donationDate.month &&
-          holiday.day == donationDate.day);
+      return holidays.any(
+        (holiday) =>
+            holiday.year == donationDate.year &&
+            holiday.month == donationDate.month &&
+            holiday.day == donationDate.day,
+      );
     });
 
-    achievements.add(Achievement(
-      title: t.achievementHolidayDonor,
-      achieved: hasHolidayDonation,
-      description: t.achievementHolidayDonorDescription,
-      icon: Icons.celebration,
-    ));
+    achievements.add(
+      Achievement(
+        title: t.achievementHolidayDonor,
+        achieved: hasHolidayDonation,
+        description: t.achievementHolidayDonorDescription,
+        icon: Icons.celebration,
+      ),
+    );
 
     final hasEarlyBirdDonation = donations.any((donation) {
       return donation.time.hour < 10;
     });
 
-    achievements.add(Achievement(
-      title: "Рання пташка",
-      achieved: hasEarlyBirdDonation,
-      description: "Здійсніть донацію до 10:00 ранку",
-      icon: Icons.wb_sunny,
-    ));
+    achievements.add(
+      Achievement(
+        title: "Рання пташка",
+        achieved: hasEarlyBirdDonation,
+        description: "Здійсніть донацію до 10:00 ранку",
+        icon: Icons.wb_sunny,
+      ),
+    );
 
     return achievements;
   }
 
   static String _getAchievementTitle(
-      AppLocalizations t, String type, int level) {
+    AppLocalizations t,
+    String type,
+    int level,
+  ) {
     switch (type) {
       case 'wholeBlood':
         switch (level) {
