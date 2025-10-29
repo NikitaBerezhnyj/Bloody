@@ -1,3 +1,4 @@
+import 'package:bloody/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -71,33 +72,52 @@ class _BloodyAppState extends State<BloodyApp> {
   }
 }
 
-class InitialScreen extends StatelessWidget {
+class InitialScreen extends StatefulWidget {
   final Function(Locale) onLocaleChanged;
 
   const InitialScreen({super.key, required this.onLocaleChanged});
 
-  Future<Widget> _decideStartScreen() async {
+  @override
+  State<InitialScreen> createState() => _InitialScreenState();
+}
+
+class _InitialScreenState extends State<InitialScreen> {
+  bool _showSplash = true;
+  Widget? _nextScreen;
+
+  @override
+  void initState() {
+    super.initState();
+    _decideStartScreen();
+  }
+
+  Future<void> _decideStartScreen() async {
     User? user = await UserService.getUser();
-    if (user == null) {
-      return LoginScreen(onLocaleChanged: onLocaleChanged);
-    } else {
-      return HomeScreen(onLocaleChanged: onLocaleChanged);
-    }
+    setState(() {
+      _nextScreen = user == null
+          ? LoginScreen(onLocaleChanged: widget.onLocaleChanged)
+          : HomeScreen(onLocaleChanged: widget.onLocaleChanged);
+    });
+  }
+
+  void _onSplashFinish() {
+    setState(() {
+      _showSplash = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Widget>(
-      future: _decideStartScreen(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          );
-        } else {
-          return snapshot.data!;
-        }
-      },
-    );
+    if (_showSplash) {
+      return SplashScreen(onFinish: _onSplashFinish);
+    } else {
+      if (_nextScreen == null) {
+        return const Scaffold(
+          body: Center(child: CircularProgressIndicator()),
+        );
+      } else {
+        return _nextScreen!;
+      }
+    }
   }
 }
