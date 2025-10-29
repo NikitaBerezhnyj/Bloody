@@ -915,6 +915,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Make a donation before 10:00 AM'**
   String get achievementEarlyBirdDescription;
+
+  /// No description provided for @shareTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get shareTitle;
+
+  /// No description provided for @emptyDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'No description'**
+  String get emptyDescription;
+
+  /// No description provided for @shareAchievementText.
+  ///
+  /// In en, this message translates to:
+  /// **'I’ve unlocked the “{title}” achievement in Bloody!'**
+  String shareAchievementText(Object title);
 }
 
 class _AppLocalizationsDelegate

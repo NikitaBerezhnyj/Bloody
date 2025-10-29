@@ -155,5 +155,9 @@
     "achievementHolidayDonor": "Donante Festivo",
     "achievementHolidayDonorDescription": "Hizo una donación en un día festivo",
     "achievementEarlyBird": "Ave madrugadora",
-    "achievementEarlyBirdDescription": "Haz una donación antes de las 10:00 de la mañana"
+    "achievementEarlyBirdDescription": "Haz una donación antes de las 10:00 de la mañana",
+
+    "shareTitle": "Compartir",
+    "emptyDescription":  "Sin descripción",
+    "shareAchievementText": "¡He conseguido el logro «{title}» en Bloody!"
 }

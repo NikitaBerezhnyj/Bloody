@@ -154,5 +154,9 @@
     "achievementHolidayDonor": "Святковий донор",
     "achievementHolidayDonorDescription": "Здача крові в святковий день",
     "achievementEarlyBird": "Рання пташка",
-    "achievementEarlyBirdDescription": "Здійсніть донацію до 10:00 ранку"
+    "achievementEarlyBirdDescription": "Здійсніть донацію до 10:00 ранку",
+
+    "shareTitle": "Поділитись",
+    "emptyDescription": "Без опису",
+    "shareAchievementText": "Я здобув досягнення «{title}» у Bloody!"
 }

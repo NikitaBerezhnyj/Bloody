@@ -470,4 +470,15 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get achievementEarlyBirdDescription =>
       'Здійсніть донацію до 10:00 ранку';
+
+  @override
+  String get shareTitle => 'Поділитись';
+
+  @override
+  String get emptyDescription => 'Без опису';
+
+  @override
+  String shareAchievementText(Object title) {
+    return 'Я здобув досягнення «$title» у Bloody!';
+  }
 }

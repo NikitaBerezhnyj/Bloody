@@ -470,4 +470,15 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get achievementEarlyBirdDescription =>
       'Make a donation before 10:00 AM';
+
+  @override
+  String get shareTitle => 'Share';
+
+  @override
+  String get emptyDescription => 'No description';
+
+  @override
+  String shareAchievementText(Object title) {
+    return 'I’ve unlocked the “$title” achievement in Bloody!';
+  }
 }

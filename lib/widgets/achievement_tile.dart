@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'achievement_dialog.dart';
 
 class AchievementTile extends StatelessWidget {
   final IconData icon;
@@ -26,60 +27,11 @@ class AchievementTile extends StatelessWidget {
 
         showDialog(
           context: context,
-          builder: (_) => Dialog(
-            insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-            child: SizedBox(
-              width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: 120,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        color: color.withOpacity(0.1),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: Icon(
-                          icon,
-                          size: 60,
-                          color: color,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      description.isNotEmpty ? description : "No description",
-                      style: const TextStyle(fontSize: 16),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 24),
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton.icon(
-                        onPressed: () {
-                          print("Share $title");
-                        },
-                        icon: const Icon(Icons.share),
-                        label: const Text("Share"),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+          builder: (_) => AchievementDialog(
+            icon: icon,
+            title: title,
+            description: description,
+            color: color,
           ),
         );
       },

@@ -155,5 +155,9 @@
     "achievementHolidayDonor": "Holiday Donor",
     "achievementHolidayDonorDescription": "Made a donation on a holiday",
     "achievementEarlyBird": "Early Bird",
-    "achievementEarlyBirdDescription": "Make a donation before 10:00 AM"
+    "achievementEarlyBirdDescription": "Make a donation before 10:00 AM",
+
+    "shareTitle": "Share",
+    "emptyDescription": "No description",
+    "shareAchievementText": "I’ve unlocked the “{title}” achievement in Bloody!"
 }
