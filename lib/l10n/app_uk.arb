@@ -57,6 +57,13 @@
     "feelingLabel": "Самопочуття: {feeling}",
     "notesLabel": "Нотатки: {notes}",
 
+    "ageLimitBanner": "Після 65 років донорство крові можливе лише за дозволом лікаря.",
+
+    "permissionDialogTitle": "Дозвіл на здачу крові",
+    "permissionDialogDescription": "Вам понад 65 років. Чи маєте ви медичний дозвіл на здачу крові?",
+    "yesButton": "Так",
+    "noButton": "Ні",
+
     "statsTitle": "Статистика",
     "noDonationsStats": "Ще немає жодної донації",
     "totalDonations": "Загальна кількість донацій: {count}",

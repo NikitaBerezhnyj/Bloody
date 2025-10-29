@@ -406,6 +406,36 @@ abstract class AppLocalizations {
   /// **'Notes: {notes}'**
   String notesLabel(Object notes);
 
+  /// No description provided for @ageLimitBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'After 65, blood donation is only allowed with a doctor’s permission.'**
+  String get ageLimitBanner;
+
+  /// No description provided for @permissionDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood Donation Permission'**
+  String get permissionDialogTitle;
+
+  /// No description provided for @permissionDialogDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'You are over 65 years old. Do you have a medical authorization to donate blood?'**
+  String get permissionDialogDescription;
+
+  /// No description provided for @yesButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get yesButton;
+
+  /// No description provided for @noButton.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get noButton;
+
   /// No description provided for @statsTitle.
   ///
   /// In en, this message translates to:

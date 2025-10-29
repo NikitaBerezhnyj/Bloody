@@ -58,6 +58,13 @@
     "feelingLabel": "Estado: {feeling}",
     "notesLabel": "Notas: {notes}",
 
+    "ageLimitBanner": "Después de los 65 años, la donación de sangre solo está permitida con el permiso de un médico.",
+
+    "permissionDialogTitle": "Permiso para donar sangre",
+    "permissionDialogDescription": "Tienes más de 65 años. ¿Tienes autorización médica para donar sangre?",
+    "yesButton": "Sí",
+    "noButton": "No",
+
     "statsTitle": "Estadísticas",
     "noDonationsStats": "Aún no hay donaciones",
     "totalDonations": "Total de donaciones: {count}",

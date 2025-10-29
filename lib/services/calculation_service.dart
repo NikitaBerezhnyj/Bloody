@@ -23,18 +23,14 @@ class CalculationService {
 
     final gender = user.gender;
     final now = DateTime.now();
-
-    int userCurrentAge = user.age;
-    if (userCurrentAge >= maxAgeForDonation) {
-      return -1;
-    }
+    final userCurrentAge = user.age;
 
     final cooldownDays = donationCooldownDays[lastDonation.type] ?? 60;
     final nextPossibleDateByType = lastDonation.date.add(Duration(days: cooldownDays));
 
     final oneYearAgo = now.subtract(const Duration(days: 365));
     final recentDonations = donations.where((d) => d.date.isAfter(oneYearAgo)).toList();
-    int maxDonations = gender == 'female' ? maxDonationsPerYearFemale : maxDonationsPerYearMale;
+    final maxDonations = gender == 'female' ? maxDonationsPerYearFemale : maxDonationsPerYearMale;
 
     DateTime? nextPossibleDateByCount;
     if (recentDonations.length >= maxDonations) {
@@ -43,12 +39,13 @@ class CalculationService {
     }
 
     final candidateDates = [nextPossibleDateByType];
-    if (nextPossibleDateByCount != null) candidateDates.add(nextPossibleDateByCount);
+    if (nextPossibleDateByCount != null) {
+      candidateDates.add(nextPossibleDateByCount);
+    }
 
-    final nextPossibleDate = candidateDates.reduce(
-            (a, b) => a.isAfter(b) ? a : b);
-
+    final nextPossibleDate = candidateDates.reduce((a, b) => a.isAfter(b) ? a : b);
     final daysLeft = nextPossibleDate.difference(now).inDays;
+
     return daysLeft > 0 ? daysLeft : 0;
   }
 }

@@ -187,6 +187,23 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
+  String get ageLimitBanner =>
+      'Після 65 років донорство крові можливе лише за дозволом лікаря.';
+
+  @override
+  String get permissionDialogTitle => 'Дозвіл на здачу крові';
+
+  @override
+  String get permissionDialogDescription =>
+      'Вам понад 65 років. Чи маєте ви медичний дозвіл на здачу крові?';
+
+  @override
+  String get yesButton => 'Так';
+
+  @override
+  String get noButton => 'Ні';
+
+  @override
   String get statsTitle => 'Статистика';
 
   @override

@@ -186,6 +186,23 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get ageLimitBanner =>
+      'After 65, blood donation is only allowed with a doctor’s permission.';
+
+  @override
+  String get permissionDialogTitle => 'Blood Donation Permission';
+
+  @override
+  String get permissionDialogDescription =>
+      'You are over 65 years old. Do you have a medical authorization to donate blood?';
+
+  @override
+  String get yesButton => 'Yes';
+
+  @override
+  String get noButton => 'No';
+
+  @override
   String get statsTitle => 'Statistics';
 
   @override

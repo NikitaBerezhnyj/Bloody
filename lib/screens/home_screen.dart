@@ -3,6 +3,7 @@ import '../services/user_service.dart';
 import '../services/calculation_service.dart';
 import '../services/donation_service.dart';
 import '../models/user.dart';
+import '../widgets/donation_permission_dialog.dart';
 import 'profile_screen.dart';
 import 'journal_screen.dart';
 import 'stats_screen.dart';
@@ -25,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int daysLeft = 0;
   bool hasDonations = false;
   List<dynamic> donations = [];
+  bool hasDonationPermission = false;
 
   @override
   void initState() {
@@ -47,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final loadedUser = await UserService.getUser();
     setState(() {
       user = loadedUser;
+      hasDonationPermission = (user?.age ?? 0) >= 65;
     });
   }
 
@@ -57,7 +60,10 @@ class _HomeScreenState extends State<HomeScreen> {
       age: user!.age,
       donationsCount: donations.length,
       daysSinceLastDonation: donations.isNotEmpty
-          ? DateTime.now().difference(donations.last.date).inDays
+          ? DateTime
+          .now()
+          .difference(donations.last.date)
+          .inDays
           : 0,
     );
   }
@@ -92,7 +98,18 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _addDonation() {
+  void _addDonation() async {
+    if (user == null) return;
+
+    if (hasDonationPermission) {
+      final hasPermission = await showDialog<bool>(
+        context: context,
+        builder: (context) => const DonationPermissionDialog(),
+      );
+
+      if (hasPermission != true) return;
+    }
+
     Navigator.push(
       context,
       MaterialPageRoute(builder: (_) => const AddDonationScreen()),
@@ -140,7 +157,10 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Text(
               t.welcomeUser(userName),
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headlineMedium,
             ),
             const SizedBox(height: 24),
 
@@ -153,6 +173,35 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 16),
             const Divider(thickness: 1.5),
             const SizedBox(height: 16),
+
+            if (hasDonationPermission)
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(12),
+                margin: const EdgeInsets.only(bottom: 16),
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Icon(Icons.warning_rounded,
+                        color: Colors.white, size: 28),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        t.ageLimitBanner,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          height: 1.4,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
 
             GestureDetector(
               onTap: _openProfile,

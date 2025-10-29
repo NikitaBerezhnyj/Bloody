@@ -187,6 +187,23 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get ageLimitBanner =>
+      'Después de los 65 años, la donación de sangre solo está permitida con el permiso de un médico.';
+
+  @override
+  String get permissionDialogTitle => 'Permiso para donar sangre';
+
+  @override
+  String get permissionDialogDescription =>
+      'Tienes más de 65 años. ¿Tienes autorización médica para donar sangre?';
+
+  @override
+  String get yesButton => 'Sí';
+
+  @override
+  String get noButton => 'No';
+
+  @override
   String get statsTitle => 'Estadísticas';
 
   @override

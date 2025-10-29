@@ -58,6 +58,13 @@
     "feelingLabel": "Feeling: {feeling}",
     "notesLabel": "Notes: {notes}",
 
+    "ageLimitBanner": "After 65, blood donation is only allowed with a doctor’s permission.",
+
+    "permissionDialogTitle": "Blood Donation Permission",
+    "permissionDialogDescription": "You are over 65 years old. Do you have a medical authorization to donate blood?",
+    "yesButton": "Yes",
+    "noButton": "No",
+
     "statsTitle": "Statistics",
     "noDonationsStats": "No donations yet",
     "totalDonations": "Total donations: {count}",
