@@ -88,7 +88,9 @@ class _HomeBannerState extends State<HomeBanner> {
                           widget.daysLeft > 0
                               ? AppLocalizations.of(context)!.cannotDonate(widget.daysLeft)
                               : AppLocalizations.of(context)!.canDonate,
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ],
@@ -108,7 +110,9 @@ class _HomeBannerState extends State<HomeBanner> {
                         Expanded(
                           child: Text(
                             motivationalMessage,
-                            style: Theme.of(context).textTheme.titleMedium,
+                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                       ],

@@ -102,6 +102,10 @@
 
     "settingsTitle": "Налаштування",
     "languageLabel": "Мова:",
+    "themeLabel": "Тема:",
+    "lightThemeLabel": "Світла",
+    "darkThemeLabel": "Темна",
+    "systemThemeLabel": "Системна",
 
     "achievementsTitle": "Досягення",
 

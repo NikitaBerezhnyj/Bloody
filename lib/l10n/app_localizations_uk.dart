@@ -310,6 +310,18 @@ class AppLocalizationsUk extends AppLocalizations {
   String get languageLabel => 'Мова:';
 
   @override
+  String get themeLabel => 'Тема:';
+
+  @override
+  String get lightThemeLabel => 'Світла';
+
+  @override
+  String get darkThemeLabel => 'Темна';
+
+  @override
+  String get systemThemeLabel => 'Системна';
+
+  @override
   String get achievementsTitle => 'Досягення';
 
   @override

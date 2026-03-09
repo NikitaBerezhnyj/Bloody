@@ -103,6 +103,10 @@
 
     "settingsTitle": "Settings",
     "languageLabel": "Language:",
+    "themeLabel": "Theme:",
+    "lightThemeLabel": "Light",
+    "darkThemeLabel": "Dark",
+    "systemThemeLabel": "System",
 
     "achievementsTitle": "Achievements",
 

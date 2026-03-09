@@ -21,11 +21,13 @@ class BloodyApp extends StatefulWidget {
 
 class _BloodyAppState extends State<BloodyApp> {
   Locale? _locale;
+  ThemeMode _themeMode = ThemeMode.system;
 
   @override
   void initState() {
     super.initState();
     _loadSavedLocale();
+    _loadSavedTheme();
   }
 
   Future<void> _loadSavedLocale() async {
@@ -34,6 +36,20 @@ class _BloodyAppState extends State<BloodyApp> {
     if (langCode != null) {
       setState(() {
         _locale = Locale(langCode);
+      });
+    }
+  }
+
+  Future<void> _loadSavedTheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? theme = prefs.getString('theme');
+
+    if (theme != null) {
+      setState(() {
+        _themeMode = ThemeMode.values.firstWhere(
+              (e) => e.toString() == theme,
+          orElse: () => ThemeMode.system,
+        );
       });
     }
   }
@@ -47,14 +63,35 @@ class _BloodyAppState extends State<BloodyApp> {
     });
   }
 
+  Future<void> _updateTheme(ThemeMode mode) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('theme', mode.toString());
+
+    setState(() {
+      _themeMode = mode;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Bloody',
+      // theme: ThemeData(
+      //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+      //   useMaterial3: true,
+      // ),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         useMaterial3: true,
       ),
+      darkTheme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.red,
+          brightness: Brightness.dark,
+        ),
+        useMaterial3: true,
+      ),
+      themeMode: _themeMode,
       locale: _locale,
       supportedLocales: const [
         Locale('en'),
@@ -67,15 +104,23 @@ class _BloodyAppState extends State<BloodyApp> {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: InitialScreen(onLocaleChanged: _updateLocale),
+      home: InitialScreen(
+        onLocaleChanged: _updateLocale,
+        onThemeChanged: _updateTheme,
+      ),
     );
   }
 }
 
 class InitialScreen extends StatefulWidget {
   final Function(Locale) onLocaleChanged;
+  final Function(ThemeMode) onThemeChanged;
 
-  const InitialScreen({super.key, required this.onLocaleChanged});
+  const InitialScreen({
+    super.key,
+    required this.onLocaleChanged,
+    required this.onThemeChanged,
+  });
 
   @override
   State<InitialScreen> createState() => _InitialScreenState();
@@ -83,7 +128,8 @@ class InitialScreen extends StatefulWidget {
 
 class _InitialScreenState extends State<InitialScreen> {
   bool _showSplash = true;
-  Widget? _nextScreen;
+  User? _user;
+  bool _loading = true;
 
   @override
   void initState() {
@@ -93,10 +139,10 @@ class _InitialScreenState extends State<InitialScreen> {
 
   Future<void> _decideStartScreen() async {
     User? user = await UserService.getUser();
+
     setState(() {
-      _nextScreen = user == null
-          ? LoginScreen(onLocaleChanged: widget.onLocaleChanged)
-          : HomeScreen(onLocaleChanged: widget.onLocaleChanged);
+      _user = user;
+      _loading = false;
     });
   }
 
@@ -110,14 +156,24 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     if (_showSplash) {
       return SplashScreen(onFinish: _onSplashFinish);
+    }
+
+    if (_loading) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (_user == null) {
+      return LoginScreen(
+        onLocaleChanged: widget.onLocaleChanged,
+        onThemeChanged: widget.onThemeChanged,
+      );
     } else {
-      if (_nextScreen == null) {
-        return const Scaffold(
-          body: Center(child: CircularProgressIndicator()),
-        );
-      } else {
-        return _nextScreen!;
-      }
+      return HomeScreen(
+        onLocaleChanged: widget.onLocaleChanged,
+        onThemeChanged: widget.onThemeChanged,
+      );
     }
   }
 }

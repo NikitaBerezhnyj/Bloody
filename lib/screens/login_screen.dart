@@ -7,7 +7,8 @@ import 'settings_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final Function(Locale) onLocaleChanged;
-  const LoginScreen({super.key, required this.onLocaleChanged});
+  final Function(ThemeMode) onThemeChanged;
+  const LoginScreen({super.key, required this.onLocaleChanged, required this.onThemeChanged});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -23,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _bloodType;
 
   late Map<String, String> genderMap;
-  late final List<String> bloodTypes;
+  final List<String> bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "0+", "0-"];
 
   @override
   void didChangeDependencies() {
@@ -34,8 +35,6 @@ class _LoginScreenState extends State<LoginScreen> {
       "male": t.male,
       "female": t.female,
     };
-
-    bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "0+", "0-"];
   }
 
   void _pickBirthday(BuildContext context) async {
@@ -75,6 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
         MaterialPageRoute(
           builder: (_) => HomeScreen(
             onLocaleChanged: widget.onLocaleChanged,
+            onThemeChanged: widget.onThemeChanged,
           ),
         ),
       );
@@ -104,6 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 MaterialPageRoute(
                   builder: (_) => SettingsScreen(
                     onLocaleChanged: widget.onLocaleChanged,
+                    onThemeChanged: widget.onThemeChanged,
                   ),
                 ),
               );

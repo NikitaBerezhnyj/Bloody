@@ -15,7 +15,8 @@ import 'achievements_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final Function(Locale) onLocaleChanged;
-  const HomeScreen({super.key, required this.onLocaleChanged});
+  final Function(ThemeMode) onThemeChanged;
+  const HomeScreen({super.key, required this.onLocaleChanged, required this.onThemeChanged});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int daysLeft = 0;
   bool hasDonations = false;
   List<dynamic> donations = [];
-  bool hasDonationPermission = false;
+  bool requiresAgeConfirmation = false;
 
   @override
   void initState() {
@@ -49,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final loadedUser = await UserService.getUser();
     setState(() {
       user = loadedUser;
-      hasDonationPermission = (user?.age ?? 0) >= 65;
+      requiresAgeConfirmation = (user?.age ?? 0) >= 65;
     });
   }
 
@@ -86,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => ProfileScreen(onLocaleChanged: widget.onLocaleChanged),
+        builder: (_) => ProfileScreen(onLocaleChanged: widget.onLocaleChanged, onThemeChanged: widget.onThemeChanged,),
       ),
     );
   }
@@ -101,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void _addDonation() async {
     if (user == null) return;
 
-    if (hasDonationPermission) {
+    if (requiresAgeConfirmation) {
       final hasPermission = await showDialog<bool>(
         context: context,
         builder: (context) => const DonationPermissionDialog(),
@@ -143,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 context,
                 MaterialPageRoute(
                   builder: (_) =>
-                      SettingsScreen(onLocaleChanged: widget.onLocaleChanged),
+                      SettingsScreen(onLocaleChanged: widget.onLocaleChanged, onThemeChanged: widget.onThemeChanged,),
                 ),
               );
             },
@@ -174,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const Divider(thickness: 1.5),
             const SizedBox(height: 16),
 
-            if (hasDonationPermission)
+            if (requiresAgeConfirmation)
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(12),

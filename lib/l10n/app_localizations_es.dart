@@ -310,6 +310,18 @@ class AppLocalizationsEs extends AppLocalizations {
   String get languageLabel => 'Idioma:';
 
   @override
+  String get themeLabel => 'Tema:';
+
+  @override
+  String get lightThemeLabel => 'Claro';
+
+  @override
+  String get darkThemeLabel => 'Oscuro';
+
+  @override
+  String get systemThemeLabel => 'Sistema';
+
+  @override
   String get achievementsTitle => 'Logros';
 
   @override

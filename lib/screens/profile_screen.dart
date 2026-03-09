@@ -7,7 +7,8 @@ import '../l10n/app_localizations.dart';
 
 class ProfileScreen extends StatefulWidget {
   final Function(Locale) onLocaleChanged;
-  const ProfileScreen({super.key, required this.onLocaleChanged});
+  final Function(ThemeMode) onThemeChanged;
+  const ProfileScreen({super.key, required this.onLocaleChanged, required this.onThemeChanged});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -141,7 +142,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-          builder: (_) => LoginScreen(onLocaleChanged: widget.onLocaleChanged),
+          builder: (_) => LoginScreen(onLocaleChanged: widget.onLocaleChanged, onThemeChanged: widget.onThemeChanged,),
         ),
             (route) => false,
       );
