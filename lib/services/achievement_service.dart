@@ -224,9 +224,9 @@ class AchievementService {
 
     achievements.add(
       Achievement(
-        title: "Рання пташка",
+        title: t.achievementEarlyBird,
         achieved: hasEarlyBirdDonation,
-        description: "Здійсніть донацію до 10:00 ранку",
+        description: t.achievementEarlyBirdDescription,
         icon: Icons.wb_sunny,
       ),
     );
