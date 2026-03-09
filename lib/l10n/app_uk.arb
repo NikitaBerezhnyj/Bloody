@@ -107,6 +107,12 @@
     "lightThemeLabel": "Світла",
     "darkThemeLabel": "Темна",
     "systemThemeLabel": "Системна",
+    "backupLabel": "Резервна копія",
+    "exportBackup": "Експорт",
+    "importBackup": "Імпорт",
+    "restoreFromBackup": "Відновити з файлу",
+    "importSuccess": "Дані успішно відновлено",
+    "importError": "Помилка: невірний формат файлу",
 
     "achievementsTitle": "Досягення",
 

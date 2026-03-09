@@ -664,6 +664,42 @@ abstract class AppLocalizations {
   /// **'System'**
   String get systemThemeLabel;
 
+  /// No description provided for @backupLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup'**
+  String get backupLabel;
+
+  /// No description provided for @exportBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Export'**
+  String get exportBackup;
+
+  /// No description provided for @importBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Import'**
+  String get importBackup;
+
+  /// No description provided for @restoreFromBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore from file'**
+  String get restoreFromBackup;
+
+  /// No description provided for @importSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Data restored successfully'**
+  String get importSuccess;
+
+  /// No description provided for @importError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: invalid file format'**
+  String get importError;
+
   /// No description provided for @achievementsTitle.
   ///
   /// In en, this message translates to:

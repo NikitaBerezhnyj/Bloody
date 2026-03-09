@@ -108,6 +108,12 @@
     "lightThemeLabel": "Light",
     "darkThemeLabel": "Dark",
     "systemThemeLabel": "System",
+    "backupLabel": "Backup",
+    "exportBackup": "Export",
+    "importBackup": "Import",
+    "restoreFromBackup": "Restore from file",
+    "importSuccess": "Data restored successfully",
+    "importError": "Error: invalid file format",
 
     "achievementsTitle": "Achievements",
 

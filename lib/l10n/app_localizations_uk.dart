@@ -325,6 +325,24 @@ class AppLocalizationsUk extends AppLocalizations {
   String get systemThemeLabel => 'Системна';
 
   @override
+  String get backupLabel => 'Резервна копія';
+
+  @override
+  String get exportBackup => 'Експорт';
+
+  @override
+  String get importBackup => 'Імпорт';
+
+  @override
+  String get restoreFromBackup => 'Відновити з файлу';
+
+  @override
+  String get importSuccess => 'Дані успішно відновлено';
+
+  @override
+  String get importError => 'Помилка: невірний формат файлу';
+
+  @override
   String get achievementsTitle => 'Досягення';
 
   @override

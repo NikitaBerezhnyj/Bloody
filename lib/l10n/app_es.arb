@@ -108,6 +108,12 @@
     "lightThemeLabel": "Claro",
     "darkThemeLabel": "Oscuro",
     "systemThemeLabel": "Sistema",
+    "backupLabel": "Copia de seguridad",
+    "exportBackup": "Exportar",
+    "importBackup": "Importar",
+    "restoreFromBackup": "Restaurar desde archivo",
+    "importSuccess": "Datos restaurados correctamente",
+    "importError": "Error: formato de archivo inválido",
 
     "achievementsTitle": "Logros",
 

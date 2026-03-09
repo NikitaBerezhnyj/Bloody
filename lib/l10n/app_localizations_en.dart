@@ -324,6 +324,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get systemThemeLabel => 'System';
 
   @override
+  String get backupLabel => 'Backup';
+
+  @override
+  String get exportBackup => 'Export';
+
+  @override
+  String get importBackup => 'Import';
+
+  @override
+  String get restoreFromBackup => 'Restore from file';
+
+  @override
+  String get importSuccess => 'Data restored successfully';
+
+  @override
+  String get importError => 'Error: invalid file format';
+
+  @override
   String get achievementsTitle => 'Achievements';
 
   @override
