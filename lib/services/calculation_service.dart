@@ -23,7 +23,6 @@ class CalculationService {
 
     final gender = user.gender;
     final now = DateTime.now();
-    final userCurrentAge = user.age;
 
     final cooldownDays = donationCooldownDays[lastDonation.type] ?? 60;
     final nextPossibleDateByType = lastDonation.date.add(Duration(days: cooldownDays));

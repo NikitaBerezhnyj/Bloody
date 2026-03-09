@@ -1,19 +1,18 @@
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../l10n/app_localizations.dart';
+import '../providers/locale_provider.dart';
+import '../providers/theme_provider.dart';
 
-class SettingsScreen extends StatefulWidget {
-  final Function(Locale) onLocaleChanged;
-  final Function(ThemeMode) onThemeChanged;
-  const SettingsScreen({super.key, required this.onLocaleChanged, required this.onThemeChanged});
+class SettingsScreen extends ConsumerStatefulWidget {
+  const SettingsScreen({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  ConsumerState<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   String? _selectedLanguage;
-  ThemeMode _selectedTheme = ThemeMode.system;
 
   final Map<String, Locale> supportedLocales = {
     "English": const Locale('en'),
@@ -21,38 +20,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
     "Español": const Locale('es'),
   };
 
-  Future<void> _loadTheme() async {
-    final prefs = await SharedPreferences.getInstance();
-    final String? theme = prefs.getString('theme');
-
-    if (theme != null) {
-      setState(() {
-        _selectedTheme = ThemeMode.values.firstWhere(
-              (e) => e.toString() == theme,
-          orElse: () => ThemeMode.system,
-        );
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _loadTheme();
-  }
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
     final currentLocale = Localizations.localeOf(context);
     _selectedLanguage = supportedLocales.entries
-        .firstWhere((e) => e.value.languageCode == currentLocale.languageCode)
+        .firstWhere(
+          (e) => e.value.languageCode == currentLocale.languageCode,
+          orElse: () => supportedLocales.entries.first,
+        )
         .key;
   }
 
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
+
+    final themeAsync = ref.watch(themeProvider);
+    final selectedTheme = themeAsync.valueOrNull ?? ThemeMode.system;
 
     return Scaffold(
       appBar: AppBar(title: Text(t.settingsTitle)),
@@ -69,27 +55,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
             DropdownButtonFormField<String>(
               value: _selectedLanguage,
               items: supportedLocales.keys
-                  .map((lang) => DropdownMenuItem(value: lang, child: Text(lang)))
+                  .map(
+                    (lang) => DropdownMenuItem(value: lang, child: Text(lang)),
+                  )
                   .toList(),
-              onChanged: (val) {
-                if (val != null) {
-                  setState(() => _selectedLanguage = val);
-                  widget.onLocaleChanged(supportedLocales[val]!);
-                }
+              onChanged: (val) async {
+                if (val == null) return;
+                setState(() => _selectedLanguage = val);
+
+                await ref
+                    .read(localeProvider.notifier)
+                    .setLocale(supportedLocales[val]!);
               },
-              decoration: InputDecoration(
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-              ),
             ),
             const SizedBox(height: 24),
-
             Text(
               t.themeLabel,
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
             DropdownButtonFormField<ThemeMode>(
-              value: _selectedTheme,
+              value: selectedTheme,
               items: [
                 DropdownMenuItem(
                   value: ThemeMode.system,
@@ -104,17 +90,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: Text(t.darkThemeLabel),
                 ),
               ],
-              onChanged: (mode) {
-                if (mode != null) {
-                  setState(() => _selectedTheme = mode);
-                  widget.onThemeChanged(mode);
-                }
+              onChanged: (mode) async {
+                if (mode == null) return;
+
+                await ref.read(themeProvider.notifier).setTheme(mode);
               },
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
             ),
           ],
         ),

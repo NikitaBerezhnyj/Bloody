@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../services/user_service.dart';
-import '../services/calculation_service.dart';
-import '../services/donation_service.dart';
-import '../models/user.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../providers/days_left_provider.dart';
+import '../providers/donations_provider.dart';
+import '../providers/user_provider.dart';
 import '../widgets/donation_permission_dialog.dart';
 import 'profile_screen.dart';
 import 'journal_screen.dart';
@@ -13,141 +13,71 @@ import '../l10n/app_localizations.dart';
 import '../screens/settings_screen.dart';
 import 'achievements_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  final Function(Locale) onLocaleChanged;
-  final Function(ThemeMode) onThemeChanged;
-  const HomeScreen({super.key, required this.onLocaleChanged, required this.onThemeChanged});
+class HomeScreen extends ConsumerWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = AppLocalizations.of(context)!;
 
-class _HomeScreenState extends State<HomeScreen> {
-  User? user;
-  int daysLeft = 0;
-  bool hasDonations = false;
-  List<dynamic> donations = [];
-  bool requiresAgeConfirmation = false;
+    final userAsync = ref.watch(userProvider);
+    final donationsAsync = ref.watch(donationsProvider);
+    final daysLeftAsync = ref.watch(daysLeftProvider);
 
-  @override
-  void initState() {
-    super.initState();
-    _loadUserData();
-    _calculateDaysLeft();
-  }
+    final user = userAsync.valueOrNull;
+    final donations = donationsAsync.valueOrNull ?? [];
+    final daysLeft = daysLeftAsync.valueOrNull ?? 0;
 
-  Future<void> _calculateDaysLeft() async {
-    final fetchedDonations = await DonationService.getDonations();
-    final days = await CalculationService.calculateDaysLeft(fetchedDonations);
-    setState(() {
-      donations = fetchedDonations;
-      daysLeft = days;
-      hasDonations = donations.isNotEmpty;
-    });
-  }
+    final hasDonations = donations.isNotEmpty;
+    final requiresAgeConfirmation = (user?.age ?? 0) >= 65;
+    final userName = user?.name ?? '...';
 
-  Future<void> _loadUserData() async {
-    final loadedUser = await UserService.getUser();
-    setState(() {
-      user = loadedUser;
-      requiresAgeConfirmation = (user?.age ?? 0) >= 65;
-    });
-  }
-
-  UserStats? get userStats {
-    if (user == null) return null;
-    return UserStats(
-      name: user!.name,
-      age: user!.age,
-      donationsCount: donations.length,
-      daysSinceLastDonation: donations.isNotEmpty
-          ? DateTime
-          .now()
-          .difference(donations.last.date)
-          .inDays
-          : 0,
-    );
-  }
-
-  void _openJournal() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => const JournalScreen()),
-    );
-  }
-
-  void _openStats() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => const StatsScreen()),
-    );
-  }
-
-  void _openProfile() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => ProfileScreen(onLocaleChanged: widget.onLocaleChanged, onThemeChanged: widget.onThemeChanged,),
-      ),
-    );
-  }
-
-  void _openAchievements() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => const AchievementsScreen()),
-    );
-  }
-
-  void _addDonation() async {
-    if (user == null) return;
-
-    if (requiresAgeConfirmation) {
-      final hasPermission = await showDialog<bool>(
-        context: context,
-        builder: (context) => const DonationPermissionDialog(),
+    UserStats? userStats;
+    if (user != null) {
+      userStats = UserStats(
+        name: user.name,
+        age: user.age,
+        donationsCount: donations.length,
+        daysSinceLastDonation: donations.isNotEmpty
+            ? DateTime.now().difference(donations.last.date).inDays
+            : 0,
       );
-
-      if (hasPermission != true) return;
     }
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => const AddDonationScreen()),
-    ).then((_) {
-      setState(() {
-        _calculateDaysLeft();
-      });
-    });
-  }
+    Future<void> addDonation() async {
+      if (user == null) return;
+      if (requiresAgeConfirmation) {
+        final hasPermission = await showDialog<bool>(
+          context: context,
+          builder: (_) => const DonationPermissionDialog(),
+        );
+        if (hasPermission != true) return;
+      }
+      await Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const AddDonationScreen()),
+      );
 
-  @override
-  Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context)!;
-    final userName = user?.name ?? "...";
+      ref.invalidate(donationsProvider);
+    }
 
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+        title: const Row(
           children: [
-            const Icon(Icons.opacity, color: Colors.red, size: 36),
-            const SizedBox(width: 8),
-            const Text("Bloody"),
+            Icon(Icons.opacity, color: Colors.red, size: 36),
+            SizedBox(width: 8),
+            Text('Bloody'),
           ],
         ),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
             tooltip: t.profile,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) =>
-                      SettingsScreen(onLocaleChanged: widget.onLocaleChanged, onThemeChanged: widget.onThemeChanged,),
-                ),
-              );
-            },
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const SettingsScreen()),
+            ),
           ),
         ],
       ),
@@ -158,23 +88,17 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Text(
               t.welcomeUser(userName),
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headlineMedium,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 24),
-
             HomeBanner(
               daysLeft: daysLeft,
               hasDonations: hasDonations,
               userStats: userStats,
             ),
-
             const SizedBox(height: 16),
             const Divider(thickness: 1.5),
             const SizedBox(height: 16),
-
             if (requiresAgeConfirmation)
               Container(
                 width: double.infinity,
@@ -187,8 +111,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Icon(Icons.warning_rounded,
-                        color: Colors.white, size: 28),
+                    const Icon(
+                      Icons.warning_rounded,
+                      color: Colors.white,
+                      size: 28,
+                    ),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
@@ -203,79 +130,46 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-
-            GestureDetector(
-              onTap: _openProfile,
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.person),
-                      const SizedBox(width: 16),
-                      Text(t.profileTitle),
-                    ],
-                  ),
-                ),
+            _NavCard(
+              icon: Icons.person,
+              label: t.profileTitle,
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const ProfileScreen()),
               ),
             ),
-
-            GestureDetector(
-              onTap: _openJournal,
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.list_alt),
-                      const SizedBox(width: 16),
-                      Text(t.journalTitle),
-                    ],
-                  ),
-                ),
+            _NavCard(
+              icon: Icons.list_alt,
+              label: t.journalTitle,
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const JournalScreen()),
               ),
             ),
             const SizedBox(height: 12),
-
-            GestureDetector(
-              onTap: _openStats,
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.bar_chart),
-                      const SizedBox(width: 16),
-                      Text(t.statsTitle),
-                    ],
-                  ),
-                ),
+            _NavCard(
+              icon: Icons.bar_chart,
+              label: t.statsTitle,
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const StatsScreen()),
               ),
             ),
-
-            GestureDetector(
-              onTap: _openAchievements,
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.celebration),
-                      const SizedBox(width: 16),
-                      Text(t.achievementsTitle),
-                    ],
-                  ),
-                ),
+            _NavCard(
+              icon: Icons.celebration,
+              label: t.achievementsTitle,
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const AchievementsScreen()),
               ),
             ),
           ],
         ),
       ),
-
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(right: 8.0, bottom: 45.0),
         child: FloatingActionButton(
-          onPressed: daysLeft > 0 ? null : _addDonation,
+          onPressed: daysLeft > 0 ? null : addDonation,
           tooltip: daysLeft > 0 ? t.tooEarlyToDonate : t.addDonation,
           backgroundColor: daysLeft > 0 ? Colors.red.shade200 : Colors.red,
           foregroundColor: Colors.white,
@@ -284,6 +178,32 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+    );
+  }
+}
+
+class _NavCard extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+  const _NavCard({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [Icon(icon), const SizedBox(width: 16), Text(label)],
+          ),
+        ),
+      ),
     );
   }
 }

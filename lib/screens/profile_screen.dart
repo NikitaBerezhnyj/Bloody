@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/user.dart';
+import '../providers/donations_provider.dart';
+import '../providers/user_provider.dart';
 import '../services/user_service.dart';
-import 'login_screen.dart';
 import '../services/database_service.dart';
 import '../l10n/app_localizations.dart';
 
-class ProfileScreen extends StatefulWidget {
-  final Function(Locale) onLocaleChanged;
-  final Function(ThemeMode) onThemeChanged;
-  const ProfileScreen({super.key, required this.onLocaleChanged, required this.onThemeChanged});
+class ProfileScreen extends ConsumerStatefulWidget {
+  const ProfileScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  ConsumerState<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
 
-  User? _user;
-  final TextEditingController _nameController = TextEditingController();
   DateTime? _birthday;
   String? _genderKey;
   String? _bloodType;
 
-  late Map<String, String> genderMap;
+  bool _initialized = false;
+
   final List<String> bloodTypes = [
     "A+",
     "A-",
@@ -36,61 +36,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
   ];
 
   @override
-  void initState() {
-    super.initState();
-    _loadUser();
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
   }
 
-  Future<void> _loadUser() async {
-    final user = await UserService.getUser();
-    final t = AppLocalizations.of(context)!;
-
-    genderMap = {"male": t.male, "female": t.female};
-
-    if (user != null) {
-      setState(() {
-        _user = user;
-        _nameController.text = user.name;
-        _birthday = user.birthday;
-        _genderKey = user.gender;
-        _bloodType = user.bloodType;
-      });
-    }
+  void _initFromUser(User user) {
+    if (_initialized) return;
+    _nameController.text = user.name;
+    _birthday = user.birthday;
+    _genderKey = user.gender;
+    _bloodType = user.bloodType;
+    _initialized = true;
   }
 
   Future<void> _pickBirthday() async {
     final now = DateTime.now();
-    final initialDate = _birthday ?? DateTime(now.year - 18);
-    final firstDate = DateTime(now.year - 100);
-    final lastDate = DateTime(now.year - 18);
-
     final picked = await showDatePicker(
       context: context,
-      initialDate: initialDate,
-      firstDate: firstDate,
-      lastDate: lastDate,
+      initialDate: _birthday ?? DateTime(now.year - 18),
+      firstDate: DateTime(now.year - 100),
+      lastDate: DateTime(now.year - 18),
     );
-
-    if (picked != null) {
-      setState(() {
-        _birthday = picked;
-      });
-    }
+    if (picked != null) setState(() => _birthday = picked);
   }
 
-  Future<void> _saveUser() async {
+  Future<void> _saveUser(User? currentUser) async {
+    final t = AppLocalizations.of(context)!;
     if (!_formKey.currentState!.validate()) return;
-
     if (_birthday == null) {
-      final t = AppLocalizations.of(context)!;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(t.enterBirthday)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(t.enterBirthday)));
       return;
     }
 
     final updatedUser = User(
-      id: _user?.id,
+      id: currentUser?.id,
       name: _nameController.text,
       birthday: _birthday!,
       gender: _genderKey!,
@@ -99,19 +81,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     await UserService.saveUser(updatedUser);
 
-    final t = AppLocalizations.of(context)!;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(t.profileUpdated)),
-    );
+    ref.invalidate(userProvider);
 
-    setState(() {
-      _user = updatedUser;
-    });
+    if (!mounted) return;
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(t.profileUpdated)));
   }
 
   Future<void> _logout() async {
     final t = AppLocalizations.of(context)!;
-
     final confirm = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
@@ -124,123 +103,125 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            child: Text(
-              t.logout,
-              style: const TextStyle(color: Colors.red),
-            ),
+            child: Text(t.logout, style: const TextStyle(color: Colors.red)),
           ),
         ],
       ),
     );
 
-    if (confirm == true) {
-      final db = await DatabaseService.getDatabase();
-      await db.delete('users');
-      await db.delete('donations');
+    if (confirm != true) return;
 
-      if (!mounted) return;
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (_) => LoginScreen(onLocaleChanged: widget.onLocaleChanged, onThemeChanged: widget.onThemeChanged,),
-        ),
-            (route) => false,
-      );
-    }
+    final db = await DatabaseService.getDatabase();
+    await db.delete('users');
+    await db.delete('donations');
+
+    ref.invalidate(userProvider);
+    ref.invalidate(donationsProvider);
   }
 
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
+    final userAsync = ref.watch(userProvider);
+    final genderMap = {"male": t.male, "female": t.female};
 
-    if (_user == null) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
-    }
+    return userAsync.when(
+      loading: () =>
+          const Scaffold(body: Center(child: CircularProgressIndicator())),
+      error: (e, _) => Scaffold(body: Center(child: Text('Помилка: $e'))),
+      data: (user) {
+        if (user != null) _initFromUser(user);
 
-    return Scaffold(
-      appBar: AppBar(title: Text(t.profileTitle)),
-      body: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextFormField(
-                  controller: _nameController,
-                  decoration: InputDecoration(labelText: t.nameLabel),
-                  validator: (value) =>
-                  value == null || value.isEmpty ? t.enterName : null,
-                ),
-                const SizedBox(height: 12),
-                GestureDetector(
-                  onTap: _pickBirthday,
-                  child: AbsorbPointer(
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        labelText: t.birthdayLabel,
-                        hintText: t.enterBirthday,
-                      ),
-                      controller: TextEditingController(
-                        text: _birthday != null
-                            ? "${_birthday!.day.toString().padLeft(2, '0')}.${_birthday!.month.toString().padLeft(2, '0')}.${_birthday!.year}"
-                            : '',
-                      ),
-                      validator: (_) =>
-                      _birthday == null ? t.enterBirthday : null,
+        return Scaffold(
+          appBar: AppBar(title: Text(t.profileTitle)),
+          body: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextFormField(
+                      controller: _nameController,
+                      decoration: InputDecoration(labelText: t.nameLabel),
+                      validator: (v) =>
+                          v == null || v.isEmpty ? t.enterName : null,
                     ),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                DropdownButtonFormField<String>(
-                  value: _genderKey,
-                  decoration: InputDecoration(labelText: t.genderLabel),
-                  items: genderMap.entries
-                      .map((e) =>
-                      DropdownMenuItem(value: e.key, child: Text(e.value)))
-                      .toList(),
-                  onChanged: (val) => setState(() => _genderKey = val),
-                  validator: (value) =>
-                  value == null ? t.selectGender : null,
-                ),
-                const SizedBox(height: 12),
-                DropdownButtonFormField<String>(
-                  value: _bloodType,
-                  decoration: InputDecoration(labelText: t.bloodTypeLabel),
-                  items: bloodTypes
-                      .map((bt) =>
-                      DropdownMenuItem(value: bt, child: Text(bt)))
-                      .toList(),
-                  onChanged: (val) => setState(() => _bloodType = val),
-                  validator: (value) =>
-                  value == null ? t.selectBloodType : null,
-                ),
-                const SizedBox(height: 24),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: _saveUser,
-                    child: Text(t.saveChanges),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: _logout,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
-                      foregroundColor: Colors.white,
+                    const SizedBox(height: 12),
+                    GestureDetector(
+                      onTap: _pickBirthday,
+                      child: AbsorbPointer(
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            labelText: t.birthdayLabel,
+                            hintText: t.enterBirthday,
+                          ),
+                          controller: TextEditingController(
+                            text: _birthday != null
+                                ? "${_birthday!.day.toString().padLeft(2, '0')}.${_birthday!.month.toString().padLeft(2, '0')}.${_birthday!.year}"
+                                : '',
+                          ),
+                          validator: (_) =>
+                              _birthday == null ? t.enterBirthday : null,
+                        ),
+                      ),
                     ),
-                    child: Text(t.logout),
-                  ),
+                    const SizedBox(height: 12),
+                    DropdownButtonFormField<String>(
+                      value: _genderKey,
+                      decoration: InputDecoration(labelText: t.genderLabel),
+                      items: genderMap.entries
+                          .map(
+                            (e) => DropdownMenuItem(
+                              value: e.key,
+                              child: Text(e.value),
+                            ),
+                          )
+                          .toList(),
+                      onChanged: (val) => setState(() => _genderKey = val),
+                      validator: (v) => v == null ? t.selectGender : null,
+                    ),
+                    const SizedBox(height: 12),
+                    DropdownButtonFormField<String>(
+                      value: _bloodType,
+                      decoration: InputDecoration(labelText: t.bloodTypeLabel),
+                      items: bloodTypes
+                          .map(
+                            (bt) =>
+                                DropdownMenuItem(value: bt, child: Text(bt)),
+                          )
+                          .toList(),
+                      onChanged: (val) => setState(() => _bloodType = val),
+                      validator: (v) => v == null ? t.selectBloodType : null,
+                    ),
+                    const SizedBox(height: 24),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () => _saveUser(user),
+                        child: Text(t.saveChanges),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: _logout,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white,
+                        ),
+                        child: Text(t.logout),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

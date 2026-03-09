@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/donation.dart';
+import '../providers/donations_provider.dart';
 import '../services/donation_service.dart';
 import 'journal_screen.dart';
 import '../l10n/app_localizations.dart';
 
-class AddDonationScreen extends StatefulWidget {
+class AddDonationScreen extends ConsumerStatefulWidget {
   const AddDonationScreen({super.key});
 
   @override
-  State<AddDonationScreen> createState() => _AddDonationScreenState();
+  ConsumerState<AddDonationScreen> createState() => _AddDonationScreenState();
 }
 
-class _AddDonationScreenState extends State<AddDonationScreen> {
+class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
   final _formKey = GlobalKey<FormState>();
   DateTime? _selectedDate;
   TimeOfDay? _selectedTime;
@@ -19,8 +21,16 @@ class _AddDonationScreenState extends State<AddDonationScreen> {
   String? _selectedFeelingKey;
   final TextEditingController _notesController = TextEditingController();
 
-  final List<String> donationTypeKeys = ["donationWholeBlood", "donationPlasma", "donationPlatelets"];
-  final List<String> feelingKeys = ["feelingGood", "feelingNormal", "feelingTired"];
+  final List<String> donationTypeKeys = [
+    "donationWholeBlood",
+    "donationPlasma",
+    "donationPlatelets",
+  ];
+  final List<String> feelingKeys = [
+    "feelingGood",
+    "feelingNormal",
+    "feelingTired",
+  ];
 
   void _pickDate() async {
     final now = DateTime.now();
@@ -58,7 +68,6 @@ class _AddDonationScreenState extends State<AddDonationScreen> {
         _selectedTime != null &&
         _selectedTypeKey != null &&
         _selectedFeelingKey != null) {
-
       final donation = Donation(
         date: _selectedDate!,
         time: _selectedTime!,
@@ -70,14 +79,17 @@ class _AddDonationScreenState extends State<AddDonationScreen> {
       await DonationService.addDonation(donation);
 
       if (!mounted) return;
+
+      ref.invalidate(donationsProvider);
+
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => const JournalScreen()),
       );
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(t.fillAllFields)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(t.fillAllFields)));
     }
   }
 
@@ -96,9 +108,11 @@ class _AddDonationScreenState extends State<AddDonationScreen> {
               ListTile(
                 contentPadding: EdgeInsets.zero,
                 title: Text(t.date),
-                subtitle: Text(_selectedDate != null
-                    ? "${_selectedDate!.day}.${_selectedDate!.month}.${_selectedDate!.year}"
-                    : t.selectDate),
+                subtitle: Text(
+                  _selectedDate != null
+                      ? "${_selectedDate!.day}.${_selectedDate!.month}.${_selectedDate!.year}"
+                      : t.selectDate,
+                ),
                 trailing: IconButton(
                   icon: const Icon(Icons.calendar_today),
                   onPressed: _pickDate,
@@ -108,9 +122,11 @@ class _AddDonationScreenState extends State<AddDonationScreen> {
               ListTile(
                 contentPadding: EdgeInsets.zero,
                 title: const Text("Час донації"),
-                subtitle: Text(_selectedTime != null
-                    ? "${_selectedTime!.hour.toString().padLeft(2, '0')}:${_selectedTime!.minute.toString().padLeft(2, '0')}"
-                    : "Оберіть час"),
+                subtitle: Text(
+                  _selectedTime != null
+                      ? "${_selectedTime!.hour.toString().padLeft(2, '0')}:${_selectedTime!.minute.toString().padLeft(2, '0')}"
+                      : "Оберіть час",
+                ),
                 trailing: IconButton(
                   icon: const Icon(Icons.access_time),
                   onPressed: _pickTime,
@@ -127,7 +143,8 @@ class _AddDonationScreenState extends State<AddDonationScreen> {
                   );
                 }).toList(),
                 onChanged: (val) => setState(() => _selectedTypeKey = val),
-                validator: (value) => value == null ? t.selectDonationType : null,
+                validator: (value) =>
+                    value == null ? t.selectDonationType : null,
               ),
 
               const SizedBox(height: 16),
@@ -157,7 +174,7 @@ class _AddDonationScreenState extends State<AddDonationScreen> {
               ElevatedButton(
                 onPressed: _saveDonation,
                 child: Text(t.saveDonation),
-              )
+              ),
             ],
           ),
         ),
