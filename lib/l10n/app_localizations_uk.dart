@@ -123,6 +123,9 @@ class AppLocalizationsUk extends AppLocalizations {
   String get female => 'Жінка';
 
   @override
+  String get editDonation => 'Редагувати донацію';
+
+  @override
   String get date => 'Дата';
 
   @override

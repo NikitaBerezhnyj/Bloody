@@ -122,6 +122,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get female => 'Mujer';
 
   @override
+  String get editDonation => 'Editar donación';
+
+  @override
   String get date => 'Fecha';
 
   @override

@@ -36,6 +36,7 @@
     "female": "Mujer",
 
     "addDonation": "Agregar Donación",
+    "editDonation": "Editar donación",
     "date": "Fecha",
     "selectDate": "Seleccione una fecha",
     "donationType": "Tipo de donación",

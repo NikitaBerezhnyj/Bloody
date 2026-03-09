@@ -7,7 +7,7 @@ import '../widgets/donation_permission_dialog.dart';
 import 'profile_screen.dart';
 import 'journal_screen.dart';
 import 'stats_screen.dart';
-import 'add_donation.dart';
+import 'add_donation_screen.dart';
 import '../widgets/home_banner.dart';
 import '../l10n/app_localizations.dart';
 import '../screens/settings_screen.dart';

@@ -36,6 +36,7 @@
     "female": "Female",
 
     "addDonation": "Add Donation",
+    "editDonation": "Edit Donation",
     "date": "Date",
     "selectDate": "Select a date",
     "donationType": "Donation Type",

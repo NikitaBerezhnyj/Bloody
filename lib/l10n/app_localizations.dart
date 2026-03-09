@@ -286,6 +286,12 @@ abstract class AppLocalizations {
   /// **'Female'**
   String get female;
 
+  /// No description provided for @editDonation.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Donation'**
+  String get editDonation;
+
   /// No description provided for @date.
   ///
   /// In en, this message translates to:

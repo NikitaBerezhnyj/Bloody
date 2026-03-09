@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/donation.dart';
 import '../providers/donations_provider.dart';
-import '../services/donation_service.dart';
 import 'journal_screen.dart';
 import '../l10n/app_localizations.dart';
 
 class AddDonationScreen extends ConsumerStatefulWidget {
-  const AddDonationScreen({super.key});
+  final Donation? existing;
+  const AddDonationScreen({super.key, this.existing});
 
   @override
   ConsumerState<AddDonationScreen> createState() => _AddDonationScreenState();
@@ -31,6 +31,19 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
     "feelingNormal",
     "feelingTired",
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    final e = widget.existing;
+    if (e != null) {
+      _selectedDate     = e.date;
+      _selectedTime     = e.time;
+      _selectedTypeKey  = e.type;
+      _selectedFeelingKey = e.feeling;
+      _notesController.text = e.notes;
+    }
+  }
 
   void _pickDate() async {
     final now = DateTime.now();
@@ -62,13 +75,16 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
 
   void _saveDonation() async {
     final t = AppLocalizations.of(context)!;
-
     if (_formKey.currentState!.validate() &&
         _selectedDate != null &&
         _selectedTime != null &&
         _selectedTypeKey != null &&
         _selectedFeelingKey != null) {
+
+      final isEditing = widget.existing != null;
+
       final donation = Donation(
+        id: widget.existing?.id,
         date: _selectedDate!,
         time: _selectedTime!,
         type: _selectedTypeKey!,
@@ -76,20 +92,21 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
         notes: _notesController.text,
       );
 
-      await DonationService.addDonation(donation);
+      if (isEditing) {
+        await ref.read(donationsProvider.notifier).edit(donation);
+      } else {
+        await ref.read(donationsProvider.notifier).add(donation);
+      }
 
       if (!mounted) return;
-
-      ref.invalidate(donationsProvider);
 
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => const JournalScreen()),
       );
     } else {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(t.fillAllFields)));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(t.fillAllFields)));
     }
   }
 
@@ -98,7 +115,9 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
     final t = AppLocalizations.of(context)!;
 
     return Scaffold(
-      appBar: AppBar(title: Text(t.addDonation)),
+      appBar: AppBar(
+        title: Text(widget.existing != null ? t.editDonation : t.addDonation),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -135,6 +154,7 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
 
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
+                value: _selectedTypeKey,
                 decoration: InputDecoration(labelText: t.donationType),
                 items: donationTypeKeys.map((key) {
                   return DropdownMenuItem(
@@ -149,6 +169,7 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
 
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
+                value: _selectedFeelingKey,
                 decoration: InputDecoration(labelText: t.feeling),
                 items: feelingKeys.map((key) {
                   return DropdownMenuItem(
