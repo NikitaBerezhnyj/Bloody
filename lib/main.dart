@@ -1,6 +1,7 @@
 import 'package:bloody/providers/locale_provider.dart';
 import 'package:bloody/providers/theme_provider.dart';
 import 'package:bloody/screens/splash_screen.dart';
+import 'package:bloody/services/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,7 +10,9 @@ import 'providers/user_provider.dart';
 import 'screens/home_screen.dart';
 import 'screens/login_screen.dart';
 
-void main() {
+void main() async {
+    WidgetsFlutterBinding.ensureInitialized();
+  await NotificationService.init();
   runApp(const ProviderScope(child: BloodyApp()));
 }
 
