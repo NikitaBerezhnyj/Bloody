@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/donation.dart';
 import '../services/donation_service.dart';
 import '../services/notification_service.dart';
+import '../services/widget_service.dart';
 
 class DonationsNotifier extends AsyncNotifier<List<Donation>> {
   @override
@@ -28,6 +30,13 @@ class DonationsNotifier extends AsyncNotifier<List<Donation>> {
   Future<void> _reschedule() async {
     final donations = await DonationService.getDonations();
     await NotificationService.rescheduleAll(donations);
+    final locale = await _getLocale();
+    await WidgetService.updateWidget(donations: donations, locale: locale);
+  }
+
+  Future<String> _getLocale() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('locale') ?? 'uk';
   }
 }
 

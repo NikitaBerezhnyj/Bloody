@@ -1,4 +1,3 @@
-// lib/services/backup_service.dart
 import 'dart:convert';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
@@ -10,12 +9,10 @@ import '../models/user.dart';
 import 'database_service.dart';
 
 class BackupService {
-  // ─── ЕКСПОРТ ──────────────────────────────────────────────────────────────
-
   static Future<void> exportBackup(BuildContext context) async {
     final db = await DatabaseService.getDatabase();
 
-    final users     = await db.query('users');
+    final users = await db.query('users');
     final donations = await db.query('donations');
 
     final payload = jsonEncode({
@@ -25,19 +22,13 @@ class BackupService {
       'donations': donations,
     });
 
-    final dir  = await getTemporaryDirectory();
+    final dir = await getTemporaryDirectory();
     final file = File('${dir.path}/bloody_backup.json');
     await file.writeAsString(payload);
 
-    await Share.shareXFiles(
-      [XFile(file.path)],
-      subject: 'Bloody — backup',
-    );
+    await Share.shareXFiles([XFile(file.path)], subject: 'Bloody — backup');
   }
 
-  // ─── ІМПОРТ ──────────────────────────────────────────────────────────────
-
-  /// Повертає true якщо імпорт успішний
   static Future<bool> importBackup() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
@@ -48,14 +39,12 @@ class BackupService {
     final content = await File(result.files.single.path!).readAsString();
     final Map<String, dynamic> data = jsonDecode(content);
 
-    // базова перевірка формату
     if (!data.containsKey('users') || !data.containsKey('donations')) {
       return false;
     }
 
     final db = await DatabaseService.getDatabase();
 
-    // очищаємо і записуємо у транзакції
     await db.transaction((txn) async {
       await txn.delete('users');
       await txn.delete('donations');

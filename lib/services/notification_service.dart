@@ -6,11 +6,10 @@ import '../models/donation.dart';
 class NotificationService {
   static final _plugin = FlutterLocalNotificationsPlugin();
 
-  // cooldown в днях залежно від типу донації
   static const Map<String, int> _cooldownDays = {
     'donationWholeBlood': 60,
-    'donationPlasma':     14,
-    'donationPlatelets':  14,
+    'donationPlasma': 14,
+    'donationPlatelets': 14,
   };
 
   static Future<void> init() async {
@@ -18,35 +17,35 @@ class NotificationService {
     tz.setLocalLocation(tz.local);
 
     const android = AndroidInitializationSettings('@mipmap/ic_launcher');
-    const ios     = DarwinInitializationSettings();
+    const ios = DarwinInitializationSettings();
     await _plugin.initialize(
       const InitializationSettings(android: android, iOS: ios),
     );
 
-    // запит дозволу на Android 13+
     await _plugin
-        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >()
         ?.requestNotificationsPermission();
   }
-
-  // ─── Головний метод — викликати після add/edit/delete ─────────────────────
 
   static Future<void> rescheduleAll(List<Donation> donations) async {
     await _plugin.cancelAll();
 
     if (donations.isEmpty) return;
 
-    // беремо останню донацію (вже відсортовано по даті DESC)
     final last = donations.first;
     final cooldown = _cooldownDays[last.type] ?? 60;
 
     final lastDateTime = DateTime(
-      last.date.year, last.date.month, last.date.day,
-      last.time.hour, last.time.minute,
+      last.date.year,
+      last.date.month,
+      last.date.day,
+      last.time.hour,
+      last.time.minute,
     );
     final cooldownDate = lastDateTime.add(Duration(days: cooldown));
 
-    // плануємо 4 нотифікації
     await _scheduleIfFuture(
       id: 1,
       title: 'Незабаром можна донувати',
@@ -62,7 +61,8 @@ class NotificationService {
     await _scheduleIfFuture(
       id: 3,
       title: 'Ви вже можете донувати',
-      body: 'Ви вже можете донувати кров. Можливо, настав час запланувати наступну донацію.',
+      body:
+          'Ви вже можете донувати кров. Можливо, настав час запланувати наступну донацію.',
       scheduledDate: cooldownDate.add(const Duration(days: 5)),
     );
     await _scheduleIfFuture(
@@ -73,15 +73,12 @@ class NotificationService {
     );
   }
 
-  // ─── Приватні методи ───────────────────────────────────────────────────────
-
   static Future<void> _scheduleIfFuture({
     required int id,
     required String title,
     required String body,
     required DateTime scheduledDate,
   }) async {
-    // не плануємо нотифікації в минулому
     if (scheduledDate.isBefore(DateTime.now())) return;
 
     final tzDate = tz.TZDateTime.from(scheduledDate, tz.local);
@@ -103,7 +100,7 @@ class NotificationService {
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
-      UILocalNotificationDateInterpretation.absoluteTime,
+          UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 }
