@@ -22,8 +22,12 @@ class DonationsNotifier extends AsyncNotifier<List<Donation>> {
   }
 
   Future<void> delete(int id) async {
+    final current = state.valueOrNull;
+    if (current != null) {
+      state = AsyncData(current.where((d) => d.id != id).toList());
+    }
+
     await DonationService.deleteDonation(id);
-    ref.invalidateSelf();
     await _reschedule();
   }
 
