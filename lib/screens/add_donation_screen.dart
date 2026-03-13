@@ -18,7 +18,6 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
   int _currentStep = 0;
   static const int _totalSteps = 5;
 
-  // Стан всіх кроків
   DateTime? _selectedDate;
   TimeOfDay? _selectedTime;
   String? _selectedTypeKey;
@@ -30,9 +29,9 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
     super.initState();
     final e = widget.existing;
     if (e != null) {
-      _selectedDate       = e.date;
-      _selectedTime       = e.time;
-      _selectedTypeKey    = e.type;
+      _selectedDate = e.date;
+      _selectedTime = e.time;
+      _selectedTypeKey = e.type;
       _selectedFeelingKey = e.feeling;
       _notesController.text = e.notes;
     }
@@ -43,8 +42,6 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
     _notesController.dispose();
     super.dispose();
   }
-
-  // ─── Навігація між кроками ────────────────────────────────────────────────
 
   void _nextStep() {
     if (!_validateCurrentStep()) return;
@@ -81,8 +78,6 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
   }
 
-  // ─── Збереження ──────────────────────────────────────────────────────────
-
   Future<void> _saveDonation() async {
     final isEditing = widget.existing != null;
     final donation = Donation(
@@ -110,8 +105,6 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
       );
     }
   }
-
-  // ─── Build ────────────────────────────────────────────────────────────────
 
   @override
   Widget build(BuildContext context) {
@@ -180,16 +173,11 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
   }
 }
 
-// ─── Progress Bar ─────────────────────────────────────────────────────────────
-
 class _ProgressBar extends StatelessWidget {
   final int current;
   final int total;
 
-  const _ProgressBar({
-    required this.current,
-    required this.total,
-  });
+  const _ProgressBar({required this.current, required this.total});
 
   @override
   Widget build(BuildContext context) {
@@ -218,8 +206,6 @@ class _ProgressBar extends StatelessWidget {
   }
 }
 
-// ─── Navigation Buttons ───────────────────────────────────────────────────────
-
 class _NavigationButtons extends StatelessWidget {
   final int currentStep;
   final int totalSteps;
@@ -246,10 +232,7 @@ class _NavigationButtons extends StatelessWidget {
         children: [
           if (onBack != null)
             Expanded(
-              child: OutlinedButton(
-                onPressed: onBack,
-                child: Text(t.back), // "Назад"
-              ),
+              child: OutlinedButton(onPressed: onBack, child: Text(t.back)),
             ),
           if (onBack != null) const SizedBox(width: 12),
           Expanded(
@@ -261,7 +244,7 @@ class _NavigationButtons extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 14),
               ),
               onPressed: isLast ? onSave : onNext,
-              child: Text(isLast ? t.saveDonation : t.next), // "Зберегти" / "Далі"
+              child: Text(isLast ? t.saveDonation : t.next),
             ),
           ),
         ],
@@ -269,8 +252,6 @@ class _NavigationButtons extends StatelessWidget {
     );
   }
 }
-
-// ─── Step 1: Date & Time ──────────────────────────────────────────────────────
 
 class _StepDateTime extends StatelessWidget {
   final DateTime? selectedDate;
@@ -313,10 +294,10 @@ class _StepDateTime extends StatelessWidget {
           const SizedBox(height: 12),
           _PickerTile(
             icon: Icons.access_time,
-            label: t.donationTime, // "Час донації"
+            label: t.donationTime,
             value: selectedTime != null
                 ? "${selectedTime!.hour.toString().padLeft(2, '0')}:${selectedTime!.minute.toString().padLeft(2, '0')}"
-                : t.selectTime, // "Оберіть час"
+                : t.selectTime,
             onTap: () async {
               final picked = await showTimePicker(
                 context: context,
@@ -331,15 +312,17 @@ class _StepDateTime extends StatelessWidget {
   }
 }
 
-// ─── Step 2: Donation Type ────────────────────────────────────────────────────
-
 class _StepDonationType extends StatelessWidget {
   final String? selected;
   final ValueChanged<String> onChanged;
 
   const _StepDonationType({required this.selected, required this.onChanged});
 
-  static const _types = ['donationWholeBlood', 'donationPlasma', 'donationPlatelets'];
+  static const _types = [
+    'donationWholeBlood',
+    'donationPlasma',
+    'donationPlatelets',
+  ];
   static const _icons = [Icons.bloodtype, Icons.opacity, Icons.healing];
 
   @override
@@ -348,10 +331,14 @@ class _StepDonationType extends StatelessWidget {
 
     String label(String key) {
       switch (key) {
-        case 'donationWholeBlood': return t.donationWholeBlood;
-        case 'donationPlasma':     return t.donationPlasma;
-        case 'donationPlatelets':  return t.donationPlatelets;
-        default: return key;
+        case 'donationWholeBlood':
+          return t.donationWholeBlood;
+        case 'donationPlasma':
+          return t.donationPlasma;
+        case 'donationPlatelets':
+          return t.donationPlatelets;
+        default:
+          return key;
       }
     }
 
@@ -376,8 +363,6 @@ class _StepDonationType extends StatelessWidget {
   }
 }
 
-// ─── Step 3: Feeling ──────────────────────────────────────────────────────────
-
 class _StepFeeling extends StatelessWidget {
   final String? selected;
   final ValueChanged<String> onChanged;
@@ -385,7 +370,7 @@ class _StepFeeling extends StatelessWidget {
   const _StepFeeling({required this.selected, required this.onChanged});
 
   static const _feelings = ['feelingGood', 'feelingNormal', 'feelingTired'];
-  static const _emojis   = ['😃', '😐', '😔'];
+  static const _emojis = ['😃', '😐', '😔'];
 
   @override
   Widget build(BuildContext context) {
@@ -393,10 +378,14 @@ class _StepFeeling extends StatelessWidget {
 
     String label(String key) {
       switch (key) {
-        case 'feelingGood':   return t.feelingGood;
-        case 'feelingNormal': return t.feelingNormal;
-        case 'feelingTired':  return t.feelingTired;
-        default: return key;
+        case 'feelingGood':
+          return t.feelingGood;
+        case 'feelingNormal':
+          return t.feelingNormal;
+        case 'feelingTired':
+          return t.feelingTired;
+        default:
+          return key;
       }
     }
 
@@ -421,8 +410,6 @@ class _StepFeeling extends StatelessWidget {
   }
 }
 
-// ─── Step 4: Notes ────────────────────────────────────────────────────────────
-
 class _StepNotes extends StatelessWidget {
   final TextEditingController controller;
   const _StepNotes({required this.controller});
@@ -445,8 +432,6 @@ class _StepNotes extends StatelessWidget {
   }
 }
 
-// ─── Step 5: Confirmation ─────────────────────────────────────────────────────
-
 class _StepConfirmation extends StatelessWidget {
   final DateTime date;
   final TimeOfDay time;
@@ -468,27 +453,37 @@ class _StepConfirmation extends StatelessWidget {
 
     String typeName() {
       switch (typeKey) {
-        case 'donationWholeBlood': return t.donationWholeBlood;
-        case 'donationPlasma':     return t.donationPlasma;
-        case 'donationPlatelets':  return t.donationPlatelets;
-        default: return typeKey;
+        case 'donationWholeBlood':
+          return t.donationWholeBlood;
+        case 'donationPlasma':
+          return t.donationPlasma;
+        case 'donationPlatelets':
+          return t.donationPlatelets;
+        default:
+          return typeKey;
       }
     }
 
     String feelingName() {
       switch (feelingKey) {
-        case 'feelingGood':   return '😃 ${t.feelingGood}';
-        case 'feelingNormal': return '😐 ${t.feelingNormal}';
-        case 'feelingTired':  return '😔 ${t.feelingTired}';
-        default: return feelingKey;
+        case 'feelingGood':
+          return '😃 ${t.feelingGood}';
+        case 'feelingNormal':
+          return '😐 ${t.feelingNormal}';
+        case 'feelingTired':
+          return '😔 ${t.feelingTired}';
+        default:
+          return feelingKey;
       }
     }
 
-    final dateStr = "${date.day.toString().padLeft(2, '0')}.${date.month.toString().padLeft(2, '0')}.${date.year}";
-    final timeStr = "${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}";
+    final dateStr =
+        "${date.day.toString().padLeft(2, '0')}.${date.month.toString().padLeft(2, '0')}.${date.year}";
+    final timeStr =
+        "${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}";
 
     return _StepWrapper(
-      title: t.confirmation, // "Підтвердження"
+      title: t.confirmation,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Padding(
@@ -498,9 +493,8 @@ class _StepConfirmation extends StatelessWidget {
               _ConfirmRow(label: t.date, value: dateStr),
               _ConfirmRow(label: t.time, value: timeStr),
               _ConfirmRow(label: t.donationType, value: typeName()),
-              _ConfirmRow(label: t.feeling,      value: feelingName()),
-              if (notes.isNotEmpty)
-                _ConfirmRow(label: t.notes,      value: notes),
+              _ConfirmRow(label: t.feeling, value: feelingName()),
+              if (notes.isNotEmpty) _ConfirmRow(label: t.notes, value: notes),
             ],
           ),
         ),
@@ -523,20 +517,22 @@ class _ConfirmRow extends StatelessWidget {
         children: [
           SizedBox(
             width: 120,
-            child: Text(label,
-                style: const TextStyle(color: Colors.grey, fontSize: 13)),
+            child: Text(
+              label,
+              style: const TextStyle(color: Colors.grey, fontSize: 13),
+            ),
           ),
           Expanded(
-            child: Text(value,
-                style: const TextStyle(fontWeight: FontWeight.w500)),
+            child: Text(
+              value,
+              style: const TextStyle(fontWeight: FontWeight.w500),
+            ),
           ),
         ],
       ),
     );
   }
 }
-
-// ─── Reusable widgets ─────────────────────────────────────────────────────────
 
 class _StepWrapper extends StatelessWidget {
   final String title;
@@ -589,9 +585,15 @@ class _PickerTile extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(label, style: const TextStyle(fontSize: 12, color: Colors.grey)),
+                Text(
+                  label,
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                ),
                 const SizedBox(height: 2),
-                Text(value, style: const TextStyle(fontWeight: FontWeight.w500)),
+                Text(
+                  value,
+                  style: const TextStyle(fontWeight: FontWeight.w500),
+                ),
               ],
             ),
           ],

@@ -19,7 +19,7 @@ class ThankYouScreen extends StatelessWidget {
               const Icon(Icons.favorite, color: Colors.red, size: 80),
               const SizedBox(height: 24),
               Text(
-                t.thankYouTitle, // "Дякуємо за донацію!"
+                t.thankYouTitle,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -27,10 +27,10 @@ class ThankYouScreen extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               Text(
-                t.thankYouBody, // "Ваша донація може врятувати до трьох життів. Ви робите світ кращим."
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Colors.grey,
-                ),
+                t.thankYouBody,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
                 textAlign: TextAlign.center,
               ),
               const Spacer(flex: 2),
@@ -49,7 +49,7 @@ class ThankYouScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(builder: (_) => const JournalScreen()),
                   ),
-                  child: Text(t.goToJournal), // "До журналу"
+                  child: Text(t.goToJournal),
                 ),
               ),
               const Spacer(),

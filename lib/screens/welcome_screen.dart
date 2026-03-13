@@ -20,7 +20,7 @@ class WelcomeScreen extends ConsumerWidget {
         if (user != null) {
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (_) => const HomeScreen()),
-                (route) => false,
+            (route) => false,
           );
         }
       });
@@ -44,7 +44,6 @@ class WelcomeScreen extends ConsumerWidget {
           children: [
             const Spacer(flex: 2),
 
-            // Логотип
             const Icon(Icons.opacity, color: Colors.red, size: 72),
             const SizedBox(height: 16),
             Text(
@@ -56,16 +55,15 @@ class WelcomeScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              t.welcomeSubtitle, // "Відстежуй свої донації крові"
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Colors.grey,
-              ),
+              t.welcomeSubtitle,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
               textAlign: TextAlign.center,
             ),
 
             const Spacer(flex: 2),
 
-            // Кнопка створення профілю
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -79,15 +77,16 @@ class WelcomeScreen extends ConsumerWidget {
                 ),
                 onPressed: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const CreateProfileScreen()),
+                  MaterialPageRoute(
+                    builder: (_) => const CreateProfileScreen(),
+                  ),
                 ),
-                child: Text(t.createProfile), // "Створити профіль"
+                child: Text(t.createProfile),
               ),
             ),
 
             const SizedBox(height: 12),
 
-            // Кнопка відновлення з backup
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(
@@ -100,7 +99,7 @@ class WelcomeScreen extends ConsumerWidget {
                 ),
                 onPressed: () => _restoreFromBackup(context, ref, t),
                 child: Text(
-                  t.restoreFromBackup, // "Відновити з резервної копії"
+                  t.restoreFromBackup,
                   style: const TextStyle(color: Colors.red),
                 ),
               ),
@@ -114,21 +113,20 @@ class WelcomeScreen extends ConsumerWidget {
   }
 
   Future<void> _restoreFromBackup(
-      BuildContext context,
-      WidgetRef ref,
-      AppLocalizations t,
-      ) async {
+    BuildContext context,
+    WidgetRef ref,
+    AppLocalizations t,
+  ) async {
     final success = await BackupService.importBackup();
     if (!context.mounted) return;
 
     if (success) {
       ref.invalidate(userProvider);
       ref.invalidate(donationsProvider);
-      // userProvider тепер != null — InitialScreen сам переключиться на HomeScreen
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(t.importError)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(t.importError)));
     }
   }
 }

@@ -43,8 +43,6 @@ class DonationDetailScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ─── Header ─────────────────────────────────────────────
-
             Center(
               child: Column(
                 children: [
@@ -80,8 +78,6 @@ class DonationDetailScreen extends ConsumerWidget {
             ),
 
             const SizedBox(height: 32),
-
-            // ─── Details ────────────────────────────────────────────
 
             _DetailCard(
               children: [
@@ -175,8 +171,6 @@ class DonationDetailScreen extends ConsumerWidget {
     Navigator.pop(context);
   }
 
-  // ─── Helpers ─────────────────────────────────────────────────────
-
   String _translateType(AppLocalizations t, String key) {
     switch (key) {
       case 'donationWholeBlood':
@@ -217,8 +211,6 @@ class DonationDetailScreen extends ConsumerWidget {
   }
 }
 
-// ─── Detail Card ───────────────────────────────────────────────────
-
 class _DetailCard extends StatelessWidget {
   final List<Widget> children;
 
@@ -242,8 +234,6 @@ class _DetailCard extends StatelessWidget {
     );
   }
 }
-
-// ─── Detail Row ────────────────────────────────────────────────────
 
 class _DetailRow extends StatelessWidget {
   final IconData icon;
