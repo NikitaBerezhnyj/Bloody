@@ -1,3 +1,4 @@
+import 'package:bloody/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/user.dart';
@@ -124,6 +125,17 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final t = AppLocalizations.of(context)!;
     final userAsync = ref.watch(userProvider);
     final genderMap = {"male": t.male, "female": t.female};
+
+    ref.listen(userProvider, (_, next) {
+      next.whenData((user) {
+        if (user == null && mounted) {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (_) => const WelcomeScreen()),
+                (route) => false,
+          );
+        }
+      });
+    });
 
     return userAsync.when(
       loading: () =>

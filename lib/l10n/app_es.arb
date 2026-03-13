@@ -1,6 +1,9 @@
 {
     "@@locale": "es",
 
+    "welcomeSubtitle": "Haz seguimiento de tus donaciones de sangre",
+    "createProfile": "Crear perfil",
+
     "appTitle": "Bloody",
     "profile": "Perfil",
     "welcomeUser": "¡Hola, {name} 👋",

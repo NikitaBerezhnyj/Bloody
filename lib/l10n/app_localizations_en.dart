@@ -9,6 +9,12 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get welcomeSubtitle => 'Track your blood donations';
+
+  @override
+  String get createProfile => 'Create profile';
+
+  @override
   String get appTitle => 'Bloody';
 
   @override

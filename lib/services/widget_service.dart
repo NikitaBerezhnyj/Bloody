@@ -30,7 +30,6 @@ class WidgetService {
       final cooldown = _cooldownDays[last.type] ?? 60;
 
       final lastDt = DateTime(last.date.year, last.date.month, last.date.day);
-
       final canDonateOn = lastDt.add(Duration(days: cooldown));
 
       final today = DateTime(
@@ -60,35 +59,32 @@ class WidgetService {
   }
 
   static String _canDonateNow(String locale) {
-    switch (locale) {
-      case 'uk':
-        return 'можна здавати кров';
-      case 'es':
-        return 'puedes donar sangre';
-      default:
-        return 'you can donate now';
-    }
+    return _translations['canDonateNow']?[locale] ?? _translations['canDonateNow']!['en']!;
   }
 
   static String _oneDayLeft(String locale) {
-    switch (locale) {
-      case 'uk':
-        return 'день до наступної\nдонації';
-      case 'es':
-        return 'día hasta la próxima\ndonación';
-      default:
-        return 'day until your next\ndonation';
-    }
+    return _translations['oneDayLeft']?[locale] ?? _translations['oneDayLeft']!['en']!;
   }
 
   static String _daysLeft(String locale) {
-    switch (locale) {
-      case 'uk':
-        return 'днів до наступної\nдонації';
-      case 'es':
-        return 'días hasta la próxima\ndonación';
-      default:
-        return 'days until your next\ndonation';
-    }
+    return _translations['daysLeft']?[locale] ?? _translations['daysLeft']!['en']!;
   }
+
+  static const Map<String, Map<String, String>> _translations = {
+    'canDonateNow': {
+      'en': 'you can donate now',
+      'uk': 'можна здавати кров',
+      'es': 'puedes donar sangre',
+    },
+    'oneDayLeft': {
+      'en': 'day until your next\ndonation',
+      'uk': 'день до наступної\nдонації',
+      'es': 'día hasta la próxima\ndonación',
+    },
+    'daysLeft': {
+      'en': 'days until your next\ndonation',
+      'uk': 'днів до наступної\nдонації',
+      'es': 'días hasta la próxima\ndonación',
+    },
+  };
 }

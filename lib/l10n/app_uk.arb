@@ -1,6 +1,9 @@
 {
     "@@locale": "uk",
 
+    "welcomeSubtitle": "Відстежуй свої донації крові",
+    "createProfile": "Створити профіль",
+
     "profile": "Профіль",
     "welcomeUser": "Привіт, {name} 👋",
     "journal": "Журнал донацій",

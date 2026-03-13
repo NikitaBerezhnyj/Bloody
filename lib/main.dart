@@ -1,6 +1,7 @@
 import 'package:bloody/providers/locale_provider.dart';
 import 'package:bloody/providers/theme_provider.dart';
 import 'package:bloody/screens/splash_screen.dart';
+import 'package:bloody/screens/welcome_screen.dart';
 import 'package:bloody/services/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bloody/l10n/app_localizations.dart';
 import 'providers/user_provider.dart';
 import 'screens/home_screen.dart';
-import 'screens/login_screen.dart';
 
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -83,7 +83,7 @@ class _InitialScreenState extends ConsumerState<InitialScreen> {
       error: (e, _) => Scaffold(
         body: Center(child: Text('Помилка: $e')),
       ),
-      data: (user) => user == null ? const LoginScreen() : const HomeScreen(),
+      data: (user) => user == null ? const WelcomeScreen() : const HomeScreen(),
     );
   }
 }

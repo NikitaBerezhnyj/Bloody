@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../main.dart';
 import '../models/user.dart';
 import '../providers/user_provider.dart';
 import '../services/user_service.dart';
 import '../l10n/app_localizations.dart';
+import 'home_screen.dart';
 import 'settings_screen.dart';
 
-class LoginScreen extends ConsumerStatefulWidget {
-  const LoginScreen({super.key});
+class CreateProfileScreen extends ConsumerStatefulWidget {
+  const CreateProfileScreen({super.key});
 
   @override
-  ConsumerState<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<CreateProfileScreen> createState() => _CreateProfileScreenState();
 }
 
-class _LoginScreenState extends ConsumerState<LoginScreen> {
+class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _birthdayController = TextEditingController();
@@ -67,22 +69,30 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   void _saveUser() async {
     if (!_formKey.currentState!.validate()) return;
-
     final user = User(
       name: _nameController.text,
       birthday: _birthday!,
       gender: _genderKey!,
       bloodType: _bloodType!,
     );
-
     await UserService.saveUser(user);
-
     ref.invalidate(userProvider);
   }
 
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
+
+    ref.listen(userProvider, (_, next) {
+      next.whenData((user) {
+        if (user != null && mounted) {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (_) => const HomeScreen()),
+                (route) => false,
+          );
+        }
+      });
+    });
 
     return Scaffold(
       appBar: AppBar(
@@ -176,6 +186,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: _saveUser,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white
+                        ),
                         child: Text(t.save),
                       ),
                     ),

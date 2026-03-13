@@ -9,6 +9,12 @@ class AppLocalizationsUk extends AppLocalizations {
   AppLocalizationsUk([String locale = 'uk']) : super(locale);
 
   @override
+  String get welcomeSubtitle => 'Відстежуй свої донації крові';
+
+  @override
+  String get createProfile => 'Створити профіль';
+
+  @override
   String get appTitle => 'Bloody';
 
   @override

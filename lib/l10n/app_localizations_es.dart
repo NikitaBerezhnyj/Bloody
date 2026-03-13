@@ -9,6 +9,12 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
+  String get welcomeSubtitle => 'Haz seguimiento de tus donaciones de sangre';
+
+  @override
+  String get createProfile => 'Crear perfil';
+
+  @override
   String get appTitle => 'Bloody';
 
   @override

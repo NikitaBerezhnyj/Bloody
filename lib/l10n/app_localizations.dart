@@ -100,6 +100,18 @@ abstract class AppLocalizations {
     Locale('uk'),
   ];
 
+  /// No description provided for @welcomeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Track your blood donations'**
+  String get welcomeSubtitle;
+
+  /// No description provided for @createProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Create profile'**
+  String get createProfile;
+
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
