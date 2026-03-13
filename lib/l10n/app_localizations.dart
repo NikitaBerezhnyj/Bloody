@@ -310,6 +310,12 @@ abstract class AppLocalizations {
   /// **'Date'**
   String get date;
 
+  /// No description provided for @time.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get time;
+
   /// No description provided for @selectDate.
   ///
   /// In en, this message translates to:
@@ -399,6 +405,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tired'**
   String get feelingTired;
+
+  /// No description provided for @step.
+  ///
+  /// In en, this message translates to:
+  /// **'Step'**
+  String get step;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @confirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmation'**
+  String get confirmation;
+
+  /// No description provided for @donationTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Donation time'**
+  String get donationTime;
+
+  /// No description provided for @selectTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Select time'**
+  String get selectTime;
+
+  /// No description provided for @thankYouTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for your donation!'**
+  String get thankYouTitle;
+
+  /// No description provided for @thankYouBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your donation can save up to three lives. You are making the world a better place.'**
+  String get thankYouBody;
+
+  /// No description provided for @goToJournal.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to journal'**
+  String get goToJournal;
+
+  /// No description provided for @detailsView.
+  ///
+  /// In en, this message translates to:
+  /// **'View details'**
+  String get detailsView;
 
   /// No description provided for @journalTitle.
   ///

@@ -135,6 +135,9 @@ class AppLocalizationsUk extends AppLocalizations {
   String get date => 'Дата';
 
   @override
+  String get time => 'Час';
+
+  @override
   String get selectDate => 'Оберіть дату';
 
   @override
@@ -178,6 +181,37 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get feelingTired => 'Втомлений';
+
+  @override
+  String get step => 'Крок';
+
+  @override
+  String get next => 'Далі';
+
+  @override
+  String get back => 'Назад';
+
+  @override
+  String get confirmation => 'Підтвердження';
+
+  @override
+  String get donationTime => 'Час донації';
+
+  @override
+  String get selectTime => 'Оберіть час';
+
+  @override
+  String get thankYouTitle => 'Дякуємо за донацію!';
+
+  @override
+  String get thankYouBody =>
+      'Ваша донація може врятувати до трьох життів. Ви робите світ кращим.';
+
+  @override
+  String get goToJournal => 'До журналу';
+
+  @override
+  String get detailsView => 'Перегляд деталей';
 
   @override
   String get journalTitle => 'Журнал донацій';

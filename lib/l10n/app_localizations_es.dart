@@ -134,6 +134,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get date => 'Fecha';
 
   @override
+  String get time => 'Hora';
+
+  @override
   String get selectDate => 'Seleccione una fecha';
 
   @override
@@ -178,6 +181,37 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get feelingTired => 'Cansado';
+
+  @override
+  String get step => 'Paso';
+
+  @override
+  String get next => 'Siguiente';
+
+  @override
+  String get back => 'Atrás';
+
+  @override
+  String get confirmation => 'Confirmación';
+
+  @override
+  String get donationTime => 'Hora de la donación';
+
+  @override
+  String get selectTime => 'Selecciona la hora';
+
+  @override
+  String get thankYouTitle => '¡Gracias por tu donación!';
+
+  @override
+  String get thankYouBody =>
+      'Tu donación puede salvar hasta tres vidas. Estás haciendo del mundo un lugar mejor.';
+
+  @override
+  String get goToJournal => 'Ir al registro';
+
+  @override
+  String get detailsView => 'Vista detallada';
 
   @override
   String get journalTitle => 'Diario de Donaciones';

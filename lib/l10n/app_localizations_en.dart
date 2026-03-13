@@ -134,6 +134,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get date => 'Date';
 
   @override
+  String get time => 'Time';
+
+  @override
   String get selectDate => 'Select a date';
 
   @override
@@ -177,6 +180,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get feelingTired => 'Tired';
+
+  @override
+  String get step => 'Step';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get confirmation => 'Confirmation';
+
+  @override
+  String get donationTime => 'Donation time';
+
+  @override
+  String get selectTime => 'Select time';
+
+  @override
+  String get thankYouTitle => 'Thank you for your donation!';
+
+  @override
+  String get thankYouBody =>
+      'Your donation can save up to three lives. You are making the world a better place.';
+
+  @override
+  String get goToJournal => 'Go to journal';
+
+  @override
+  String get detailsView => 'View details';
 
   @override
   String get journalTitle => 'Donation Journal';
