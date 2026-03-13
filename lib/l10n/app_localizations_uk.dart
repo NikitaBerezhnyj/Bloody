@@ -243,6 +243,41 @@ class AppLocalizationsUk extends AppLocalizations {
   String get delete => 'Видалити';
 
   @override
+  String get widgetPromptTitle => 'Тримай руку на пульсі';
+
+  @override
+  String get widgetPromptBody =>
+      'Додай віджет на головний екран — і завжди знатимеш скільки днів залишилось до наступної донації, навіть не відкриваючи застосунок.';
+
+  @override
+  String get widgetPromptAdd => 'Як додати віджет';
+
+  @override
+  String get widgetStep1 =>
+      'Затримайте палець на порожньому місці головного екрану';
+
+  @override
+  String get widgetStep2 => 'Оберіть «Віджети» в меню що з\'явилось';
+
+  @override
+  String get widgetStep3 => 'Знайдіть «Bloody» у списку віджетів';
+
+  @override
+  String get widgetStep4 => 'Перетягніть віджет на зручне місце екрану';
+
+  @override
+  String get widgetInstructionsTitle => 'Додаємо віджет';
+
+  @override
+  String get notNow => 'Не зараз';
+
+  @override
+  String get done => 'Готово';
+
+  @override
+  String get daysUntilNextDonation => 'днів до донації';
+
+  @override
   String get ageLimitBanner =>
       'Після 65 років донорство крові можливе лише за дозволом лікаря.';
 

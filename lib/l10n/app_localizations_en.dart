@@ -242,6 +242,42 @@ class AppLocalizationsEn extends AppLocalizations {
   String get delete => 'Delete';
 
   @override
+  String get widgetPromptTitle => 'Stay on top of it';
+
+  @override
+  String get widgetPromptBody =>
+      'Add the widget to your home screen — and always know how many days are left until your next donation, without even opening the app.';
+
+  @override
+  String get widgetPromptAdd => 'How to add the widget';
+
+  @override
+  String get widgetStep1 =>
+      'Press and hold on an empty area of your home screen';
+
+  @override
+  String get widgetStep2 => 'Select \'Widgets\' from the menu that appears';
+
+  @override
+  String get widgetStep3 => 'Find \'Bloody\' in the widget list';
+
+  @override
+  String get widgetStep4 =>
+      'Drag the widget to a convenient spot on your screen';
+
+  @override
+  String get widgetInstructionsTitle => 'Adding the widget';
+
+  @override
+  String get notNow => 'Not now';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get daysUntilNextDonation => 'days until next donation';
+
+  @override
   String get ageLimitBanner =>
       'After 65, blood donation is only allowed with a doctor’s permission.';
 

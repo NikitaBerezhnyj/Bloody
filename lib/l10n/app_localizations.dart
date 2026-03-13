@@ -514,6 +514,72 @@ abstract class AppLocalizations {
   /// **'Delete'**
   String get delete;
 
+  /// No description provided for @widgetPromptTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay on top of it'**
+  String get widgetPromptTitle;
+
+  /// No description provided for @widgetPromptBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the widget to your home screen — and always know how many days are left until your next donation, without even opening the app.'**
+  String get widgetPromptBody;
+
+  /// No description provided for @widgetPromptAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'How to add the widget'**
+  String get widgetPromptAdd;
+
+  /// No description provided for @widgetStep1.
+  ///
+  /// In en, this message translates to:
+  /// **'Press and hold on an empty area of your home screen'**
+  String get widgetStep1;
+
+  /// No description provided for @widgetStep2.
+  ///
+  /// In en, this message translates to:
+  /// **'Select \'Widgets\' from the menu that appears'**
+  String get widgetStep2;
+
+  /// No description provided for @widgetStep3.
+  ///
+  /// In en, this message translates to:
+  /// **'Find \'Bloody\' in the widget list'**
+  String get widgetStep3;
+
+  /// No description provided for @widgetStep4.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag the widget to a convenient spot on your screen'**
+  String get widgetStep4;
+
+  /// No description provided for @widgetInstructionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adding the widget'**
+  String get widgetInstructionsTitle;
+
+  /// No description provided for @notNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get notNow;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @daysUntilNextDonation.
+  ///
+  /// In en, this message translates to:
+  /// **'days until next donation'**
+  String get daysUntilNextDonation;
+
   /// No description provided for @ageLimitBanner.
   ///
   /// In en, this message translates to:

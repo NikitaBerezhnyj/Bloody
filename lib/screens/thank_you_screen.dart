@@ -1,5 +1,7 @@
+import 'package:bloody/screens/widget_prompt_screen.dart';
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
+import '../services/widget_prompt_service.dart';
 import 'journal_screen.dart';
 
 class ThankYouScreen extends StatelessWidget {
@@ -45,10 +47,25 @@ class ThankYouScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  onPressed: () => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (_) => const JournalScreen()),
-                  ),
+                  onPressed: () async {
+                    if (!context.mounted) return;
+
+                    final shouldShow = await WidgetPromptService.shouldShow();
+
+                    if (shouldShow) {
+                      await WidgetPromptService.markShown();
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const WidgetPromptScreen()),
+                      );
+                    }
+
+                    if (!context.mounted) return;
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (_) => const JournalScreen()),
+                    );
+                  },
                   child: Text(t.goToJournal),
                 ),
               ),

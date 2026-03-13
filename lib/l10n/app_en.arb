@@ -78,6 +78,18 @@
     "deleteDonationContent": "Are you sure you want to delete this donation record? This action cannot be undone.",
     "delete": "Delete",
 
+    "widgetPromptTitle": "Stay on top of it",
+    "widgetPromptBody": "Add the widget to your home screen — and always know how many days are left until your next donation, without even opening the app.",
+    "widgetPromptAdd": "How to add the widget",
+    "widgetStep1": "Press and hold on an empty area of your home screen",
+    "widgetStep2": "Select 'Widgets' from the menu that appears",
+    "widgetStep3": "Find 'Bloody' in the widget list",
+    "widgetStep4": "Drag the widget to a convenient spot on your screen",
+    "widgetInstructionsTitle": "Adding the widget",
+    "notNow": "Not now",
+    "done": "Done",
+    "daysUntilNextDonation": "days until next donation",
+
     "ageLimitBanner": "After 65, blood donation is only allowed with a doctor’s permission.",
 
     "permissionDialogTitle": "Blood Donation Permission",

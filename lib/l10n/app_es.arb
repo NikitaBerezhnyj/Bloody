@@ -78,6 +78,18 @@
     "deleteDonationContent": "¿Estás seguro de que quieres eliminar este registro de donación? Esta acción no se puede deshacer.",
     "delete": "Eliminar",
 
+    "widgetPromptTitle": "Mantente al tanto",
+    "widgetPromptBody": "Agrega el widget a tu pantalla de inicio y siempre sabrás cuántos días faltan para tu próxima donación, sin siquiera abrir la aplicación.",
+    "widgetPromptAdd": "Cómo agregar el widget",
+    "widgetStep1": "Mantén presionado un área vacía de tu pantalla de inicio",
+    "widgetStep2": "Selecciona 'Widgets' en el menú que aparece",
+    "widgetStep3": "Busca 'Bloody' en la lista de widgets",
+    "widgetStep4": "Arrastra el widget a un lugar conveniente en la pantalla",
+    "widgetInstructionsTitle": "Agregando el widget",
+    "notNow": "Ahora no",
+    "done": "Hecho",
+    "daysUntilNextDonation": "días hasta la próxima donación",
+
     "ageLimitBanner": "Después de los 65 años, la donación de sangre solo está permitida con el permiso de un médico.",
 
     "permissionDialogTitle": "Permiso para donar sangre",

@@ -243,6 +243,42 @@ class AppLocalizationsEs extends AppLocalizations {
   String get delete => 'Eliminar';
 
   @override
+  String get widgetPromptTitle => 'Mantente al tanto';
+
+  @override
+  String get widgetPromptBody =>
+      'Agrega el widget a tu pantalla de inicio y siempre sabrás cuántos días faltan para tu próxima donación, sin siquiera abrir la aplicación.';
+
+  @override
+  String get widgetPromptAdd => 'Cómo agregar el widget';
+
+  @override
+  String get widgetStep1 =>
+      'Mantén presionado un área vacía de tu pantalla de inicio';
+
+  @override
+  String get widgetStep2 => 'Selecciona \'Widgets\' en el menú que aparece';
+
+  @override
+  String get widgetStep3 => 'Busca \'Bloody\' en la lista de widgets';
+
+  @override
+  String get widgetStep4 =>
+      'Arrastra el widget a un lugar conveniente en la pantalla';
+
+  @override
+  String get widgetInstructionsTitle => 'Agregando el widget';
+
+  @override
+  String get notNow => 'Ahora no';
+
+  @override
+  String get done => 'Hecho';
+
+  @override
+  String get daysUntilNextDonation => 'días hasta la próxima donación';
+
+  @override
   String get ageLimitBanner =>
       'Después de los 65 años, la donación de sangre solo está permitida con el permiso de un médico.';
 

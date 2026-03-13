@@ -146,7 +146,6 @@ class HomeScreen extends ConsumerWidget {
                 MaterialPageRoute(builder: (_) => const JournalScreen()),
               ),
             ),
-            const SizedBox(height: 12),
             _NavCard(
               icon: Icons.bar_chart,
               label: t.statsTitle,
@@ -200,7 +199,7 @@ class _NavCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Row(
-            children: [Icon(icon), const SizedBox(width: 16), Text(label)],
+            children: [Icon(icon), const SizedBox(width: 24), Text(label)],
           ),
         ),
       ),

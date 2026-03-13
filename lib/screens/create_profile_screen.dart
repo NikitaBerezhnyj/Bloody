@@ -1,3 +1,4 @@
+import 'package:bloody/screens/widget_prompt_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../main.dart';
@@ -5,6 +6,7 @@ import '../models/user.dart';
 import '../providers/user_provider.dart';
 import '../services/user_service.dart';
 import '../l10n/app_localizations.dart';
+import '../services/widget_prompt_service.dart';
 import 'home_screen.dart';
 import 'settings_screen.dart';
 
@@ -83,13 +85,29 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
 
-    ref.listen(userProvider, (_, next) {
+    ref.listen<AsyncValue<User?>>(userProvider, (_, next) {
       next.whenData((user) {
         if (user != null && mounted) {
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (_) => const HomeScreen()),
-                (route) => false,
-          );
+          WidgetsBinding.instance.addPostFrameCallback((_) async {
+            if (!mounted) return;
+
+            final shouldShow = await WidgetPromptService.shouldShow();
+            if (shouldShow) {
+              await WidgetPromptService.markShown();
+
+              await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const WidgetPromptScreen()),
+              );
+            }
+
+            if (mounted) {
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (_) => const HomeScreen()),
+                    (route) => false,
+              );
+            }
+          });
         }
       });
     });

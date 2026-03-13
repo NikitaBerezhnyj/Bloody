@@ -7,6 +7,7 @@ import '../providers/user_provider.dart';
 import '../services/user_service.dart';
 import '../services/database_service.dart';
 import '../l10n/app_localizations.dart';
+import '../services/widget_prompt_service.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -115,6 +116,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final db = await DatabaseService.getDatabase();
     await db.delete('users');
     await db.delete('donations');
+    await WidgetPromptService.cleanShown();
 
     ref.invalidate(userProvider);
     ref.invalidate(donationsProvider);
