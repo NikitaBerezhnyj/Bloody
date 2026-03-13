@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 
 class WidgetPromptScreen extends StatefulWidget {
-  /// Викликається коли юзер тапає "Не зараз" або після закриття інструкції
   const WidgetPromptScreen({super.key});
 
   @override
@@ -23,17 +22,14 @@ class _WidgetPromptScreenState extends State<WidgetPromptScreen> {
             child: _showInstructions
                 ? _InstructionsView()
                 : _PromoView(
-              onAddWidget: () =>
-                  setState(() => _showInstructions = true)
-            ),
+                    onAddWidget: () => setState(() => _showInstructions = true),
+                  ),
           ),
         ),
       ),
     );
   }
 }
-
-// ─── Промо-екран ──────────────────────────────────────────────────────────────
 
 class _PromoView extends StatelessWidget {
   final VoidCallback onAddWidget;
@@ -78,10 +74,7 @@ class _PromoView extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 t.daysUntilNextDonation,
-                style: const TextStyle(
-                  color: Colors.white70,
-                  fontSize: 11,
-                ),
+                style: const TextStyle(color: Colors.white70, fontSize: 11),
                 textAlign: TextAlign.center,
               ),
             ],
@@ -90,18 +83,17 @@ class _PromoView extends StatelessWidget {
         const Spacer(),
         Text(
           t.widgetPromptTitle,
-          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 12),
         Text(
           t.widgetPromptBody,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Colors.grey,
-            height: 1.5,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodyMedium?.copyWith(color: Colors.grey, height: 1.5),
           textAlign: TextAlign.center,
         ),
         const Spacer(flex: 2),
@@ -124,11 +116,8 @@ class _PromoView extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: TextButton(
-            onPressed: () => Navigator.pop(context), // ❌ самостійне закриття
-            child: Text(
-              t.notNow,
-              style: const TextStyle(color: Colors.grey),
-            ),
+            onPressed: () => Navigator.pop(context),
+            child: Text(t.notNow, style: const TextStyle(color: Colors.grey)),
           ),
         ),
         const Spacer(),
@@ -136,8 +125,6 @@ class _PromoView extends StatelessWidget {
     );
   }
 }
-
-// ─── Інструкція ───────────────────────────────────────────────────────────────
 
 class _InstructionsView extends StatelessWidget {
   const _InstructionsView();
@@ -160,9 +147,9 @@ class _InstructionsView extends StatelessWidget {
         const SizedBox(height: 16),
         Text(
           t.widgetInstructionsTitle,
-          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 32),
         ...steps.indexed.map(((int, ({IconData icon, String text})) entry) {
@@ -216,7 +203,7 @@ class _InstructionsView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            onPressed: () => Navigator.pop(context), // ❌ самостійне закриття
+            onPressed: () => Navigator.pop(context),
             child: Text(t.done),
           ),
         ),

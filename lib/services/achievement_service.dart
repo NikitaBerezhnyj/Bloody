@@ -11,10 +11,10 @@ class AchievementService {
   static List<DateTime> _getHolidays(User? user) {
     final now = DateTime.now().year;
     final holidays = [
-      DateTime(now, 1, 1), // Новий рік
-      DateTime(now, 3, 8), // Міжнародний жіночий день
-      DateTime(now, 6, 14), // Всесвітній день донора крові
-      DateTime(now, 12, 25), // Різдво
+      DateTime(now, 1, 1), // New Year
+      DateTime(now, 3, 8), // International Women's Day
+      DateTime(now, 6, 14), // World Blood Donor Day
+      DateTime(now, 12, 25), // Christmas
     ];
 
     if (user != null) {
