@@ -72,6 +72,11 @@
     "feelingLabel": "Самопочуття: {feeling}",
     "notesLabel": "Нотатки: {notes}",
 
+    "deleteDonation": "Видалити донацію",
+    "deleteDonationTitle": "Видалити запис?",
+    "deleteDonationContent": "Ви впевнені, що хочете видалити цей запис про донацію? Цю дію неможливо скасувати.",
+    "delete": "Видалити",
+
     "ageLimitBanner": "Після 65 років донорство крові можливе лише за дозволом лікаря.",
 
     "permissionDialogTitle": "Дозвіл на здачу крові",

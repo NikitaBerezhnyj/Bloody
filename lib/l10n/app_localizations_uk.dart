@@ -230,6 +230,19 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
+  String get deleteDonation => 'Видалити донацію';
+
+  @override
+  String get deleteDonationTitle => 'Видалити запис?';
+
+  @override
+  String get deleteDonationContent =>
+      'Ви впевнені, що хочете видалити цей запис про донацію? Цю дію неможливо скасувати.';
+
+  @override
+  String get delete => 'Видалити';
+
+  @override
   String get ageLimitBanner =>
       'Після 65 років донорство крові можливе лише за дозволом лікаря.';
 

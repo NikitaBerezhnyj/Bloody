@@ -229,6 +229,19 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get deleteDonation => 'Delete donation';
+
+  @override
+  String get deleteDonationTitle => 'Delete record?';
+
+  @override
+  String get deleteDonationContent =>
+      'Are you sure you want to delete this donation record? This action cannot be undone.';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
   String get ageLimitBanner =>
       'After 65, blood donation is only allowed with a doctor’s permission.';
 

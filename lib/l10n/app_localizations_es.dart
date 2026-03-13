@@ -230,6 +230,19 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get deleteDonation => 'Eliminar donación';
+
+  @override
+  String get deleteDonationTitle => '¿Eliminar registro?';
+
+  @override
+  String get deleteDonationContent =>
+      '¿Estás seguro de que quieres eliminar este registro de donación? Esta acción no se puede deshacer.';
+
+  @override
+  String get delete => 'Eliminar';
+
+  @override
   String get ageLimitBanner =>
       'Después de los 65 años, la donación de sangre solo está permitida con el permiso de un médico.';
 

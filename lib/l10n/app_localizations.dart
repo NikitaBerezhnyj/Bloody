@@ -490,6 +490,30 @@ abstract class AppLocalizations {
   /// **'Notes: {notes}'**
   String notesLabel(Object notes);
 
+  /// No description provided for @deleteDonation.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete donation'**
+  String get deleteDonation;
+
+  /// No description provided for @deleteDonationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete record?'**
+  String get deleteDonationTitle;
+
+  /// No description provided for @deleteDonationContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this donation record? This action cannot be undone.'**
+  String get deleteDonationContent;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
   /// No description provided for @ageLimitBanner.
   ///
   /// In en, this message translates to:

@@ -73,6 +73,11 @@
     "feelingLabel": "Estado: {feeling}",
     "notesLabel": "Notas: {notes}",
 
+    "deleteDonation": "Eliminar donación",
+    "deleteDonationTitle": "¿Eliminar registro?",
+    "deleteDonationContent": "¿Estás seguro de que quieres eliminar este registro de donación? Esta acción no se puede deshacer.",
+    "delete": "Eliminar",
+
     "ageLimitBanner": "Después de los 65 años, la donación de sangre solo está permitida con el permiso de un médico.",
 
     "permissionDialogTitle": "Permiso para donar sangre",

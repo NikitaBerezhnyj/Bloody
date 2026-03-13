@@ -73,6 +73,11 @@
     "feelingLabel": "Feeling: {feeling}",
     "notesLabel": "Notes: {notes}",
 
+    "deleteDonation": "Delete donation",
+    "deleteDonationTitle": "Delete record?",
+    "deleteDonationContent": "Are you sure you want to delete this donation record? This action cannot be undone.",
+    "delete": "Delete",
+
     "ageLimitBanner": "After 65, blood donation is only allowed with a doctor’s permission.",
 
     "permissionDialogTitle": "Blood Donation Permission",
