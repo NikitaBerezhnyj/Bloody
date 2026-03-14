@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../l10n/app_localizations.dart';
-import '../services/share_service.dart';
+import '../../l10n/app_localizations.dart';
+import '../../services/share_service.dart';
 
 class AchievementDialog extends StatelessWidget {
   final IconData icon;

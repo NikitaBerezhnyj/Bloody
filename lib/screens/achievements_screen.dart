@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/achievements_provider.dart';
-import '../widgets/achievement_tile.dart';
+import '../widgets/achievement/achievement_tile.dart';
 import '../l10n/app_localizations.dart';
+import '../widgets/common/header.dart';
 
 class AchievementsScreen extends ConsumerWidget {
   const AchievementsScreen({super.key});
@@ -14,7 +15,10 @@ class AchievementsScreen extends ConsumerWidget {
     final achievementsAsync = ref.watch(achievementsProvider(localeCode));
 
     return Scaffold(
-      appBar: AppBar(title: Text(t.achievementsTitle)),
+      appBar: AppHeader(
+        title: t.achievementsTitle,
+        showBackButton: true,
+      ),
       body: achievementsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('Помилка: $e')),

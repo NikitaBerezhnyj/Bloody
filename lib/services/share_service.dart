@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
-import '../widgets/achievement_share_card.dart';
+import '../widgets/achievement/achievement_share_card.dart';
 import '../l10n/app_localizations.dart';
 
 class ShareService {

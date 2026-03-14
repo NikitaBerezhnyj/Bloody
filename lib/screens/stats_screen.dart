@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/donations_provider.dart';
 import '../models/donation.dart';
+import '../utils/donation_formatters.dart';
+import '../widgets/common/header.dart';
 
 class StatsScreen extends ConsumerStatefulWidget {
   const StatsScreen({super.key});
@@ -20,7 +22,10 @@ class _StatsScreenState extends ConsumerState<StatsScreen> {
     final donationsAsync = ref.watch(donationsProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(t.statsTitle)),
+      appBar: AppHeader(
+        title: t.statsTitle,
+        showBackButton: true,
+      ),
       body: donationsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('Помилка: $e')),
@@ -576,8 +581,7 @@ class _DonationStats {
     }
 
     final last = all.first;
-    final lastDate =
-        "${last.date.day.toString().padLeft(2, '0')}.${last.date.month.toString().padLeft(2, '0')}.${last.date.year}";
+    final lastDate = formatDate(last.date);
 
     return _DonationStats(
       total: total,

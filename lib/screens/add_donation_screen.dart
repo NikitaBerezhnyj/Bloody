@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/donation.dart';
 import '../providers/donations_provider.dart';
 import '../l10n/app_localizations.dart';
+import '../utils/donation_formatters.dart';
+import '../widgets/common/button.dart';
+import '../widgets/common/header.dart';
 import 'journal_screen.dart';
 import 'thank_you_screen.dart';
 
@@ -111,8 +114,9 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
     final t = AppLocalizations.of(context)!;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.existing != null ? t.editDonation : t.addDonation),
+      appBar: AppHeader(
+        title: widget.existing != null ? t.editDonation : t.addDonation,
+        showBackButton: true,
       ),
       body: Column(
         children: [
@@ -232,19 +236,17 @@ class _NavigationButtons extends StatelessWidget {
         children: [
           if (onBack != null)
             Expanded(
-              child: OutlinedButton(onPressed: onBack, child: Text(t.back)),
+              child: OutlineButton(
+                label: t.back,
+                onPressed: onBack,
+              ),
             ),
           if (onBack != null) const SizedBox(width: 12),
           Expanded(
             flex: 2,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 14),
-              ),
+            child: PrimaryButton(
+              label: isLast ? t.saveDonation : t.next,
               onPressed: isLast ? onSave : onNext,
-              child: Text(isLast ? t.saveDonation : t.next),
             ),
           ),
         ],
@@ -277,9 +279,7 @@ class _StepDateTime extends StatelessWidget {
           _PickerTile(
             icon: Icons.calendar_today,
             label: t.date,
-            value: selectedDate != null
-                ? "${selectedDate!.day.toString().padLeft(2, '0')}.${selectedDate!.month.toString().padLeft(2, '0')}.${selectedDate!.year}"
-                : t.selectDate,
+            value: selectedDate != null ? formatDate(selectedDate!) : t.selectDate,
             onTap: () async {
               final now = DateTime.now();
               final picked = await showDatePicker(
@@ -295,9 +295,7 @@ class _StepDateTime extends StatelessWidget {
           _PickerTile(
             icon: Icons.access_time,
             label: t.donationTime,
-            value: selectedTime != null
-                ? "${selectedTime!.hour.toString().padLeft(2, '0')}:${selectedTime!.minute.toString().padLeft(2, '0')}"
-                : t.selectTime,
+            value: selectedTime != null ? formatTime(selectedTime!) : t.selectTime,
             onTap: () async {
               final picked = await showTimePicker(
                 context: context,

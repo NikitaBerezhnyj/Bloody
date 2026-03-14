@@ -2,6 +2,7 @@ import 'package:bloody/screens/widget_prompt_screen.dart';
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 import '../services/widget_prompt_service.dart';
+import '../widgets/common/button.dart';
 import 'journal_screen.dart';
 
 class ThankYouScreen extends StatelessWidget {
@@ -38,15 +39,8 @@ class ThankYouScreen extends StatelessWidget {
               const Spacer(flex: 2),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
+                child: PrimaryButton(
+                  label: t.goToJournal,
                   onPressed: () async {
                     if (!context.mounted) return;
 
@@ -66,7 +60,6 @@ class ThankYouScreen extends StatelessWidget {
                       MaterialPageRoute(builder: (_) => const JournalScreen()),
                     );
                   },
-                  child: Text(t.goToJournal),
                 ),
               ),
               const Spacer(),

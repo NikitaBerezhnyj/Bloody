@@ -1,6 +1,7 @@
 import 'package:bloody/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../constants/app_constants.dart';
 import '../models/user.dart';
 import '../providers/donations_provider.dart';
 import '../providers/user_provider.dart';
@@ -8,6 +9,8 @@ import '../services/user_service.dart';
 import '../services/database_service.dart';
 import '../l10n/app_localizations.dart';
 import '../services/widget_prompt_service.dart';
+import '../widgets/common/button.dart';
+import '../widgets/common/header.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -25,17 +28,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   String? _bloodType;
 
   bool _initialized = false;
-
-  final List<String> bloodTypes = [
-    "A+",
-    "A-",
-    "B+",
-    "B-",
-    "AB+",
-    "AB-",
-    "0+",
-    "0-",
-  ];
 
   @override
   void dispose() {
@@ -147,7 +139,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         if (user != null) _initFromUser(user);
 
         return Scaffold(
-          appBar: AppBar(title: Text(t.profileTitle)),
+          appBar: AppHeader(
+            title: t.profileTitle,
+            showBackButton: true,
+          ),
           body: Center(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -212,21 +207,17 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     const SizedBox(height: 24),
                     SizedBox(
                       width: double.infinity,
-                      child: ElevatedButton(
+                      child: PrimaryButton(
+                        label: t.saveChanges,
                         onPressed: () => _saveUser(user),
-                        child: Text(t.saveChanges),
                       ),
                     ),
                     const SizedBox(height: 12),
                     SizedBox(
                       width: double.infinity,
-                      child: ElevatedButton(
+                      child: OutlineButton(
+                        label: t.logout,
                         onPressed: _logout,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
-                          foregroundColor: Colors.white,
-                        ),
-                        child: Text(t.logout),
                       ),
                     ),
                   ],

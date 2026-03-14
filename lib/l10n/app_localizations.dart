@@ -106,6 +106,12 @@ abstract class AppLocalizations {
   /// **'Track your blood donations'**
   String get welcomeSubtitle;
 
+  /// No description provided for @createProfileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Profile'**
+  String get createProfileTitle;
+
   /// No description provided for @createProfile.
   ///
   /// In en, this message translates to:

@@ -4,6 +4,7 @@ import '../providers/user_provider.dart';
 import '../providers/donations_provider.dart';
 import '../services/backup_service.dart';
 import '../l10n/app_localizations.dart';
+import '../widgets/common/button.dart';
 import 'create_profile_screen.dart';
 import 'home_screen.dart';
 import 'settings_screen.dart';
@@ -66,22 +67,14 @@ class WelcomeScreen extends ConsumerWidget {
 
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
+              child: PrimaryButton(
+                label: t.createProfile,
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (_) => const CreateProfileScreen(),
                   ),
                 ),
-                child: Text(t.createProfile),
               ),
             ),
 
@@ -89,19 +82,9 @@ class WelcomeScreen extends ConsumerWidget {
 
             SizedBox(
               width: double.infinity,
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  side: const BorderSide(color: Colors.red),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
+              child: OutlineButton(
                 onPressed: () => _restoreFromBackup(context, ref, t),
-                child: Text(
-                  t.restoreFromBackup,
-                  style: const TextStyle(color: Colors.red),
-                ),
+                label: t.restoreFromBackup,
               ),
             ),
 

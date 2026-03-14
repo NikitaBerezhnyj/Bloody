@@ -2,6 +2,7 @@
     "@@locale": "es",
 
     "welcomeSubtitle": "Haz seguimiento de tus donaciones de sangre",
+    "createProfileTitle": "Crear perfil",
     "createProfile": "Crear perfil",
 
     "appTitle": "Bloody",

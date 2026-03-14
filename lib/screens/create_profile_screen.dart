@@ -1,12 +1,14 @@
 import 'package:bloody/screens/widget_prompt_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../main.dart';
+import '../constants/app_constants.dart';
 import '../models/user.dart';
 import '../providers/user_provider.dart';
 import '../services/user_service.dart';
 import '../l10n/app_localizations.dart';
 import '../services/widget_prompt_service.dart';
+import '../widgets/common/button.dart';
+import '../widgets/common/header.dart';
 import 'home_screen.dart';
 import 'settings_screen.dart';
 
@@ -26,17 +28,6 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
   String? _genderKey;
   String? _bloodType;
   late Map<String, String> genderMap;
-
-  final List<String> bloodTypes = [
-    "A+",
-    "A-",
-    "B+",
-    "B-",
-    "AB+",
-    "AB-",
-    "0+",
-    "0-",
-  ];
 
   @override
   void didChangeDependencies() {
@@ -113,24 +104,10 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
     });
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Row(
-          children: [
-            Icon(Icons.opacity, color: Colors.red, size: 36),
-            SizedBox(width: 8),
-            Text("Bloody"),
-          ],
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            tooltip: t.profile,
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const SettingsScreen()),
-            ),
-          ),
-        ],
+      appBar: AppHeader(
+        title: t.createProfileTitle,
+        showBackButton: true,
+        showSettingsButton: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -200,16 +177,9 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                   const SizedBox(height: 24),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: _saveUser,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
-                          foregroundColor: Colors.white
-                        ),
-                        child: Text(t.save),
-                      ),
+                    child: PrimaryButton(
+                      label: t.save,
+                      onPressed: _saveUser,
                     ),
                   ),
                 ],

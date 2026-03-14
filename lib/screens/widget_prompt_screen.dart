@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
+import '../widgets/common/button.dart';
 
 class WidgetPromptScreen extends StatefulWidget {
   const WidgetPromptScreen({super.key});
@@ -97,28 +98,16 @@ class _PromoView extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         const Spacer(flex: 2),
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            onPressed: onAddWidget,
-            child: Text(t.widgetPromptAdd),
-          ),
+        PrimaryButton(
+          label: t.widgetPromptAdd,
+          onPressed: onAddWidget,
         ),
+
         const SizedBox(height: 12),
-        SizedBox(
-          width: double.infinity,
-          child: TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(t.notNow, style: const TextStyle(color: Colors.grey)),
-          ),
+
+        NoBorderButton(
+          label: t.notNow,
+          onPressed: () => Navigator.pop(context),
         ),
         const Spacer(),
       ],
@@ -194,17 +183,9 @@ class _InstructionsView extends StatelessWidget {
         const Spacer(),
         SizedBox(
           width: double.infinity,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
+          child: PrimaryButton(
+            label: t.done,
             onPressed: () => Navigator.pop(context),
-            child: Text(t.done),
           ),
         ),
         const Spacer(flex: 1),

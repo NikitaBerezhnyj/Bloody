@@ -3,12 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/days_left_provider.dart';
 import '../providers/donations_provider.dart';
 import '../providers/user_provider.dart';
-import '../widgets/donation_permission_dialog.dart';
+import '../widgets/common/header.dart';
+import '../widgets/donation/donation_permission_dialog.dart';
 import 'profile_screen.dart';
 import 'journal_screen.dart';
 import 'stats_screen.dart';
 import 'add_donation_screen.dart';
-import '../widgets/home_banner.dart';
+import '../widgets/home/home_banner.dart';
 import '../l10n/app_localizations.dart';
 import '../screens/settings_screen.dart';
 import 'achievements_screen.dart';
@@ -62,24 +63,12 @@ class HomeScreen extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Row(
-          children: [
-            Icon(Icons.opacity, color: Colors.red, size: 36),
-            SizedBox(width: 8),
-            Text('Bloody'),
-          ],
+      appBar: AppHeader(
+        showSettingsButton: true,
+        onSettings: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const SettingsScreen()),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            tooltip: t.profile,
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const SettingsScreen()),
-            ),
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

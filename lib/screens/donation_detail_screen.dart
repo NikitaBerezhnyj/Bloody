@@ -3,6 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/donation.dart';
 import '../providers/donations_provider.dart';
 import '../l10n/app_localizations.dart';
+import '../utils/donation_formatters.dart';
+import '../utils/donation_type.dart';
+import '../widgets/common/button.dart';
+import '../widgets/common/header.dart';
 import 'add_donation_screen.dart';
 
 class DonationDetailScreen extends ConsumerWidget {
@@ -18,25 +22,22 @@ class DonationDetailScreen extends ConsumerWidget {
     final t = AppLocalizations.of(context)!;
     final d = donation;
 
-    final dateStr =
-        "${d.date.day.toString().padLeft(2, '0')}.${d.date.month.toString().padLeft(2, '0')}.${d.date.year}";
-    final timeStr =
-        "${d.time.hour.toString().padLeft(2, '0')}:${d.time.minute.toString().padLeft(2, '0')}";
+    final dateStr = formatDate(d.date);
+    final timeStr = formatTime(d.time);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t.detailsView),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.edit_outlined),
-            onPressed: () => Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (_) => AddDonationScreen(existing: d),
-              ),
+      appBar: AppHeader(
+        title: t.detailsView,
+        showBackButton: true,
+        action: IconButton(
+          icon: const Icon(Icons.edit_outlined),
+          onPressed: () => Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (_) => AddDonationScreen(existing: donation),
             ),
           ),
-        ],
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -54,14 +55,14 @@ class DonationDetailScreen extends ConsumerWidget {
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
-                      _typeIcon(d.type),
+                      typeIcon(d.type),
                       color: Colors.red,
                       size: 40,
                     ),
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    _translateType(t, d.type),
+                    translateType(t, d.type),
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -92,14 +93,14 @@ class DonationDetailScreen extends ConsumerWidget {
                   value: timeStr,
                 ),
                 _DetailRow(
-                  icon: _typeIcon(d.type),
+                  icon: typeIcon(d.type),
                   label: t.donationType,
-                  value: _translateType(t, d.type),
+                  value: translateType(t, d.type),
                 ),
                 _DetailRow(
                   icon: Icons.mood,
                   label: t.feeling,
-                  value: _translateFeeling(t, d.feeling),
+                  value: translateFeeling(t, d.feeling),
                 ),
                 if (d.notes.isNotEmpty)
                   _DetailRow(
@@ -116,23 +117,9 @@ class DonationDetailScreen extends ConsumerWidget {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
-        child: SizedBox(
-          width: double.infinity,
-          child: OutlinedButton.icon(
-            icon: const Icon(Icons.delete_outline, color: Colors.red),
-            label: Text(
-              t.deleteDonation,
-              style: const TextStyle(color: Colors.red),
-            ),
-            style: OutlinedButton.styleFrom(
-              side: const BorderSide(color: Colors.red),
-              padding: const EdgeInsets.symmetric(vertical: 14),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            onPressed: () => _confirmAndDelete(context, ref),
-          ),
+        child: OutlineButton(
+          label: t.deleteDonation,
+          onPressed: () => _confirmAndDelete(context, ref),
         ),
       ),
     );
@@ -169,45 +156,6 @@ class DonationDetailScreen extends ConsumerWidget {
     if (!context.mounted) return;
 
     Navigator.pop(context);
-  }
-
-  String _translateType(AppLocalizations t, String key) {
-    switch (key) {
-      case 'donationWholeBlood':
-        return t.donationWholeBlood;
-      case 'donationPlasma':
-        return t.donationPlasma;
-      case 'donationPlatelets':
-        return t.donationPlatelets;
-      default:
-        return key;
-    }
-  }
-
-  String _translateFeeling(AppLocalizations t, String key) {
-    switch (key) {
-      case 'feelingGood':
-        return '😃 ${t.feelingGood}';
-      case 'feelingNormal':
-        return '😐 ${t.feelingNormal}';
-      case 'feelingTired':
-        return '😔 ${t.feelingTired}';
-      default:
-        return key;
-    }
-  }
-
-  IconData _typeIcon(String key) {
-    switch (key) {
-      case 'donationWholeBlood':
-        return Icons.bloodtype;
-      case 'donationPlasma':
-        return Icons.opacity;
-      case 'donationPlatelets':
-        return Icons.healing;
-      default:
-        return Icons.bloodtype;
-    }
   }
 }
 

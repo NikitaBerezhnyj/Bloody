@@ -6,6 +6,7 @@ import '../providers/locale_provider.dart';
 import '../providers/theme_provider.dart';
 import '../providers/user_provider.dart';
 import '../services/backup_service.dart';
+import '../widgets/common/header.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
@@ -44,7 +45,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     final selectedTheme = themeAsync.valueOrNull ?? ThemeMode.system;
 
     return Scaffold(
-      appBar: AppBar(title: Text(t.settingsTitle)),
+      appBar: AppHeader(
+        title: t.settingsTitle,
+        showBackButton: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

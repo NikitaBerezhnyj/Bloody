@@ -1,57 +1,15 @@
+import 'package:bloody/utils/donation_formatters.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/donations_provider.dart';
+import '../utils/donation_type.dart';
+import '../widgets/common/header.dart';
 import 'add_donation_screen.dart';
 import 'donation_detail_screen.dart';
 
 class JournalScreen extends ConsumerWidget {
   const JournalScreen({super.key});
-
-  String _formatDate(DateTime d) =>
-      "${d.day.toString().padLeft(2, '0')}.${d.month.toString().padLeft(2, '0')}.${d.year}";
-
-  String _formatTime(TimeOfDay t) =>
-      "${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}";
-
-  String _translateType(AppLocalizations t, String key) {
-    switch (key) {
-      case "donationWholeBlood":
-        return t.donationWholeBlood;
-      case "donationPlasma":
-        return t.donationPlasma;
-      case "donationPlatelets":
-        return t.donationPlatelets;
-      default:
-        return key;
-    }
-  }
-
-  String _translateFeeling(AppLocalizations t, String key) {
-    switch (key) {
-      case "feelingGood":
-        return "😃 ${t.feelingGood}";
-      case "feelingNormal":
-        return "😐 ${t.feelingNormal}";
-      case "feelingTired":
-        return "😔 ${t.feelingTired}";
-      default:
-        return key;
-    }
-  }
-
-  Icon _icon(String key) {
-    switch (key) {
-      case "donationWholeBlood":
-        return const Icon(Icons.bloodtype, color: Colors.red, size: 36);
-      case "donationPlasma":
-        return const Icon(Icons.opacity, color: Colors.red, size: 36);
-      case "donationPlatelets":
-        return const Icon(Icons.healing, color: Colors.red, size: 36);
-      default:
-        return const Icon(Icons.bloodtype, color: Colors.red);
-    }
-  }
 
   Future<bool?> _confirmDelete(BuildContext context) {
     return showDialog<bool>(
@@ -80,7 +38,10 @@ class JournalScreen extends ConsumerWidget {
     final donationsAsync = ref.watch(donationsProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(t.journalTitle)),
+      appBar: AppHeader(
+        title: t.journalTitle,
+        showBackButton: true,
+      ),
       body: donationsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('Помилка: $e')),
@@ -137,16 +98,16 @@ class JournalScreen extends ConsumerWidget {
                           horizontal: 16,
                           vertical: 12,
                         ),
-                        leading: _icon(d.type),
+                        leading: Icon(typeIcon('donationWholeBlood'), color: Colors.red, size: 36),
                         title: Text(
-                          "${_translateType(t, d.type)} — ${_formatDate(d.date)} ${_formatTime(d.time)}",
+                          "${translateType(t, d.type)} — ${formatDate(d.date)} ${formatTime(d.time)}",
                         ),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             if (d.feeling.isNotEmpty)
                               Text(
-                                "${t.feeling}: ${_translateFeeling(t, d.feeling)}",
+                                "${t.feeling}: ${translateFeeling(t, d.feeling)}",
                               ),
                             if (d.notes.isNotEmpty)
                               Text("${t.notes}: ${d.notes}"),
