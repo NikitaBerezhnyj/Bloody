@@ -580,6 +580,114 @@ abstract class AppLocalizations {
   /// **'days until next donation'**
   String get daysUntilNextDonation;
 
+  /// No description provided for @statsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics'**
+  String get statsTitle;
+
+  /// No description provided for @noDonationsStats.
+  ///
+  /// In en, this message translates to:
+  /// **'No donations yet'**
+  String get noDonationsStats;
+
+  /// No description provided for @statsTotalDonations.
+  ///
+  /// In en, this message translates to:
+  /// **'donations'**
+  String get statsTotalDonations;
+
+  /// No description provided for @statsLivesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'lives saved'**
+  String get statsLivesLabel;
+
+  /// No description provided for @statsPerYear.
+  ///
+  /// In en, this message translates to:
+  /// **'By year'**
+  String get statsPerYear;
+
+  /// No description provided for @statsDonationsYear.
+  ///
+  /// In en, this message translates to:
+  /// **'donations per year'**
+  String get statsDonationsYear;
+
+  /// No description provided for @statsTypeWhole.
+  ///
+  /// In en, this message translates to:
+  /// **'Whole'**
+  String get statsTypeWhole;
+
+  /// No description provided for @statsTypePlasma.
+  ///
+  /// In en, this message translates to:
+  /// **'Plasma'**
+  String get statsTypePlasma;
+
+  /// No description provided for @statsTypePlatelets.
+  ///
+  /// In en, this message translates to:
+  /// **'Platelets'**
+  String get statsTypePlatelets;
+
+  /// No description provided for @statsDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get statsDetails;
+
+  /// No description provided for @statsLastDonation.
+  ///
+  /// In en, this message translates to:
+  /// **'Last donation'**
+  String get statsLastDonation;
+
+  /// No description provided for @statsAvgInterval.
+  ///
+  /// In en, this message translates to:
+  /// **'Average interval'**
+  String get statsAvgInterval;
+
+  /// No description provided for @statsDays.
+  ///
+  /// In en, this message translates to:
+  /// **'days'**
+  String get statsDays;
+
+  /// No description provided for @statsToday.
+  ///
+  /// In en, this message translates to:
+  /// **'today'**
+  String get statsToday;
+
+  /// No description provided for @statsYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'yesterday'**
+  String get statsYesterday;
+
+  /// No description provided for @statsDaysAgo1.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} day ago'**
+  String statsDaysAgo1(int count);
+
+  /// No description provided for @statsDaysAgo2.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} days ago'**
+  String statsDaysAgo2(int count);
+
+  /// No description provided for @statsDaysAgoMany.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} days ago'**
+  String statsDaysAgoMany(int count);
+
   /// No description provided for @ageLimitBanner.
   ///
   /// In en, this message translates to:
@@ -609,18 +717,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No'**
   String get noButton;
-
-  /// No description provided for @statsTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Statistics'**
-  String get statsTitle;
-
-  /// No description provided for @noDonationsStats.
-  ///
-  /// In en, this message translates to:
-  /// **'No donations yet'**
-  String get noDonationsStats;
 
   /// No description provided for @totalDonations.
   ///
