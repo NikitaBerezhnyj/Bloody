@@ -10,7 +10,6 @@ import '../services/widget_prompt_service.dart';
 import '../widgets/common/button.dart';
 import '../widgets/common/header.dart';
 import 'home_screen.dart';
-import 'settings_screen.dart';
 
 class CreateProfileScreen extends ConsumerStatefulWidget {
   const CreateProfileScreen({super.key});

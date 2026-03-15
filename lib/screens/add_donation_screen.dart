@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../constants/app_constants.dart';
 import '../models/donation.dart';
 import '../providers/donations_provider.dart';
 import '../l10n/app_localizations.dart';
 import '../utils/donation_formatters.dart';
-import '../widgets/common/button.dart';
 import '../widgets/common/header.dart';
+import '../widgets/common/progress_bar.dart';
+import '../widgets/donation/confirm_row.dart';
+import '../widgets/donation/navigation_buttons.dart';
+import '../widgets/donation/picker_tile.dart';
+import '../widgets/donation/selection_card.dart';
+import '../widgets/donation/step_wrapper.dart';
 import 'journal_screen.dart';
 import 'thank_you_screen.dart';
+import '../utils/donation_labels.dart';
 
 class AddDonationScreen extends ConsumerStatefulWidget {
   final Donation? existing;
@@ -120,7 +127,7 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
       ),
       body: Column(
         children: [
-          _ProgressBar(current: _currentStep, total: _totalSteps),
+          ProgressBar(current: _currentStep, total: _totalSteps),
           Expanded(
             child: AnimatedSwitcher(
               duration: const Duration(milliseconds: 250),
@@ -130,7 +137,7 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
               ),
             ),
           ),
-          _NavigationButtons(
+          NavigationButtons(
             currentStep: _currentStep,
             totalSteps: _totalSteps,
             onNext: _currentStep < _totalSteps - 1 ? _nextStep : null,
@@ -177,84 +184,6 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
   }
 }
 
-class _ProgressBar extends StatelessWidget {
-  final int current;
-  final int total;
-
-  const _ProgressBar({required this.current, required this.total});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(4),
-            child: LinearProgressIndicator(
-              value: (current + 1) / total,
-              minHeight: 6,
-              backgroundColor: Colors.red.shade100,
-              valueColor: const AlwaysStoppedAnimation(Colors.red),
-            ),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            '${AppLocalizations.of(context)!.step} ${current + 1} / $total',
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _NavigationButtons extends StatelessWidget {
-  final int currentStep;
-  final int totalSteps;
-  final VoidCallback? onNext;
-  final VoidCallback? onBack;
-  final VoidCallback? onSave;
-
-  const _NavigationButtons({
-    required this.currentStep,
-    required this.totalSteps,
-    this.onNext,
-    this.onBack,
-    this.onSave,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context)!;
-    final isLast = currentStep == totalSteps - 1;
-
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
-      child: Row(
-        children: [
-          if (onBack != null)
-            Expanded(
-              child: OutlineButton(
-                label: t.back,
-                onPressed: onBack,
-              ),
-            ),
-          if (onBack != null) const SizedBox(width: 12),
-          Expanded(
-            flex: 2,
-            child: PrimaryButton(
-              label: isLast ? t.saveDonation : t.next,
-              onPressed: isLast ? onSave : onNext,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class _StepDateTime extends StatelessWidget {
   final DateTime? selectedDate;
   final TimeOfDay? selectedTime;
@@ -272,11 +201,11 @@ class _StepDateTime extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
 
-    return _StepWrapper(
+    return StepWrapper(
       title: t.date,
       child: Column(
         children: [
-          _PickerTile(
+          PickerTile(
             icon: Icons.calendar_today,
             label: t.date,
             value: selectedDate != null ? formatDate(selectedDate!) : t.selectDate,
@@ -292,7 +221,7 @@ class _StepDateTime extends StatelessWidget {
             },
           ),
           const SizedBox(height: 12),
-          _PickerTile(
+          PickerTile(
             icon: Icons.access_time,
             label: t.donationTime,
             value: selectedTime != null ? formatTime(selectedTime!) : t.selectTime,
@@ -316,13 +245,6 @@ class _StepDonationType extends StatelessWidget {
 
   const _StepDonationType({required this.selected, required this.onChanged});
 
-  static const _types = [
-    'donationWholeBlood',
-    'donationPlasma',
-    'donationPlatelets',
-  ];
-  static const _icons = [Icons.bloodtype, Icons.opacity, Icons.healing];
-
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
@@ -340,16 +262,16 @@ class _StepDonationType extends StatelessWidget {
       }
     }
 
-    return _StepWrapper(
+    return StepWrapper(
       title: t.donationType,
       child: Column(
-        children: List.generate(_types.length, (i) {
-          final key = _types[i];
+        children: List.generate(donationTypes.length, (i) {
+          final key = donationTypes[i];
           final isSelected = selected == key;
           return Padding(
             padding: const EdgeInsets.only(bottom: 12),
-            child: _SelectionCard(
-              icon: _icons[i],
+            child: SelectionCard(
+              icon: typeIcon(key),
               label: label(key),
               isSelected: isSelected,
               onTap: () => onChanged(key),
@@ -367,37 +289,21 @@ class _StepFeeling extends StatelessWidget {
 
   const _StepFeeling({required this.selected, required this.onChanged});
 
-  static const _feelings = ['feelingGood', 'feelingNormal', 'feelingTired'];
-  static const _emojis = ['😃', '😐', '😔'];
-
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
 
-    String label(String key) {
-      switch (key) {
-        case 'feelingGood':
-          return t.feelingGood;
-        case 'feelingNormal':
-          return t.feelingNormal;
-        case 'feelingTired':
-          return t.feelingTired;
-        default:
-          return key;
-      }
-    }
-
-    return _StepWrapper(
+    return StepWrapper(
       title: t.feeling,
       child: Column(
-        children: List.generate(_feelings.length, (i) {
-          final key = _feelings[i];
+        children: List.generate(feelingKeys.length, (i) {
+          final key = feelingKeys[i];
           final isSelected = selected == key;
           return Padding(
             padding: const EdgeInsets.only(bottom: 12),
-            child: _SelectionCard(
-              emoji: _emojis[i],
-              label: label(key),
+            child: SelectionCard(
+              emoji: feelingEmoji(t, key),
+              label: feelingLabel(t, key),
               isSelected: isSelected,
               onTap: () => onChanged(key),
             ),
@@ -415,7 +321,7 @@ class _StepNotes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
-    return _StepWrapper(
+    return StepWrapper(
       title: t.notes,
       child: TextFormField(
         controller: controller,
@@ -449,38 +355,12 @@ class _StepConfirmation extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
 
-    String typeName() {
-      switch (typeKey) {
-        case 'donationWholeBlood':
-          return t.donationWholeBlood;
-        case 'donationPlasma':
-          return t.donationPlasma;
-        case 'donationPlatelets':
-          return t.donationPlatelets;
-        default:
-          return typeKey;
-      }
-    }
-
-    String feelingName() {
-      switch (feelingKey) {
-        case 'feelingGood':
-          return '😃 ${t.feelingGood}';
-        case 'feelingNormal':
-          return '😐 ${t.feelingNormal}';
-        case 'feelingTired':
-          return '😔 ${t.feelingTired}';
-        default:
-          return feelingKey;
-      }
-    }
-
     final dateStr =
         "${date.day.toString().padLeft(2, '0')}.${date.month.toString().padLeft(2, '0')}.${date.year}";
     final timeStr =
         "${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}";
 
-    return _StepWrapper(
+    return StepWrapper(
       title: t.confirmation,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -488,11 +368,17 @@ class _StepConfirmation extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              _ConfirmRow(label: t.date, value: dateStr),
-              _ConfirmRow(label: t.time, value: timeStr),
-              _ConfirmRow(label: t.donationType, value: typeName()),
-              _ConfirmRow(label: t.feeling, value: feelingName()),
-              if (notes.isNotEmpty) _ConfirmRow(label: t.notes, value: notes),
+              ConfirmRow(label: t.date, value: dateStr),
+              ConfirmRow(label: t.time, value: timeStr),
+              ConfirmRow(
+                label: t.donationType,
+                value: typeLabel(t, typeKey),
+              ),
+              ConfirmRow(
+                label: t.feeling,
+                value: feelingLabelWithEmoji(t, feelingKey),
+              ),
+              if (notes.isNotEmpty) ConfirmRow(label: t.notes, value: notes),
             ],
           ),
         ),
@@ -501,161 +387,4 @@ class _StepConfirmation extends StatelessWidget {
   }
 }
 
-class _ConfirmRow extends StatelessWidget {
-  final String label;
-  final String value;
-  const _ConfirmRow({required this.label, required this.value});
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            width: 120,
-            child: Text(
-              label,
-              style: const TextStyle(color: Colors.grey, fontSize: 13),
-            ),
-          ),
-          Expanded(
-            child: Text(
-              value,
-              style: const TextStyle(fontWeight: FontWeight.w500),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _StepWrapper extends StatelessWidget {
-  final String title;
-  final Widget child;
-  const _StepWrapper({required this.title, required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 24),
-            Text(title, style: Theme.of(context).textTheme.titleLarge),
-            const SizedBox(height: 20),
-            child,
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _PickerTile extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final String value;
-  final VoidCallback onTap;
-  const _PickerTile({
-    required this.icon,
-    required this.label,
-    required this.value,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey.shade300),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Row(
-          children: [
-            Icon(icon, color: Colors.red),
-            const SizedBox(width: 12),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  label,
-                  style: const TextStyle(fontSize: 12, color: Colors.grey),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  value,
-                  style: const TextStyle(fontWeight: FontWeight.w500),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _SelectionCard extends StatelessWidget {
-  final IconData? icon;
-  final String? emoji;
-  final String label;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  const _SelectionCard({
-    this.icon,
-    this.emoji,
-    required this.label,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-        decoration: BoxDecoration(
-          color: isSelected ? Colors.red.shade50 : null,
-          border: Border.all(
-            color: isSelected ? Colors.red : Colors.grey.shade300,
-            width: isSelected ? 2 : 1,
-          ),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Row(
-          children: [
-            if (icon != null)
-              Icon(icon, color: isSelected ? Colors.red : Colors.grey),
-            if (emoji != null)
-              Text(emoji!, style: const TextStyle(fontSize: 22)),
-            const SizedBox(width: 12),
-            Text(
-              label,
-              style: TextStyle(
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                color: isSelected ? Colors.red : null,
-              ),
-            ),
-            const Spacer(),
-            if (isSelected)
-              const Icon(Icons.check_circle, color: Colors.red, size: 20),
-          ],
-        ),
-      ),
-    );
-  }
-}

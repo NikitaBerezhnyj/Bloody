@@ -5,6 +5,7 @@ import '../providers/donations_provider.dart';
 import '../providers/user_provider.dart';
 import '../widgets/common/header.dart';
 import '../widgets/donation/donation_permission_dialog.dart';
+import '../widgets/home/nav_card.dart';
 import 'profile_screen.dart';
 import 'journal_screen.dart';
 import 'stats_screen.dart';
@@ -119,7 +120,7 @@ class HomeScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-            _NavCard(
+            NavCard(
               icon: Icons.person,
               label: t.profileTitle,
               onTap: () => Navigator.push(
@@ -127,7 +128,7 @@ class HomeScreen extends ConsumerWidget {
                 MaterialPageRoute(builder: (_) => const ProfileScreen()),
               ),
             ),
-            _NavCard(
+            NavCard(
               icon: Icons.list_alt,
               label: t.journalTitle,
               onTap: () => Navigator.push(
@@ -135,7 +136,7 @@ class HomeScreen extends ConsumerWidget {
                 MaterialPageRoute(builder: (_) => const JournalScreen()),
               ),
             ),
-            _NavCard(
+            NavCard(
               icon: Icons.bar_chart,
               label: t.statsTitle,
               onTap: () => Navigator.push(
@@ -143,7 +144,7 @@ class HomeScreen extends ConsumerWidget {
                 MaterialPageRoute(builder: (_) => const StatsScreen()),
               ),
             ),
-            _NavCard(
+            NavCard(
               icon: Icons.celebration,
               label: t.achievementsTitle,
               onTap: () => Navigator.push(
@@ -166,32 +167,6 @@ class HomeScreen extends ConsumerWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-    );
-  }
-}
-
-class _NavCard extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final VoidCallback onTap;
-  const _NavCard({
-    required this.icon,
-    required this.label,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [Icon(icon), const SizedBox(width: 24), Text(label)],
-          ),
-        ),
-      ),
     );
   }
 }

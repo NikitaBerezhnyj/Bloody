@@ -4,9 +4,11 @@ import '../models/donation.dart';
 import '../providers/donations_provider.dart';
 import '../l10n/app_localizations.dart';
 import '../utils/donation_formatters.dart';
-import '../utils/donation_type.dart';
+import '../utils/donation_labels.dart';
 import '../widgets/common/button.dart';
 import '../widgets/common/header.dart';
+import '../widgets/donation/detail_card.dart';
+import '../widgets/common/detail_row.dart';
 import 'add_donation_screen.dart';
 
 class DonationDetailScreen extends ConsumerWidget {
@@ -62,7 +64,7 @@ class DonationDetailScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    translateType(t, d.type),
+                    typeLabel(t, d.type),
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -80,30 +82,30 @@ class DonationDetailScreen extends ConsumerWidget {
 
             const SizedBox(height: 32),
 
-            _DetailCard(
+            DetailCard(
               children: [
-                _DetailRow(
+                DetailRow(
                   icon: Icons.calendar_today,
                   label: t.date,
                   value: dateStr,
                 ),
-                _DetailRow(
+                DetailRow(
                   icon: Icons.access_time,
                   label: t.donationTime,
                   value: timeStr,
                 ),
-                _DetailRow(
+                DetailRow(
                   icon: typeIcon(d.type),
                   label: t.donationType,
-                  value: translateType(t, d.type),
+                  value: typeLabel(t, d.type),
                 ),
-                _DetailRow(
+                DetailRow(
                   icon: Icons.mood,
                   label: t.feeling,
-                  value: translateFeeling(t, d.feeling),
+                  value: feelingLabelWithEmoji(t, d.feeling),
                 ),
                 if (d.notes.isNotEmpty)
-                  _DetailRow(
+                  DetailRow(
                     icon: Icons.notes,
                     label: t.notes,
                     value: d.notes,
@@ -156,76 +158,5 @@ class DonationDetailScreen extends ConsumerWidget {
     if (!context.mounted) return;
 
     Navigator.pop(context);
-  }
-}
-
-class _DetailCard extends StatelessWidget {
-  final List<Widget> children;
-
-  const _DetailCard({required this.children});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Column(
-          children: children
-              .expand((w) => [w, const Divider(height: 1, indent: 56)])
-              .toList()
-            ..removeLast(),
-        ),
-      ),
-    );
-  }
-}
-
-class _DetailRow extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final String value;
-
-  const _DetailRow({
-    required this.icon,
-    required this.label,
-    required this.value,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Icon(icon, size: 20, color: Colors.red),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  label,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  value,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }

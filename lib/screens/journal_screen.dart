@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/donations_provider.dart';
-import '../utils/donation_type.dart';
+import '../utils/donation_labels.dart';
 import '../widgets/common/header.dart';
 import 'add_donation_screen.dart';
 import 'donation_detail_screen.dart';
@@ -100,14 +100,14 @@ class JournalScreen extends ConsumerWidget {
                         ),
                         leading: Icon(typeIcon('donationWholeBlood'), color: Colors.red, size: 36),
                         title: Text(
-                          "${translateType(t, d.type)} — ${formatDate(d.date)} ${formatTime(d.time)}",
+                          "${typeLabel(t, d.type)} — ${formatDate(d.date)} ${formatTime(d.time)}",
                         ),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             if (d.feeling.isNotEmpty)
                               Text(
-                                "${t.feeling}: ${translateFeeling(t, d.feeling)}",
+                                "${t.feeling}: ${feelingLabelWithEmoji(t, d.feeling)}",
                               ),
                             if (d.notes.isNotEmpty)
                               Text("${t.notes}: ${d.notes}"),
