@@ -9,6 +9,7 @@ import '../services/user_service.dart';
 import '../services/database_service.dart';
 import '../l10n/app_localizations.dart';
 import '../services/widget_prompt_service.dart';
+import '../utils/profile_validator.dart';
 import '../widgets/common/button.dart';
 import '../widgets/common/header.dart';
 
@@ -61,7 +62,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     if (_birthday == null) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text(t.enterBirthday)));
+      ).showSnackBar(SnackBar(content: Text(t.birthdayError)));
       return;
     }
 
@@ -155,7 +156,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       controller: _nameController,
                       decoration: InputDecoration(labelText: t.nameLabel),
                       validator: (v) =>
-                          v == null || v.isEmpty ? t.enterName : null,
+                          v == null || v.isEmpty ? t.nameLabel : null,
                     ),
                     const SizedBox(height: 12),
                     GestureDetector(
@@ -164,15 +165,22 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         child: TextFormField(
                           decoration: InputDecoration(
                             labelText: t.birthdayLabel,
-                            hintText: t.enterBirthday,
+                            hintText: t.birthdayError,
                           ),
                           controller: TextEditingController(
                             text: _birthday != null
                                 ? "${_birthday!.day.toString().padLeft(2, '0')}.${_birthday!.month.toString().padLeft(2, '0')}.${_birthday!.year}"
                                 : '',
                           ),
-                          validator: (_) =>
-                              _birthday == null ? t.enterBirthday : null,
+                          validator: (_) {
+                            if (_birthday == null) return t.birthdayError;
+
+                            if (calculateAge(_birthday!) < 18) {
+                              return t.birthdayValidation;
+                            }
+
+                            return null;
+                          },
                         ),
                       ),
                     ),
@@ -189,7 +197,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           )
                           .toList(),
                       onChanged: (val) => setState(() => _genderKey = val),
-                      validator: (v) => v == null ? t.selectGender : null,
+                      validator: (v) => v == null ? t.genderError : null,
                     ),
                     const SizedBox(height: 12),
                     DropdownButtonFormField<String>(
@@ -202,13 +210,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           )
                           .toList(),
                       onChanged: (val) => setState(() => _bloodType = val),
-                      validator: (v) => v == null ? t.selectBloodType : null,
+                      validator: (v) => v == null ? t.bloodTypeError : null,
                     ),
                     const SizedBox(height: 24),
                     SizedBox(
                       width: double.infinity,
                       child: PrimaryButton(
-                        label: t.saveChanges,
+                        label: t.save,
                         onPressed: () => _saveUser(user),
                       ),
                     ),

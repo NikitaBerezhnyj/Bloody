@@ -41,14 +41,14 @@ class DonationPermissionDialog extends StatelessWidget {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () => Navigator.pop(context, false),
-                    child: Text(t.noButton),
+                    child: Text(t.no),
                   ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () => Navigator.pop(context, true),
-                    child: Text(t.yesButton),
+                    child: Text(t.yes),
                   ),
                 ),
               ],

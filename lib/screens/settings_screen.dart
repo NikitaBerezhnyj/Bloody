@@ -105,7 +105,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             ),
             const SizedBox(height: 24),
             Text(
-              t.backupLabel,
+              t.backupTitle,
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),

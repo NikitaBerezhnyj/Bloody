@@ -100,191 +100,29 @@ abstract class AppLocalizations {
     Locale('uk'),
   ];
 
-  /// No description provided for @welcomeSubtitle.
+  /// No description provided for @yes.
   ///
   /// In en, this message translates to:
-  /// **'Track your blood donations'**
-  String get welcomeSubtitle;
+  /// **'Yes'**
+  String get yes;
 
-  /// No description provided for @createProfileTitle.
+  /// No description provided for @no.
   ///
   /// In en, this message translates to:
-  /// **'Create Profile'**
-  String get createProfileTitle;
+  /// **'No'**
+  String get no;
 
-  /// No description provided for @createProfile.
+  /// No description provided for @notNow.
   ///
   /// In en, this message translates to:
-  /// **'Create profile'**
-  String get createProfile;
+  /// **'Not now'**
+  String get notNow;
 
-  /// No description provided for @appTitle.
+  /// No description provided for @done.
   ///
   /// In en, this message translates to:
-  /// **'Bloody'**
-  String get appTitle;
-
-  /// No description provided for @profile.
-  ///
-  /// In en, this message translates to:
-  /// **'Profile'**
-  String get profile;
-
-  /// No description provided for @welcomeUser.
-  ///
-  /// In en, this message translates to:
-  /// **'Hello, {name} 👋'**
-  String welcomeUser(Object name);
-
-  /// No description provided for @journal.
-  ///
-  /// In en, this message translates to:
-  /// **'Donation Journal'**
-  String get journal;
-
-  /// No description provided for @stats.
-  ///
-  /// In en, this message translates to:
-  /// **'Statistics'**
-  String get stats;
-
-  /// No description provided for @tooEarlyToDonate.
-  ///
-  /// In en, this message translates to:
-  /// **'Too early to donate'**
-  String get tooEarlyToDonate;
-
-  /// No description provided for @addDonation.
-  ///
-  /// In en, this message translates to:
-  /// **'Add Donation'**
-  String get addDonation;
-
-  /// No description provided for @canDonate.
-  ///
-  /// In en, this message translates to:
-  /// **'You can donate blood'**
-  String get canDonate;
-
-  /// No description provided for @cannotDonate.
-  ///
-  /// In en, this message translates to:
-  /// **'You can donate blood again in {days} days'**
-  String cannotDonate(Object days);
-
-  /// No description provided for @motivational1.
-  ///
-  /// In en, this message translates to:
-  /// **'You have donated {count} times — this has saved approximately {countTimesThree} lives!'**
-  String motivational1(Object count, Object countTimesThree);
-
-  /// No description provided for @motivational2.
-  ///
-  /// In en, this message translates to:
-  /// **'Your donations ({count}) helped save {countTimesThree} people!'**
-  String motivational2(Object count, Object countTimesThree);
-
-  /// No description provided for @motivational3.
-  ///
-  /// In en, this message translates to:
-  /// **'Well done, {name}! You have made a good deed {count} times!'**
-  String motivational3(Object count, Object name);
-
-  /// No description provided for @motivational4.
-  ///
-  /// In en, this message translates to:
-  /// **'Amazing! {count} donations is really great, {name}!'**
-  String motivational4(Object count, Object name);
-
-  /// No description provided for @motivational5.
-  ///
-  /// In en, this message translates to:
-  /// **'{name}, don\'t forget — every donation counts. It\'s been {daysSince} days!'**
-  String motivational5(Object daysSince, Object name);
-
-  /// No description provided for @motivational6.
-  ///
-  /// In en, this message translates to:
-  /// **'Your strength helps change the world, {name}!'**
-  String motivational6(Object name);
-
-  /// No description provided for @motivational7.
-  ///
-  /// In en, this message translates to:
-  /// **'{name}, you are a true hero for people around you!'**
-  String motivational7(Object name);
-
-  /// No description provided for @motivational8.
-  ///
-  /// In en, this message translates to:
-  /// **'Every drop of blood matters — and you know it!'**
-  String get motivational8;
-
-  /// No description provided for @motivational9.
-  ///
-  /// In en, this message translates to:
-  /// **'Thank you, {name}! The world becomes better thanks to your donations!'**
-  String motivational9(Object name);
-
-  /// No description provided for @fillProfile.
-  ///
-  /// In en, this message translates to:
-  /// **'Fill your profile'**
-  String get fillProfile;
-
-  /// No description provided for @name.
-  ///
-  /// In en, this message translates to:
-  /// **'Name'**
-  String get name;
-
-  /// No description provided for @enterName.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your name'**
-  String get enterName;
-
-  /// No description provided for @birthdayLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Birthday'**
-  String get birthdayLabel;
-
-  /// No description provided for @enterBirthday.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your birthday'**
-  String get enterBirthday;
-
-  /// No description provided for @ageValidation.
-  ///
-  /// In en, this message translates to:
-  /// **'Age must be at least 18'**
-  String get ageValidation;
-
-  /// No description provided for @gender.
-  ///
-  /// In en, this message translates to:
-  /// **'Gender'**
-  String get gender;
-
-  /// No description provided for @selectGender.
-  ///
-  /// In en, this message translates to:
-  /// **'Select gender'**
-  String get selectGender;
-
-  /// No description provided for @bloodType.
-  ///
-  /// In en, this message translates to:
-  /// **'Blood type'**
-  String get bloodType;
-
-  /// No description provided for @selectBloodType.
-  ///
-  /// In en, this message translates to:
-  /// **'Select blood type'**
-  String get selectBloodType;
+  /// **'Done'**
+  String get done;
 
   /// No description provided for @save.
   ///
@@ -292,23 +130,17 @@ abstract class AppLocalizations {
   /// **'Save'**
   String get save;
 
-  /// No description provided for @male.
+  /// No description provided for @delete.
   ///
   /// In en, this message translates to:
-  /// **'Male'**
-  String get male;
+  /// **'Delete'**
+  String get delete;
 
-  /// No description provided for @female.
+  /// No description provided for @cancel.
   ///
   /// In en, this message translates to:
-  /// **'Female'**
-  String get female;
-
-  /// No description provided for @editDonation.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit Donation'**
-  String get editDonation;
+  /// **'Cancel'**
+  String get cancel;
 
   /// No description provided for @date.
   ///
@@ -322,28 +154,304 @@ abstract class AppLocalizations {
   /// **'Time'**
   String get time;
 
-  /// No description provided for @selectDate.
+  /// No description provided for @feeling.
   ///
   /// In en, this message translates to:
-  /// **'Select a date'**
-  String get selectDate;
+  /// **'Feeling'**
+  String get feeling;
+
+  /// No description provided for @notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get notes;
+
+  /// No description provided for @days.
+  ///
+  /// In en, this message translates to:
+  /// **'days'**
+  String get days;
+
+  /// No description provided for @today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get today;
+
+  /// No description provided for @yesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get yesterday;
+
+  /// No description provided for @daysAgo1.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} day ago'**
+  String daysAgo1(int count);
+
+  /// No description provided for @daysAgo2.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} days ago'**
+  String daysAgo2(int count);
+
+  /// No description provided for @daysAgoMany.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} days ago'**
+  String daysAgoMany(int count);
+
+  /// No description provided for @welcomeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Track your blood donations'**
+  String get welcomeSubtitle;
+
+  /// No description provided for @createProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Create profile'**
+  String get createProfile;
+
+  /// No description provided for @restoreFromBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore from file'**
+  String get restoreFromBackup;
+
+  /// No description provided for @createProfileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile creation'**
+  String get createProfileTitle;
+
+  /// No description provided for @nameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get nameLabel;
+
+  /// No description provided for @nameError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a name'**
+  String get nameError;
+
+  /// No description provided for @birthdayLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of birth'**
+  String get birthdayLabel;
+
+  /// No description provided for @birthdayError.
+  ///
+  /// In en, this message translates to:
+  /// **'Select your date of birth'**
+  String get birthdayError;
+
+  /// No description provided for @birthdayValidation.
+  ///
+  /// In en, this message translates to:
+  /// **'Age must be 18 or older'**
+  String get birthdayValidation;
+
+  /// No description provided for @genderLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get genderLabel;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// No description provided for @genderError.
+  ///
+  /// In en, this message translates to:
+  /// **'Select gender'**
+  String get genderError;
+
+  /// No description provided for @bloodTypeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood type'**
+  String get bloodTypeLabel;
+
+  /// No description provided for @bloodTypeError.
+  ///
+  /// In en, this message translates to:
+  /// **'Select blood type'**
+  String get bloodTypeError;
+
+  /// No description provided for @profileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileTitle;
+
+  /// No description provided for @profileUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated!'**
+  String get profileUpdated;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get logout;
+
+  /// No description provided for @logoutConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out?'**
+  String get logoutConfirmTitle;
+
+  /// No description provided for @logoutConfirmContent.
+  ///
+  /// In en, this message translates to:
+  /// **'All data will be removed from the device. Are you sure?'**
+  String get logoutConfirmContent;
+
+  /// No description provided for @welcomeUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello, {name} 👋'**
+  String welcomeUser(Object name);
+
+  /// No description provided for @journalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Donation journal'**
+  String get journalTitle;
+
+  /// No description provided for @statsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics'**
+  String get statsTitle;
+
+  /// No description provided for @achievementsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievements'**
+  String get achievementsTitle;
+
+  /// No description provided for @canDonate.
+  ///
+  /// In en, this message translates to:
+  /// **'You can donate blood'**
+  String get canDonate;
+
+  /// No description provided for @cannotDonate.
+  ///
+  /// In en, this message translates to:
+  /// **'You can donate blood again in {days} days'**
+  String cannotDonate(Object days);
+
+  /// No description provided for @tooEarlyToDonate.
+  ///
+  /// In en, this message translates to:
+  /// **'Too early to donate blood'**
+  String get tooEarlyToDonate;
+
+  /// No description provided for @ageLimitBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'After 65, blood donation is allowed only with a doctor\'s permission.'**
+  String get ageLimitBanner;
+
+  /// No description provided for @motivational1.
+  ///
+  /// In en, this message translates to:
+  /// **'You have donated {count} times — this has saved approximately {countTimesThree} lives!'**
+  String motivational1(int count, int countTimesThree);
+
+  /// No description provided for @motivational2.
+  ///
+  /// In en, this message translates to:
+  /// **'Your donations ({count}) have helped save {countTimesThree} people!'**
+  String motivational2(int count, int countTimesThree);
+
+  /// No description provided for @motivational3.
+  ///
+  /// In en, this message translates to:
+  /// **'Well done, {name}! You have already done a good deed {count} times'**
+  String motivational3(String name, int count);
+
+  /// No description provided for @motivational4.
+  ///
+  /// In en, this message translates to:
+  /// **'Amazing! {count} donations — that’s really cool, {name}!'**
+  String motivational4(int count, String name);
+
+  /// No description provided for @motivational5.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}, remember — every donation matters. It’s been {daysSince} days since your last one!'**
+  String motivational5(String name, int daysSince);
+
+  /// No description provided for @motivational6.
+  ///
+  /// In en, this message translates to:
+  /// **'Your strength helps change the world, {name}!'**
+  String motivational6(String name);
+
+  /// No description provided for @motivational7.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}, you are a true hero for the people around you!'**
+  String motivational7(String name);
+
+  /// No description provided for @motivational8.
+  ///
+  /// In en, this message translates to:
+  /// **'Every drop of blood counts — and you know it!'**
+  String get motivational8;
+
+  /// No description provided for @motivational9.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you, {name}! The world is better thanks to your donations'**
+  String motivational9(String name);
+
+  /// No description provided for @addDonation.
+  ///
+  /// In en, this message translates to:
+  /// **'Add donation'**
+  String get addDonation;
+
+  /// No description provided for @editDonation.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit donation'**
+  String get editDonation;
 
   /// No description provided for @donationType.
   ///
   /// In en, this message translates to:
-  /// **'Donation Type'**
+  /// **'Donation type'**
   String get donationType;
 
-  /// No description provided for @selectDonationType.
+  /// No description provided for @donationTypeError.
   ///
   /// In en, this message translates to:
   /// **'Select donation type'**
-  String get selectDonationType;
+  String get donationTypeError;
 
   /// No description provided for @donationWholeBlood.
   ///
   /// In en, this message translates to:
-  /// **'Whole Blood'**
+  /// **'Whole blood'**
   String get donationWholeBlood;
 
   /// No description provided for @donationPlasma.
@@ -358,23 +466,23 @@ abstract class AppLocalizations {
   /// **'Platelets'**
   String get donationPlatelets;
 
-  /// No description provided for @feeling.
+  /// No description provided for @dateError.
   ///
   /// In en, this message translates to:
-  /// **'Feeling'**
-  String get feeling;
+  /// **'Select a date'**
+  String get dateError;
 
-  /// No description provided for @selectFeeling.
+  /// No description provided for @timeError.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a time'**
+  String get timeError;
+
+  /// No description provided for @feelingError.
   ///
   /// In en, this message translates to:
   /// **'Select your feeling'**
-  String get selectFeeling;
-
-  /// No description provided for @notes.
-  ///
-  /// In en, this message translates to:
-  /// **'Notes'**
-  String get notes;
+  String get feelingError;
 
   /// No description provided for @notesHint.
   ///
@@ -382,16 +490,10 @@ abstract class AppLocalizations {
   /// **'Additional comments'**
   String get notesHint;
 
-  /// No description provided for @saveDonation.
-  ///
-  /// In en, this message translates to:
-  /// **'Save Donation'**
-  String get saveDonation;
-
   /// No description provided for @fillAllFields.
   ///
   /// In en, this message translates to:
-  /// **'Please fill all required fields'**
+  /// **'Please fill in all required fields'**
   String get fillAllFields;
 
   /// No description provided for @feelingGood.
@@ -436,28 +538,16 @@ abstract class AppLocalizations {
   /// **'Confirmation'**
   String get confirmation;
 
-  /// No description provided for @donationTime.
-  ///
-  /// In en, this message translates to:
-  /// **'Donation time'**
-  String get donationTime;
-
-  /// No description provided for @selectTime.
-  ///
-  /// In en, this message translates to:
-  /// **'Select time'**
-  String get selectTime;
-
   /// No description provided for @thankYouTitle.
   ///
   /// In en, this message translates to:
-  /// **'Thank you for your donation!'**
+  /// **'Thank you for donating!'**
   String get thankYouTitle;
 
   /// No description provided for @thankYouBody.
   ///
   /// In en, this message translates to:
-  /// **'Your donation can save up to three lives. You are making the world a better place.'**
+  /// **'Your donation can save up to three lives. You are making the world better.'**
   String get thankYouBody;
 
   /// No description provided for @goToJournal.
@@ -472,29 +562,11 @@ abstract class AppLocalizations {
   /// **'View details'**
   String get detailsView;
 
-  /// No description provided for @journalTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Donation Journal'**
-  String get journalTitle;
-
   /// No description provided for @noDonations.
   ///
   /// In en, this message translates to:
   /// **'No donations yet'**
   String get noDonations;
-
-  /// No description provided for @feelingLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Feeling: {feeling}'**
-  String feelingLabel(Object feeling);
-
-  /// No description provided for @notesLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Notes: {notes}'**
-  String notesLabel(Object notes);
 
   /// No description provided for @deleteDonation.
   ///
@@ -505,98 +577,14 @@ abstract class AppLocalizations {
   /// No description provided for @deleteDonationTitle.
   ///
   /// In en, this message translates to:
-  /// **'Delete record?'**
+  /// **'Delete entry?'**
   String get deleteDonationTitle;
 
   /// No description provided for @deleteDonationContent.
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to delete this donation record? This action cannot be undone.'**
+  /// **'Are you sure you want to delete this donation entry? This action cannot be undone.'**
   String get deleteDonationContent;
-
-  /// No description provided for @delete.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get delete;
-
-  /// No description provided for @widgetPromptTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Stay on top of it'**
-  String get widgetPromptTitle;
-
-  /// No description provided for @widgetPromptBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Add the widget to your home screen — and always know how many days are left until your next donation, without even opening the app.'**
-  String get widgetPromptBody;
-
-  /// No description provided for @widgetPromptAdd.
-  ///
-  /// In en, this message translates to:
-  /// **'How to add the widget'**
-  String get widgetPromptAdd;
-
-  /// No description provided for @widgetStep1.
-  ///
-  /// In en, this message translates to:
-  /// **'Press and hold on an empty area of your home screen'**
-  String get widgetStep1;
-
-  /// No description provided for @widgetStep2.
-  ///
-  /// In en, this message translates to:
-  /// **'Select \'Widgets\' from the menu that appears'**
-  String get widgetStep2;
-
-  /// No description provided for @widgetStep3.
-  ///
-  /// In en, this message translates to:
-  /// **'Find \'Bloody\' in the widget list'**
-  String get widgetStep3;
-
-  /// No description provided for @widgetStep4.
-  ///
-  /// In en, this message translates to:
-  /// **'Drag the widget to a convenient spot on your screen'**
-  String get widgetStep4;
-
-  /// No description provided for @widgetInstructionsTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Adding the widget'**
-  String get widgetInstructionsTitle;
-
-  /// No description provided for @notNow.
-  ///
-  /// In en, this message translates to:
-  /// **'Not now'**
-  String get notNow;
-
-  /// No description provided for @done.
-  ///
-  /// In en, this message translates to:
-  /// **'Done'**
-  String get done;
-
-  /// No description provided for @daysUntilNextDonation.
-  ///
-  /// In en, this message translates to:
-  /// **'days until next donation'**
-  String get daysUntilNextDonation;
-
-  /// No description provided for @statsTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Statistics'**
-  String get statsTitle;
-
-  /// No description provided for @noDonationsStats.
-  ///
-  /// In en, this message translates to:
-  /// **'No donations yet'**
-  String get noDonationsStats;
 
   /// No description provided for @statsTotalDonations.
   ///
@@ -607,7 +595,7 @@ abstract class AppLocalizations {
   /// No description provided for @statsLivesLabel.
   ///
   /// In en, this message translates to:
-  /// **'lives saved'**
+  /// **'people saved'**
   String get statsLivesLabel;
 
   /// No description provided for @statsPerYear.
@@ -621,24 +609,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'donations per year'**
   String get statsDonationsYear;
-
-  /// No description provided for @statsTypeWhole.
-  ///
-  /// In en, this message translates to:
-  /// **'Whole'**
-  String get statsTypeWhole;
-
-  /// No description provided for @statsTypePlasma.
-  ///
-  /// In en, this message translates to:
-  /// **'Plasma'**
-  String get statsTypePlasma;
-
-  /// No description provided for @statsTypePlatelets.
-  ///
-  /// In en, this message translates to:
-  /// **'Platelets'**
-  String get statsTypePlatelets;
 
   /// No description provided for @statsDetails.
   ///
@@ -658,95 +628,143 @@ abstract class AppLocalizations {
   /// **'Average interval'**
   String get statsAvgInterval;
 
-  /// No description provided for @statsDays.
+  /// No description provided for @daysUntilNextDonation.
   ///
   /// In en, this message translates to:
-  /// **'days'**
-  String get statsDays;
+  /// **'days until next donation'**
+  String get daysUntilNextDonation;
 
-  /// No description provided for @statsToday.
+  /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:
-  /// **'today'**
-  String get statsToday;
+  /// **'Settings'**
+  String get settingsTitle;
 
-  /// No description provided for @statsYesterday.
+  /// No description provided for @languageLabel.
   ///
   /// In en, this message translates to:
-  /// **'yesterday'**
-  String get statsYesterday;
+  /// **'Language'**
+  String get languageLabel;
 
-  /// No description provided for @statsDaysAgo1.
+  /// No description provided for @themeLabel.
   ///
   /// In en, this message translates to:
-  /// **'{count} day ago'**
-  String statsDaysAgo1(int count);
+  /// **'Theme'**
+  String get themeLabel;
 
-  /// No description provided for @statsDaysAgo2.
+  /// No description provided for @lightThemeLabel.
   ///
   /// In en, this message translates to:
-  /// **'{count} days ago'**
-  String statsDaysAgo2(int count);
+  /// **'Light'**
+  String get lightThemeLabel;
 
-  /// No description provided for @statsDaysAgoMany.
+  /// No description provided for @darkThemeLabel.
   ///
   /// In en, this message translates to:
-  /// **'{count} days ago'**
-  String statsDaysAgoMany(int count);
+  /// **'Dark'**
+  String get darkThemeLabel;
 
-  /// No description provided for @ageLimitBanner.
+  /// No description provided for @systemThemeLabel.
   ///
   /// In en, this message translates to:
-  /// **'After 65, blood donation is only allowed with a doctor’s permission.'**
-  String get ageLimitBanner;
+  /// **'System'**
+  String get systemThemeLabel;
+
+  /// No description provided for @backupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup'**
+  String get backupTitle;
+
+  /// No description provided for @exportBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Export'**
+  String get exportBackup;
+
+  /// No description provided for @importBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Import'**
+  String get importBackup;
+
+  /// No description provided for @importSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Data restored successfully'**
+  String get importSuccess;
+
+  /// No description provided for @importError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: invalid file format'**
+  String get importError;
+
+  /// No description provided for @widgetSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Widget'**
+  String get widgetSectionTitle;
+
+  /// No description provided for @widgetPromptTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep your finger on the pulse'**
+  String get widgetPromptTitle;
+
+  /// No description provided for @widgetPromptBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a widget to your home screen — and always know how many days are left until your next donation without opening the app.'**
+  String get widgetPromptBody;
+
+  /// No description provided for @widgetPromptAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'How to add a widget'**
+  String get widgetPromptAdd;
+
+  /// No description provided for @widgetInstructionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adding a widget'**
+  String get widgetInstructionsTitle;
+
+  /// No description provided for @widgetStep1.
+  ///
+  /// In en, this message translates to:
+  /// **'Long-press on an empty spot on your home screen'**
+  String get widgetStep1;
+
+  /// No description provided for @widgetStep2.
+  ///
+  /// In en, this message translates to:
+  /// **'Select \'Widgets\' from the menu'**
+  String get widgetStep2;
+
+  /// No description provided for @widgetStep3.
+  ///
+  /// In en, this message translates to:
+  /// **'Find \'Bloody\' in the widget list'**
+  String get widgetStep3;
+
+  /// No description provided for @widgetStep4.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag the widget to a convenient spot'**
+  String get widgetStep4;
 
   /// No description provided for @permissionDialogTitle.
   ///
   /// In en, this message translates to:
-  /// **'Blood Donation Permission'**
+  /// **'Blood donation permission'**
   String get permissionDialogTitle;
 
   /// No description provided for @permissionDialogDescription.
   ///
   /// In en, this message translates to:
-  /// **'You are over 65 years old. Do you have a medical authorization to donate blood?'**
+  /// **'You are over 65. Do you have medical permission to donate blood?'**
   String get permissionDialogDescription;
-
-  /// No description provided for @yesButton.
-  ///
-  /// In en, this message translates to:
-  /// **'Yes'**
-  String get yesButton;
-
-  /// No description provided for @noButton.
-  ///
-  /// In en, this message translates to:
-  /// **'No'**
-  String get noButton;
-
-  /// No description provided for @totalDonations.
-  ///
-  /// In en, this message translates to:
-  /// **'Total donations: {count}'**
-  String totalDonations(Object count);
-
-  /// No description provided for @donationsByType.
-  ///
-  /// In en, this message translates to:
-  /// **'Whole Blood: {wb}, Plasma: {plasma}, Platelets: {platelets}'**
-  String donationsByType(Object plasma, Object platelets, Object wb);
-
-  /// No description provided for @averageInterval.
-  ///
-  /// In en, this message translates to:
-  /// **'Average interval between donations: {days} days'**
-  String averageInterval(Object days);
-
-  /// No description provided for @donationsPerMonth.
-  ///
-  /// In en, this message translates to:
-  /// **'Donations per month'**
-  String get donationsPerMonth;
 
   /// No description provided for @month1.
   ///
@@ -820,414 +838,6 @@ abstract class AppLocalizations {
   /// **'Dec'**
   String get month12;
 
-  /// No description provided for @profileTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Profile'**
-  String get profileTitle;
-
-  /// No description provided for @nameLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Name'**
-  String get nameLabel;
-
-  /// No description provided for @ageLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Age'**
-  String get ageLabel;
-
-  /// No description provided for @enterAge.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter your age'**
-  String get enterAge;
-
-  /// No description provided for @ageMin18.
-  ///
-  /// In en, this message translates to:
-  /// **'Age must be at least 18'**
-  String get ageMin18;
-
-  /// No description provided for @genderLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Gender'**
-  String get genderLabel;
-
-  /// No description provided for @bloodTypeLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Blood Type'**
-  String get bloodTypeLabel;
-
-  /// No description provided for @saveChanges.
-  ///
-  /// In en, this message translates to:
-  /// **'Save changes'**
-  String get saveChanges;
-
-  /// No description provided for @profileUpdated.
-  ///
-  /// In en, this message translates to:
-  /// **'Profile updated!'**
-  String get profileUpdated;
-
-  /// No description provided for @logout.
-  ///
-  /// In en, this message translates to:
-  /// **'Logout'**
-  String get logout;
-
-  /// No description provided for @logoutConfirmTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Logout?'**
-  String get logoutConfirmTitle;
-
-  /// No description provided for @logoutConfirmContent.
-  ///
-  /// In en, this message translates to:
-  /// **'If you logout, all data will be deleted. Are you sure?'**
-  String get logoutConfirmContent;
-
-  /// No description provided for @cancel.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get cancel;
-
-  /// No description provided for @settingsTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Settings'**
-  String get settingsTitle;
-
-  /// No description provided for @languageLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Language:'**
-  String get languageLabel;
-
-  /// No description provided for @themeLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Theme:'**
-  String get themeLabel;
-
-  /// No description provided for @lightThemeLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Light'**
-  String get lightThemeLabel;
-
-  /// No description provided for @darkThemeLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Dark'**
-  String get darkThemeLabel;
-
-  /// No description provided for @systemThemeLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'System'**
-  String get systemThemeLabel;
-
-  /// No description provided for @backupLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Backup'**
-  String get backupLabel;
-
-  /// No description provided for @exportBackup.
-  ///
-  /// In en, this message translates to:
-  /// **'Export'**
-  String get exportBackup;
-
-  /// No description provided for @importBackup.
-  ///
-  /// In en, this message translates to:
-  /// **'Import'**
-  String get importBackup;
-
-  /// No description provided for @restoreFromBackup.
-  ///
-  /// In en, this message translates to:
-  /// **'Restore from file'**
-  String get restoreFromBackup;
-
-  /// No description provided for @importSuccess.
-  ///
-  /// In en, this message translates to:
-  /// **'Data restored successfully'**
-  String get importSuccess;
-
-  /// No description provided for @importError.
-  ///
-  /// In en, this message translates to:
-  /// **'Error: invalid file format'**
-  String get importError;
-
-  /// No description provided for @achievementsTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Achievements'**
-  String get achievementsTitle;
-
-  /// No description provided for @achievementWholeBlood1.
-  ///
-  /// In en, this message translates to:
-  /// **'First Step'**
-  String get achievementWholeBlood1;
-
-  /// No description provided for @achievementWholeBlood3.
-  ///
-  /// In en, this message translates to:
-  /// **'Braveheart'**
-  String get achievementWholeBlood3;
-
-  /// No description provided for @achievementWholeBlood5.
-  ///
-  /// In en, this message translates to:
-  /// **'Red Guardian'**
-  String get achievementWholeBlood5;
-
-  /// No description provided for @achievementWholeBlood10.
-  ///
-  /// In en, this message translates to:
-  /// **'Steel Heart'**
-  String get achievementWholeBlood10;
-
-  /// No description provided for @achievementWholeBlood25.
-  ///
-  /// In en, this message translates to:
-  /// **'Blood Hero'**
-  String get achievementWholeBlood25;
-
-  /// No description provided for @achievementWholeBlood50.
-  ///
-  /// In en, this message translates to:
-  /// **'Tireless Donor'**
-  String get achievementWholeBlood50;
-
-  /// No description provided for @achievementWholeBlood100.
-  ///
-  /// In en, this message translates to:
-  /// **'Legend of Life'**
-  String get achievementWholeBlood100;
-
-  /// No description provided for @achievementPlasma1.
-  ///
-  /// In en, this message translates to:
-  /// **'Drop of Kindness'**
-  String get achievementPlasma1;
-
-  /// No description provided for @achievementPlasma3.
-  ///
-  /// In en, this message translates to:
-  /// **'Silver Wave'**
-  String get achievementPlasma3;
-
-  /// No description provided for @achievementPlasma5.
-  ///
-  /// In en, this message translates to:
-  /// **'Ray of Hope'**
-  String get achievementPlasma5;
-
-  /// No description provided for @achievementPlasma10.
-  ///
-  /// In en, this message translates to:
-  /// **'Life Protector'**
-  String get achievementPlasma10;
-
-  /// No description provided for @achievementPlasma25.
-  ///
-  /// In en, this message translates to:
-  /// **'Golden Stream'**
-  String get achievementPlasma25;
-
-  /// No description provided for @achievementPlasma50.
-  ///
-  /// In en, this message translates to:
-  /// **'Plasma Keeper'**
-  String get achievementPlasma50;
-
-  /// No description provided for @achievementPlasma100.
-  ///
-  /// In en, this message translates to:
-  /// **'Immortal Donor'**
-  String get achievementPlasma100;
-
-  /// No description provided for @achievementPlatelets1.
-  ///
-  /// In en, this message translates to:
-  /// **'Tiny Hero'**
-  String get achievementPlatelets1;
-
-  /// No description provided for @achievementPlatelets3.
-  ///
-  /// In en, this message translates to:
-  /// **'Little Rescuer'**
-  String get achievementPlatelets3;
-
-  /// No description provided for @achievementPlatelets5.
-  ///
-  /// In en, this message translates to:
-  /// **'White Knight'**
-  String get achievementPlatelets5;
-
-  /// No description provided for @achievementPlatelets10.
-  ///
-  /// In en, this message translates to:
-  /// **'Blood Defender'**
-  String get achievementPlatelets10;
-
-  /// No description provided for @achievementPlatelets25.
-  ///
-  /// In en, this message translates to:
-  /// **'Thrombo-Master'**
-  String get achievementPlatelets25;
-
-  /// No description provided for @achievementPlatelets50.
-  ///
-  /// In en, this message translates to:
-  /// **'Guardian of Life'**
-  String get achievementPlatelets50;
-
-  /// No description provided for @achievementPlatelets100.
-  ///
-  /// In en, this message translates to:
-  /// **'Rescue Legend'**
-  String get achievementPlatelets100;
-
-  /// No description provided for @achievementWholeBlood1Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Brave beginner – your first drop of whole blood has saved a life.'**
-  String get achievementWholeBlood1Description;
-
-  /// No description provided for @achievementWholeBlood3Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Three steps of courage: you are already on the path of a true donor.'**
-  String get achievementWholeBlood3Description;
-
-  /// No description provided for @achievementWholeBlood5Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Red protector: five donations – five lives saved.'**
-  String get achievementWholeBlood5Description;
-
-  /// No description provided for @achievementWholeBlood10Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Steel heart: ten times you’ve given hope to those in need.'**
-  String get achievementWholeBlood10Description;
-
-  /// No description provided for @achievementWholeBlood25Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Blood hero: twenty-five donations – your contribution saves hundreds.'**
-  String get achievementWholeBlood25Description;
-
-  /// No description provided for @achievementWholeBlood50Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Tireless donor: fifty times you showed true dedication.'**
-  String get achievementWholeBlood50Description;
-
-  /// No description provided for @achievementWholeBlood100Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Legend of life: a hundred donations – a legendary feat for humanity.'**
-  String get achievementWholeBlood100Description;
-
-  /// No description provided for @achievementPlasma1Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Drop of kindness: your first plasma donation – small but meaningful.'**
-  String get achievementPlasma1Description;
-
-  /// No description provided for @achievementPlasma3Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Silver wave: three plasma donations – you already feel the power of helping.'**
-  String get achievementPlasma3Description;
-
-  /// No description provided for @achievementPlasma5Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Ray of hope: five times your plasma became a ray of life.'**
-  String get achievementPlasma5Description;
-
-  /// No description provided for @achievementPlasma10Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Life defender: ten donations – a reliable shield for those in need.'**
-  String get achievementPlasma10Description;
-
-  /// No description provided for @achievementPlasma25Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Golden stream: twenty-five times your plasma gave hope.'**
-  String get achievementPlasma25Description;
-
-  /// No description provided for @achievementPlasma50Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Plasma guardian: fifty donations – your help is invaluable.'**
-  String get achievementPlasma50Description;
-
-  /// No description provided for @achievementPlasma100Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Immortal donor: a hundred donations – your kindness leaves a mark in time.'**
-  String get achievementPlasma100Description;
-
-  /// No description provided for @achievementPlatelets1Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Tiny hero: first platelets – the first step to a great deed.'**
-  String get achievementPlatelets1Description;
-
-  /// No description provided for @achievementPlatelets3Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Little rescuer: three platelet donations – you are already changing the world.'**
-  String get achievementPlatelets3Description;
-
-  /// No description provided for @achievementPlatelets5Description.
-  ///
-  /// In en, this message translates to:
-  /// **'White knight: five times your platelets became a shield for life.'**
-  String get achievementPlatelets5Description;
-
-  /// No description provided for @achievementPlatelets10Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Blood defender: ten donations – you are a reliable protector of humanity.'**
-  String get achievementPlatelets10Description;
-
-  /// No description provided for @achievementPlatelets25Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Thrombo-master: twenty-five donations – mastery in every drop.'**
-  String get achievementPlatelets25Description;
-
-  /// No description provided for @achievementPlatelets50Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Life sentinel: fifty platelet donations – your dedication is impressive.'**
-  String get achievementPlatelets50Description;
-
-  /// No description provided for @achievementPlatelets100Description.
-  ///
-  /// In en, this message translates to:
-  /// **'Legend of rescue: a hundred donations – you are a true hero of humanity.'**
-  String get achievementPlatelets100Description;
-
   /// No description provided for @achievementOtherTitle.
   ///
   /// In en, this message translates to:
@@ -1237,7 +847,7 @@ abstract class AppLocalizations {
   /// No description provided for @achievementFirstStep.
   ///
   /// In en, this message translates to:
-  /// **'First Step'**
+  /// **'First step'**
   String get achievementFirstStep;
 
   /// No description provided for @achievementFirstStepDescription.
@@ -1249,38 +859,290 @@ abstract class AppLocalizations {
   /// No description provided for @achievementUniversal.
   ///
   /// In en, this message translates to:
-  /// **'Universal Donor'**
+  /// **'Universal'**
   String get achievementUniversal;
 
   /// No description provided for @achievementUniversalDescription.
   ///
   /// In en, this message translates to:
-  /// **'Donated all types of donations'**
+  /// **'Donated all types'**
   String get achievementUniversalDescription;
 
   /// No description provided for @achievementHolidayDonor.
   ///
   /// In en, this message translates to:
-  /// **'Holiday Donor'**
+  /// **'Holiday donor'**
   String get achievementHolidayDonor;
 
   /// No description provided for @achievementHolidayDonorDescription.
   ///
   /// In en, this message translates to:
-  /// **'Made a donation on a holiday'**
+  /// **'Donated on a holiday'**
   String get achievementHolidayDonorDescription;
 
   /// No description provided for @achievementEarlyBird.
   ///
   /// In en, this message translates to:
-  /// **'Early Bird'**
+  /// **'Early bird'**
   String get achievementEarlyBird;
 
   /// No description provided for @achievementEarlyBirdDescription.
   ///
   /// In en, this message translates to:
-  /// **'Make a donation before 10:00 AM'**
+  /// **'Donate before 10:00 AM'**
   String get achievementEarlyBirdDescription;
+
+  /// No description provided for @achievementWholeBlood1.
+  ///
+  /// In en, this message translates to:
+  /// **'First blood'**
+  String get achievementWholeBlood1;
+
+  /// No description provided for @achievementWholeBlood3.
+  ///
+  /// In en, this message translates to:
+  /// **'Brave one'**
+  String get achievementWholeBlood3;
+
+  /// No description provided for @achievementWholeBlood5.
+  ///
+  /// In en, this message translates to:
+  /// **'Red protector'**
+  String get achievementWholeBlood5;
+
+  /// No description provided for @achievementWholeBlood10.
+  ///
+  /// In en, this message translates to:
+  /// **'Steel heart'**
+  String get achievementWholeBlood10;
+
+  /// No description provided for @achievementWholeBlood25.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood hero'**
+  String get achievementWholeBlood25;
+
+  /// No description provided for @achievementWholeBlood50.
+  ///
+  /// In en, this message translates to:
+  /// **'Tireless donor'**
+  String get achievementWholeBlood50;
+
+  /// No description provided for @achievementWholeBlood100.
+  ///
+  /// In en, this message translates to:
+  /// **'Legend of life'**
+  String get achievementWholeBlood100;
+
+  /// No description provided for @achievementWholeBlood1Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Brave beginner – your first drop of whole blood saved a life.'**
+  String get achievementWholeBlood1Description;
+
+  /// No description provided for @achievementWholeBlood3Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Three steps of courage: you are on the path of a true donor.'**
+  String get achievementWholeBlood3Description;
+
+  /// No description provided for @achievementWholeBlood5Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Red protector: five donations — five lives saved.'**
+  String get achievementWholeBlood5Description;
+
+  /// No description provided for @achievementWholeBlood10Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Steel heart: ten times you gave hope to those in need.'**
+  String get achievementWholeBlood10Description;
+
+  /// No description provided for @achievementWholeBlood25Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood hero: twenty-five donations — your contribution saved hundreds.'**
+  String get achievementWholeBlood25Description;
+
+  /// No description provided for @achievementWholeBlood50Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Tireless donor: fifty times you showed true dedication.'**
+  String get achievementWholeBlood50Description;
+
+  /// No description provided for @achievementWholeBlood100Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Legend of life: one hundred donations — a legendary deed for humanity.'**
+  String get achievementWholeBlood100Description;
+
+  /// No description provided for @achievementPlasma1.
+  ///
+  /// In en, this message translates to:
+  /// **'Drop of kindness'**
+  String get achievementPlasma1;
+
+  /// No description provided for @achievementPlasma3.
+  ///
+  /// In en, this message translates to:
+  /// **'Silver wave'**
+  String get achievementPlasma3;
+
+  /// No description provided for @achievementPlasma5.
+  ///
+  /// In en, this message translates to:
+  /// **'Ray of hope'**
+  String get achievementPlasma5;
+
+  /// No description provided for @achievementPlasma10.
+  ///
+  /// In en, this message translates to:
+  /// **'Life defender'**
+  String get achievementPlasma10;
+
+  /// No description provided for @achievementPlasma25.
+  ///
+  /// In en, this message translates to:
+  /// **'Golden stream'**
+  String get achievementPlasma25;
+
+  /// No description provided for @achievementPlasma50.
+  ///
+  /// In en, this message translates to:
+  /// **'Plasma guardian'**
+  String get achievementPlasma50;
+
+  /// No description provided for @achievementPlasma100.
+  ///
+  /// In en, this message translates to:
+  /// **'Immortal donor'**
+  String get achievementPlasma100;
+
+  /// No description provided for @achievementPlasma1Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Drop of kindness: first plasma donation — small but important.'**
+  String get achievementPlasma1Description;
+
+  /// No description provided for @achievementPlasma3Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Silver wave: three plasma donations — feel the power of help.'**
+  String get achievementPlasma3Description;
+
+  /// No description provided for @achievementPlasma5Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Ray of hope: five times your plasma became a ray of life.'**
+  String get achievementPlasma5Description;
+
+  /// No description provided for @achievementPlasma10Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Life defender: ten donations — a reliable shield for those in need.'**
+  String get achievementPlasma10Description;
+
+  /// No description provided for @achievementPlasma25Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Golden stream: twenty-five times your plasma gave hope.'**
+  String get achievementPlasma25Description;
+
+  /// No description provided for @achievementPlasma50Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Plasma guardian: fifty donations — your help is invaluable.'**
+  String get achievementPlasma50Description;
+
+  /// No description provided for @achievementPlasma100Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Immortal donor: one hundred donations — your kindness leaves a mark over time.'**
+  String get achievementPlasma100Description;
+
+  /// No description provided for @achievementPlatelets1.
+  ///
+  /// In en, this message translates to:
+  /// **'Tiny hero'**
+  String get achievementPlatelets1;
+
+  /// No description provided for @achievementPlatelets3.
+  ///
+  /// In en, this message translates to:
+  /// **'Little savior'**
+  String get achievementPlatelets3;
+
+  /// No description provided for @achievementPlatelets5.
+  ///
+  /// In en, this message translates to:
+  /// **'White knight'**
+  String get achievementPlatelets5;
+
+  /// No description provided for @achievementPlatelets10.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood defender'**
+  String get achievementPlatelets10;
+
+  /// No description provided for @achievementPlatelets25.
+  ///
+  /// In en, this message translates to:
+  /// **'Thrombo-master'**
+  String get achievementPlatelets25;
+
+  /// No description provided for @achievementPlatelets50.
+  ///
+  /// In en, this message translates to:
+  /// **'Life guard'**
+  String get achievementPlatelets50;
+
+  /// No description provided for @achievementPlatelets100.
+  ///
+  /// In en, this message translates to:
+  /// **'Legend of rescue'**
+  String get achievementPlatelets100;
+
+  /// No description provided for @achievementPlatelets1Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Tiny hero: first platelets — the first step to a great deed.'**
+  String get achievementPlatelets1Description;
+
+  /// No description provided for @achievementPlatelets3Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Little savior: three platelet donations — you are already changing the world.'**
+  String get achievementPlatelets3Description;
+
+  /// No description provided for @achievementPlatelets5Description.
+  ///
+  /// In en, this message translates to:
+  /// **'White knight: five times your platelets became a shield for life.'**
+  String get achievementPlatelets5Description;
+
+  /// No description provided for @achievementPlatelets10Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood defender: ten donations — a reliable protector of humanity.'**
+  String get achievementPlatelets10Description;
+
+  /// No description provided for @achievementPlatelets25Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Thrombo-master: twenty-five donations — mastery in every drop.'**
+  String get achievementPlatelets25Description;
+
+  /// No description provided for @achievementPlatelets50Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Life guard: fifty platelet donations — your dedication impresses.'**
+  String get achievementPlatelets50Description;
+
+  /// No description provided for @achievementPlatelets100Description.
+  ///
+  /// In en, this message translates to:
+  /// **'Legend of rescue: one hundred donations — you are a true hero of humanity.'**
+  String get achievementPlatelets100Description;
 
   /// No description provided for @shareTitle.
   ///
@@ -1297,8 +1159,8 @@ abstract class AppLocalizations {
   /// No description provided for @shareAchievementText.
   ///
   /// In en, this message translates to:
-  /// **'I’ve unlocked the “{title}” achievement in Bloody!'**
-  String shareAchievementText(Object title);
+  /// **'I earned the achievement “{title}” in Bloody!'**
+  String shareAchievementText(String title);
 }
 
 class _AppLocalizationsDelegate

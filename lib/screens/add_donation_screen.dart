@@ -12,7 +12,6 @@ import '../widgets/donation/navigation_buttons.dart';
 import '../widgets/donation/picker_tile.dart';
 import '../widgets/donation/selection_card.dart';
 import '../widgets/donation/step_wrapper.dart';
-import 'journal_screen.dart';
 import 'thank_you_screen.dart';
 import '../utils/donation_labels.dart';
 
@@ -67,17 +66,17 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
     switch (_currentStep) {
       case 0:
         if (_selectedDate == null || _selectedTime == null) {
-          _showError(t.fillAllFields);
+          _showError(t.dateError);
           return false;
         }
       case 1:
         if (_selectedTypeKey == null) {
-          _showError(t.selectDonationType);
+          _showError(t.donationTypeError);
           return false;
         }
       case 2:
         if (_selectedFeelingKey == null) {
-          _showError(t.selectFeeling);
+          _showError(t.feelingError);
           return false;
         }
     }
@@ -102,10 +101,7 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
     if (isEditing) {
       await ref.read(donationsProvider.notifier).edit(donation);
       if (!mounted) return;
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const JournalScreen()),
-      );
+      Navigator.pop(context);
     } else {
       await ref.read(donationsProvider.notifier).add(donation);
       if (!mounted) return;
@@ -208,7 +204,7 @@ class _StepDateTime extends StatelessWidget {
           PickerTile(
             icon: Icons.calendar_today,
             label: t.date,
-            value: selectedDate != null ? formatDate(selectedDate!) : t.selectDate,
+            value: selectedDate != null ? formatDate(selectedDate!) : t.dateError,
             onTap: () async {
               final now = DateTime.now();
               final picked = await showDatePicker(
@@ -223,8 +219,8 @@ class _StepDateTime extends StatelessWidget {
           const SizedBox(height: 12),
           PickerTile(
             icon: Icons.access_time,
-            label: t.donationTime,
-            value: selectedTime != null ? formatTime(selectedTime!) : t.selectTime,
+            label: t.time,
+            value: selectedTime != null ? formatTime(selectedTime!) : t.timeError,
             onTap: () async {
               final picked = await showTimePicker(
                 context: context,

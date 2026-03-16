@@ -91,14 +91,14 @@ class JournalScreen extends ConsumerWidget {
                         onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => DonationDetailScreen(donation: d),
+                            builder: (_) => DonationDetailScreen(donationId: d.id!),
                           ),
                         ),
                         contentPadding: const EdgeInsets.symmetric(
                           horizontal: 16,
                           vertical: 12,
                         ),
-                        leading: Icon(typeIcon('donationWholeBlood'), color: Colors.red, size: 36),
+                        leading: Icon(typeIcon((d.type)), color: Colors.red, size: 36),
                         title: Text(
                           "${typeLabel(t, d.type)} — ${formatDate(d.date)} ${formatTime(d.time)}",
                         ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/donation.dart';
 import '../providers/donations_provider.dart';
 import '../l10n/app_localizations.dart';
 import '../utils/donation_formatters.dart';
@@ -12,16 +11,19 @@ import '../widgets/common/detail_row.dart';
 import 'add_donation_screen.dart';
 
 class DonationDetailScreen extends ConsumerWidget {
-  final Donation donation;
+  final int donationId;
 
   const DonationDetailScreen({
     super.key,
-    required this.donation,
+    required this.donationId,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = AppLocalizations.of(context)!;
+
+    final donations = ref.watch(donationsProvider).value ?? [];
+    final donation = donations.firstWhere((d) => d.id == donationId);
     final d = donation;
 
     final dateStr = formatDate(d.date);
@@ -33,7 +35,7 @@ class DonationDetailScreen extends ConsumerWidget {
         showBackButton: true,
         action: IconButton(
           icon: const Icon(Icons.edit_outlined),
-          onPressed: () => Navigator.pushReplacement(
+          onPressed: () => Navigator.push(
             context,
             MaterialPageRoute(
               builder: (_) => AddDonationScreen(existing: donation),
@@ -91,7 +93,7 @@ class DonationDetailScreen extends ConsumerWidget {
                 ),
                 DetailRow(
                   icon: Icons.access_time,
-                  label: t.donationTime,
+                  label: t.time,
                   value: timeStr,
                 ),
                 DetailRow(
@@ -153,7 +155,7 @@ class DonationDetailScreen extends ConsumerWidget {
 
     if (confirm != true || !context.mounted) return;
 
-    await ref.read(donationsProvider.notifier).delete(donation.id!);
+    await ref.read(donationsProvider.notifier).delete(donationId);
 
     if (!context.mounted) return;
 

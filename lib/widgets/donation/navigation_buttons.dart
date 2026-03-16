@@ -37,7 +37,7 @@ class NavigationButtons extends StatelessWidget {
           Expanded(
             flex: 2,
             child: PrimaryButton(
-              label: isLast ? t.saveDonation : t.next,
+              label: isLast ? t.save : t.next,
               onPressed: isLast ? onSave : onNext,
             ),
           ),

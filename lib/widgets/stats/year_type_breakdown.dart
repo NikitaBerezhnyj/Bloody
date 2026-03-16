@@ -18,21 +18,21 @@ class YearTypeBreakdown extends StatelessWidget {
           TypeRow(
             icon: Icons.bloodtype,
             color: Colors.red,
-            label: t.statsTypeWhole,
+            label: t.donationWholeBlood,
             count: stats.wholeBlood,
           ),
         if (stats.plasma > 0)
           TypeRow(
             icon: Icons.opacity,
             color: Colors.red.shade300,
-            label: t.statsTypePlasma,
+            label: t.donationPlasma,
             count: stats.plasma,
           ),
         if (stats.platelets > 0)
           TypeRow(
             icon: Icons.healing,
             color: Colors.red.shade200,
-            label: t.statsTypePlatelets,
+            label: t.donationPlatelets,
             count: stats.platelets,
           ),
       ],

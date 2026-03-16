@@ -2,6 +2,7 @@ import 'package:bloody/screens/widget_prompt_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../constants/app_constants.dart';
+import '../utils/profile_validator.dart';
 import '../models/user.dart';
 import '../providers/user_provider.dart';
 import '../services/user_service.dart';
@@ -117,16 +118,11 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    t.fillProfile,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  const SizedBox(height: 24),
                   TextFormField(
                     controller: _nameController,
-                    decoration: InputDecoration(labelText: t.name),
+                    decoration: InputDecoration(labelText: t.nameLabel),
                     validator: (v) =>
-                        v == null || v.isEmpty ? t.enterName : null,
+                        v == null || v.isEmpty ? t.nameError : null,
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
@@ -135,22 +131,18 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                     decoration: InputDecoration(labelText: t.birthdayLabel),
                     onTap: _pickBirthday,
                     validator: (_) {
-                      if (_birthday == null) return t.enterBirthday;
-                      final now = DateTime.now();
-                      final age =
-                          now.year -
-                          _birthday!.year -
-                          ((now.month < _birthday!.month ||
-                                  (now.month == _birthday!.month &&
-                                      now.day < _birthday!.day))
-                              ? 1
-                              : 0);
-                      return age < 18 ? t.ageValidation : null;
+                      if (_birthday == null) return t.birthdayError;
+
+                      if (calculateAge(_birthday!) < 18) {
+                        return t.birthdayValidation;
+                      }
+
+                      return null;
                     },
                   ),
                   const SizedBox(height: 16),
                   DropdownButtonFormField<String>(
-                    decoration: InputDecoration(labelText: t.gender),
+                    decoration: InputDecoration(labelText: t.genderLabel),
                     items: genderMap.entries
                         .map(
                           (e) => DropdownMenuItem(
@@ -160,18 +152,18 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                         )
                         .toList(),
                     onChanged: (val) => setState(() => _genderKey = val),
-                    validator: (v) => v == null ? t.selectGender : null,
+                    validator: (v) => v == null ? t.genderError : null,
                   ),
                   const SizedBox(height: 16),
                   DropdownButtonFormField<String>(
-                    decoration: InputDecoration(labelText: t.bloodType),
+                    decoration: InputDecoration(labelText: t.bloodTypeLabel),
                     items: bloodTypes
                         .map(
                           (bt) => DropdownMenuItem(value: bt, child: Text(bt)),
                         )
                         .toList(),
                     onChanged: (val) => setState(() => _bloodType = val),
-                    validator: (v) => v == null ? t.selectBloodType : null,
+                    validator: (v) => v == null ? t.bloodTypeError : null,
                   ),
                   const SizedBox(height: 24),
                   Padding(

@@ -13,21 +13,21 @@ class TypePills extends StatelessWidget {
     if (stats.wholeBlood > 0) {
       items.add((
       icon: Icons.bloodtype,
-      label: t.statsTypeWhole,
+      label: t.donationWholeBlood,
       count: stats.wholeBlood,
       ));
     }
     if (stats.plasma > 0) {
       items.add((
       icon: Icons.opacity,
-      label: t.statsTypePlasma,
+      label: t.donationPlasma,
       count: stats.plasma,
       ));
     }
     if (stats.platelets > 0) {
       items.add((
       icon: Icons.healing,
-      label: t.statsTypePlatelets,
+      label: t.donationPlatelets,
       count: stats.platelets,
       ));
     }

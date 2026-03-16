@@ -43,7 +43,7 @@ class DetailsSection extends StatelessWidget {
                 DetailRow(
                   icon: Icons.timer_outlined,
                   label: t.statsAvgInterval,
-                  value: '${stats.avgIntervalDays} ${t.statsDays}',
+                  value: '${stats.avgIntervalDays} ${t.days}',
                 ),
               ],
             ],
@@ -54,13 +54,13 @@ class DetailsSection extends StatelessWidget {
   }
 
   String _daysAgoText(int days, AppLocalizations t) {
-    if (days == 0) return t.statsToday;
-    if (days == 1) return t.statsYesterday;
+    if (days == 0) return t.today;
+    if (days == 1) return t.yesterday;
     final n  = days % 100;
     final n1 = days % 10;
-    if (n >= 11 && n <= 19) return t.statsDaysAgoMany(days);
-    if (n1 == 1)            return t.statsDaysAgo1(days);
-    if (n1 >= 2 && n1 <= 4) return t.statsDaysAgo2(days);
-    return t.statsDaysAgoMany(days);
+    if (n >= 11 && n <= 19) return t.daysAgoMany(days);
+    if (n1 == 1)            return t.daysAgo1(days);
+    if (n1 >= 2 && n1 <= 4) return t.daysAgo2(days);
+    return t.daysAgoMany(days);
   }
 }

@@ -40,7 +40,7 @@ class _StatsScreenState extends ConsumerState<StatsScreen> {
                   Icon(Icons.favorite_border,
                       color: Colors.red.shade200, size: 64),
                   const SizedBox(height: 16),
-                  Text(t.noDonationsStats,
+                  Text(t.noDonations,
                       style: const TextStyle(color: Colors.grey)),
                 ],
               ),
