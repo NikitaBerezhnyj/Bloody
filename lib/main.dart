@@ -81,7 +81,7 @@ class _InitialScreenState extends ConsumerState<InitialScreen> {
         body: Center(child: CircularProgressIndicator()),
       ),
       error: (e, _) => Scaffold(
-        body: Center(child: Text('Помилка: $e')),
+        body: Center(child: Text('${AppLocalizations.of(context)!.error}: $e'),),
       ),
       data: (user) => user == null ? const WelcomeScreen() : const HomeScreen(),
     );

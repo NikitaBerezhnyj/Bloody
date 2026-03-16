@@ -202,6 +202,12 @@ abstract class AppLocalizations {
   /// **'{count} days ago'**
   String daysAgoMany(int count);
 
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
   /// No description provided for @welcomeSubtitle.
   ///
   /// In en, this message translates to:

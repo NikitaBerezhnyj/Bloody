@@ -21,6 +21,7 @@
     "@daysAgo2": { "placeholders": { "count": { "type": "int" } } },
     "daysAgoMany": "Hace {count} días",
     "@daysAgoMany": { "placeholders": { "count": { "type": "int" } } },
+    "error": "Error",
 
     "welcomeSubtitle": "Sigue tus donaciones de sangre",
     "createProfile": "Crear perfil",

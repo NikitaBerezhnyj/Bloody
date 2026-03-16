@@ -21,7 +21,7 @@ class AchievementsScreen extends ConsumerWidget {
       ),
       body: achievementsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, _) => Center(child: Text('Помилка: $e')),
+        error: (e, _) => Center(child: Text('${t.error}: $e')),
         data: (achievements) => ListView(
           padding: const EdgeInsets.all(16),
           children: achievements.entries.map((entry) {

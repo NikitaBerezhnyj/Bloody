@@ -30,7 +30,7 @@ class _StatsScreenState extends ConsumerState<StatsScreen> {
       ),
       body: donationsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, _) => Center(child: Text('Помилка: $e')),
+        error: (e, _) => Center(child: Text('${t.error}: $e')),
         data: (donations) {
           if (donations.isEmpty) {
             return Center(

@@ -21,6 +21,7 @@
     "@daysAgo2": { "placeholders": { "count": { "type": "int" } } },
     "daysAgoMany": "{count} днів тому",
     "@daysAgoMany": { "placeholders": { "count": { "type": "int" } } },
+    "error": "Помилка",
 
     "welcomeSubtitle": "Відстежуй свої донації крові",
     "createProfile": "Створити профіль",
@@ -121,7 +122,7 @@
     "exportBackup": "Експорт",
     "importBackup": "Імпорт",
     "importSuccess": "Дані успішно відновлено",
-    "importError": "Помилка: невірний формат файлу",
+    "importError": "Помилка: не правильний формат файлу",
 
     "widgetSectionTitle": "Віджет",
     "widgetPromptTitle": "Тримай руку на пульсі",

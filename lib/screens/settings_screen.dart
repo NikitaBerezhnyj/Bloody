@@ -122,7 +122,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                       } catch (e) {
                         if (!context.mounted) return;
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Помилка: $e')),
+                          SnackBar(content: Text('${t.error}: $e')),
                         );
                       }
                     },
@@ -151,37 +151,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                   ),
                 ),
               ],
-            ),
-
-            const SizedBox(height: 24),
-
-            Text(
-              'Віджет',
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-
-            const SizedBox(height: 8),
-
-            OutlinedButton.icon(
-              icon: const Icon(Icons.widgets_outlined),
-              label: const Text('Як додати віджет на екран'),
-              onPressed: () => showDialog(
-                context: context,
-                builder: (_) => AlertDialog(
-                  title: const Text('Додати віджет'),
-                  content: const Text(
-                    '1. Затримайте палець на порожньому місці головного екрану\n'
-                        '2. Оберіть "Віджети"\n'
-                        '3. Знайдіть "Bloody" і перетягніть на екран',
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: const Text('Зрозуміло'),
-                    ),
-                  ],
-                ),
-              ),
             ),
           ],
         ),

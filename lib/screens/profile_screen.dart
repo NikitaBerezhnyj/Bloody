@@ -135,7 +135,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     return userAsync.when(
       loading: () =>
           const Scaffold(body: Center(child: CircularProgressIndicator())),
-      error: (e, _) => Scaffold(body: Center(child: Text('Помилка: $e'))),
+      error: (e, _) => Scaffold(body: Center(child: Text('${t.error}: $e'))),
       data: (user) {
         if (user != null) _initFromUser(user);
 

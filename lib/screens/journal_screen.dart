@@ -44,7 +44,7 @@ class JournalScreen extends ConsumerWidget {
       ),
       body: donationsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, _) => Center(child: Text('Помилка: $e')),
+        error: (e, _) => Center(child: Text('${t.error}: $e')),
         data: (donations) => donations.isEmpty
             ? Center(child: Text(t.noDonations))
             : ListView.builder(
