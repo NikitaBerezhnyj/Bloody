@@ -106,7 +106,6 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
       Navigator.pop(context);
     } else {
       await ref.read(donationsProvider.notifier).add(donation);
-      ref.invalidate(achievementsProvider(Localizations.localeOf(context).languageCode,));
       final donations = await DonationService.getDonations();
       final newId = donations.isNotEmpty ? donations.first.id : null;
       if (!mounted) return;
