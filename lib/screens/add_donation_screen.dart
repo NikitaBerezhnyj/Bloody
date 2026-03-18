@@ -6,7 +6,7 @@ import '../providers/achievements_provider.dart';
 import '../providers/donations_provider.dart';
 import '../l10n/app_localizations.dart';
 import '../services/donation_service.dart';
-import '../utils/donation_formatters.dart';
+import '../utils/date_formatters.dart';
 import '../widgets/common/header.dart';
 import '../widgets/common/progress_bar.dart';
 import '../widgets/donation/confirm_row.dart';

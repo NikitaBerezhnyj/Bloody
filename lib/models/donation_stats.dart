@@ -1,4 +1,4 @@
-import '../utils/donation_formatters.dart';
+import '../utils/date_formatters.dart';
 import 'donation.dart';
 
 class DonationStats {

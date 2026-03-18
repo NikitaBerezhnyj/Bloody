@@ -1,4 +1,4 @@
-import 'package:bloody/utils/donation_formatters.dart';
+import 'package:bloody/utils/date_formatters.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../l10n/app_localizations.dart';

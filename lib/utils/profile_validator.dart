@@ -10,3 +10,25 @@ int calculateAge(DateTime birthday) {
 
   return age;
 }
+
+String? validateName(String? value, String errorText) {
+  if (value == null || value.trim().isEmpty) {
+    return errorText;
+  }
+  return null;
+}
+
+String? validateBirthday(DateTime? birthday, String emptyError, String ageError) {
+  if (birthday == null) return emptyError;
+
+  if (calculateAge(birthday) < 18) {
+    return ageError;
+  }
+
+  return null;
+}
+
+String? validateRequired(String? value, String errorText) {
+  if (value == null) return errorText;
+  return null;
+}

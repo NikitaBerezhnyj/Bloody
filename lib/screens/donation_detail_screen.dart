@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/donations_provider.dart';
 import '../l10n/app_localizations.dart';
-import '../utils/donation_formatters.dart';
+import '../utils/date_formatters.dart';
 import '../utils/donation_labels.dart';
 import '../widgets/common/button.dart';
 import '../widgets/common/header.dart';

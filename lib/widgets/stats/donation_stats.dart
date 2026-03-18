@@ -1,5 +1,5 @@
 import '../../models/donation.dart';
-import '../../utils/donation_formatters.dart';
+import '../../utils/date_formatters.dart';
 
 class DonationStats {
   final int total;
