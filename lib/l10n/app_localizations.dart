@@ -142,6 +142,12 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get cancel;
 
+  /// No description provided for @share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get share;
+
   /// No description provided for @date.
   ///
   /// In en, this message translates to:
@@ -760,6 +766,18 @@ abstract class AppLocalizations {
   /// **'Drag the widget to a convenient spot'**
   String get widgetStep4;
 
+  /// No description provided for @achievementUnlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievement unlocked!'**
+  String get achievementUnlocked;
+
+  /// No description provided for @viewAllAchievements.
+  ///
+  /// In en, this message translates to:
+  /// **'View all achievements'**
+  String get viewAllAchievements;
+
   /// No description provided for @permissionDialogTitle.
   ///
   /// In en, this message translates to:
@@ -849,18 +867,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Other'**
   String get achievementOtherTitle;
-
-  /// No description provided for @achievementFirstStep.
-  ///
-  /// In en, this message translates to:
-  /// **'First step'**
-  String get achievementFirstStep;
-
-  /// No description provided for @achievementFirstStepDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Creating a profile in the app'**
-  String get achievementFirstStepDescription;
 
   /// No description provided for @achievementUniversal.
   ///
@@ -1149,12 +1155,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Legend of rescue: one hundred donations — you are a true hero of humanity.'**
   String get achievementPlatelets100Description;
-
-  /// No description provided for @shareTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Share'**
-  String get shareTitle;
 
   /// No description provided for @emptyDescription.
   ///

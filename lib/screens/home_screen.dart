@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/days_left_provider.dart';
 import '../providers/donations_provider.dart';
 import '../providers/user_provider.dart';
+import '../services/widget_prompt_service.dart';
 import '../widgets/common/header.dart';
 import '../widgets/donation/donation_permission_dialog.dart';
 import '../widgets/home/nav_card.dart';
@@ -14,12 +15,33 @@ import '../widgets/home/home_banner.dart';
 import '../l10n/app_localizations.dart';
 import '../screens/settings_screen.dart';
 import 'achievements_screen.dart';
+import 'widget_prompt_screen.dart';
 
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted) return;
+      final shouldShow = await WidgetPromptService.shouldShow();
+      if (!shouldShow || !mounted) return;
+      await WidgetPromptService.markShown();
+      await Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const WidgetPromptScreen()),
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
 
     final userAsync = ref.watch(userProvider);
@@ -55,11 +77,11 @@ class HomeScreen extends ConsumerWidget {
         );
         if (hasPermission != true) return;
       }
+
       await Navigator.push(
         context,
         MaterialPageRoute(builder: (_) => const AddDonationScreen()),
       );
-
       ref.invalidate(donationsProvider);
     }
 

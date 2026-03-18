@@ -8,6 +8,7 @@
     "save": "Save",
     "delete": "Delete",
     "cancel": "Cancel",
+    "share": "Share",
     "date": "Date",
     "time": "Time",
     "feeling": "Feeling",
@@ -134,6 +135,9 @@
     "widgetStep3": "Find 'Bloody' in the widget list",
     "widgetStep4": "Drag the widget to a convenient spot",
 
+    "achievementUnlocked": "Achievement unlocked!",
+    "viewAllAchievements": "View all achievements",
+
     "permissionDialogTitle": "Blood donation permission",
     "permissionDialogDescription": "You are over 65. Do you have medical permission to donate blood?",
 
@@ -151,8 +155,6 @@
     "month12": "Dec",
 
     "achievementOtherTitle": "Other",
-    "achievementFirstStep": "First step",
-    "achievementFirstStepDescription": "Creating a profile in the app",
     "achievementUniversal": "Universal",
     "achievementUniversalDescription": "Donated all types",
     "achievementHolidayDonor": "Holiday donor",
@@ -205,7 +207,6 @@
     "achievementPlatelets50Description": "Life guard: fifty platelet donations — your dedication impresses.",
     "achievementPlatelets100Description": "Legend of rescue: one hundred donations — you are a true hero of humanity.",
 
-    "shareTitle": "Share",
     "emptyDescription": "No description",
     "shareAchievementText": "I earned the achievement “{title}” in Bloody!",
     "@shareAchievementText": { "placeholders": { "title": { "type": "String" } } }

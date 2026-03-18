@@ -73,7 +73,7 @@ class AchievementDialog extends StatelessWidget {
                     );
                   },
                   icon: const Icon(Icons.share),
-                  label: Text(AppLocalizations.of(context)!.shareTitle),
+                  label: Text(AppLocalizations.of(context)!.share),
                 ),
               ),
             ],

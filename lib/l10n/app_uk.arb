@@ -8,6 +8,7 @@
     "save": "Зберегти",
     "delete": "Видалити",
     "cancel": "Скасувати",
+    "share": "Поділитись",
     "date": "Дата",
     "time": "Час",
     "feeling": "Самопочуття",
@@ -134,6 +135,9 @@
     "widgetStep3": "Знайдіть «Bloody» у списку віджетів",
     "widgetStep4": "Перетягніть віджет на зручне місце екрану",
 
+    "achievementUnlocked": "Досягнення розблоковано!",
+    "viewAllAchievements": "Переглянути всі досягнення",
+
     "permissionDialogTitle": "Дозвіл на здачу крові",
     "permissionDialogDescription": "Вам понад 65 років. Чи маєте ви медичний дозвіл на здачу крові?",
 
@@ -151,8 +155,6 @@
     "month12": "Гру",
 
     "achievementOtherTitle": "Інше",
-    "achievementFirstStep": "Перший крок",
-    "achievementFirstStepDescription": "Створення профілю в додатку",
     "achievementUniversal": "Універсал",
     "achievementUniversalDescription": "Здав усі типи донацій",
     "achievementHolidayDonor": "Святковий донор",
@@ -205,7 +207,6 @@
     "achievementPlatelets50Description": "Вартовий життя: півсотні донацій тромбоцитів – твоя відданість вражає.",
     "achievementPlatelets100Description": "Легенда порятунку: сто донацій – ти справжній герой людства.",
 
-    "shareTitle": "Поділитись",
     "emptyDescription": "Без опису",
     "shareAchievementText": "Я здобув досягнення «{title}» у Bloody!",
     "@shareAchievementText": { "placeholders": { "title": { "type": "String" } } }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../models/achievement.dart';
+import '../models/achievement_category.dart';
 import '../models/donation.dart';
 import '../models/user.dart';
 import 'donation_service.dart';
@@ -157,6 +159,7 @@ class AchievementService {
   ) {
     return levels.map((level) {
       return Achievement(
+        id: '${type}_$level',
         title: _getAchievementTitle(t, type, level),
         level: level,
         achieved: count >= level,
@@ -173,16 +176,6 @@ class AchievementService {
   ) {
     final achievements = <Achievement>[];
 
-    final hasProfile = user != null;
-    achievements.add(
-      Achievement(
-        title: t.achievementFirstStep,
-        achieved: hasProfile,
-        description: t.achievementFirstStepDescription,
-        icon: Icons.person_add,
-      ),
-    );
-
     final hasWholeBlood = donationsByType['wholeBlood']!.isNotEmpty;
     final hasPlasma = donationsByType['plasma']!.isNotEmpty;
     final hasPlatelets = donationsByType['platelets']!.isNotEmpty;
@@ -190,6 +183,7 @@ class AchievementService {
 
     achievements.add(
       Achievement(
+        id: 'universal',
         title: t.achievementUniversal,
         achieved: isUniversal,
         description: t.achievementUniversalDescription,
@@ -211,6 +205,7 @@ class AchievementService {
 
     achievements.add(
       Achievement(
+        id: 'holiday_donor',
         title: t.achievementHolidayDonor,
         achieved: hasHolidayDonation,
         description: t.achievementHolidayDonorDescription,
@@ -224,6 +219,7 @@ class AchievementService {
 
     achievements.add(
       Achievement(
+        id: 'early_bird',
         title: t.achievementEarlyBird,
         achieved: hasEarlyBirdDonation,
         description: t.achievementEarlyBirdDescription,
@@ -297,32 +293,57 @@ class AchievementService {
     }
     return '';
   }
-}
 
-class AchievementCategory {
-  final String name;
-  final IconData icon;
-  final List<Achievement> achievements;
+  static Future<List<Achievement>> getNewlyUnlocked(
+      AppLocalizations t,
+      int? excludeId,
+      ) async {
+    final allDonations = await DonationService.getDonations();
+    final user = await UserService.getUser();
 
-  AchievementCategory({
-    required this.name,
-    required this.icon,
-    required this.achievements,
-  });
-}
+    final previousDonations =
+    allDonations.where((d) => d.id != excludeId).toList();
 
-class Achievement {
-  final String title;
-  final int? level;
-  final bool achieved;
-  final String? description;
-  final IconData? icon;
+    final before = _getAllAchievements(previousDonations, user, t);
+    final after = _getAllAchievements(allDonations, user, t);
 
-  Achievement({
-    required this.title,
-    this.level,
-    required this.achieved,
-    this.description,
-    this.icon,
-  });
+    final newlyUnlocked = <Achievement>[];
+
+    for (final afterAch in after) {
+      final beforeAch = before.firstWhere(
+            (b) => b.id == afterAch.id,
+        orElse: () => Achievement(
+          id: '',
+          title: '',
+          achieved: false,
+          description: '',
+        ),
+      );
+
+      if (!beforeAch.achieved && afterAch.achieved) {
+        newlyUnlocked.add(afterAch);
+      }
+    }
+
+    return newlyUnlocked;
+  }
+
+  static List<Achievement> _getAllAchievements(
+      List<Donation> donations,
+      User? user,
+      AppLocalizations t,
+      ) {
+    final byType = {
+      'wholeBlood': donations.where((d) => d.type == 'donationWholeBlood').toList(),
+      'plasma': donations.where((d) => d.type == 'donationPlasma').toList(),
+      'platelets': donations.where((d) => d.type == 'donationPlatelets').toList(),
+    };
+
+    return [
+      ..._buildAchievementsForType(byType['wholeBlood']!.length, 'wholeBlood', t),
+      ..._buildAchievementsForType(byType['plasma']!.length, 'plasma', t),
+      ..._buildAchievementsForType(byType['platelets']!.length, 'platelets', t),
+      ..._buildSpecialAchievements(donations, byType, user, t),
+    ];
+  }
 }

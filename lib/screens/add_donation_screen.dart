@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../constants/app_constants.dart';
 import '../models/donation.dart';
+import '../providers/achievements_provider.dart';
 import '../providers/donations_provider.dart';
 import '../l10n/app_localizations.dart';
+import '../services/donation_service.dart';
 import '../utils/donation_formatters.dart';
 import '../widgets/common/header.dart';
 import '../widgets/common/progress_bar.dart';
@@ -104,10 +106,13 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
       Navigator.pop(context);
     } else {
       await ref.read(donationsProvider.notifier).add(donation);
+      ref.invalidate(achievementsProvider(Localizations.localeOf(context).languageCode,));
+      final donations = await DonationService.getDonations();
+      final newId = donations.isNotEmpty ? donations.first.id : null;
       if (!mounted) return;
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const ThankYouScreen()),
+        MaterialPageRoute(builder: (_) => ThankYouScreen(newDonationId: newId)),
       );
     }
   }

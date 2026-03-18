@@ -8,6 +8,7 @@
     "save": "Guardar",
     "delete": "Eliminar",
     "cancel": "Cancelar",
+    "share": "Compartir",
     "date": "Fecha",
     "time": "Hora",
     "feeling": "Estado",
@@ -134,6 +135,9 @@
     "widgetStep3": "Encuentra 'Bloody' en la lista de widgets",
     "widgetStep4": "Arrastra el widget a la ubicación deseada",
 
+    "achievementUnlocked": "¡Logro desbloqueado!",
+    "viewAllAchievements": "Ver todos los logros",
+
     "permissionDialogTitle": "Permiso para donar sangre",
     "permissionDialogDescription": "Tienes más de 65 años. ¿Tienes permiso médico para donar sangre?",
 
@@ -151,8 +155,6 @@
     "month12": "Dic",
 
     "achievementOtherTitle": "Otro",
-    "achievementFirstStep": "Primer paso",
-    "achievementFirstStepDescription": "Creación de un perfil en la aplicación",
     "achievementUniversal": "Universal",
     "achievementUniversalDescription": "Donó todos los tipos",
     "achievementHolidayDonor": "Donante en festivo",
@@ -205,7 +207,6 @@
     "achievementPlatelets50Description": "Guardia de la vida: cincuenta donaciones de plaquetas — tu dedicación impresiona.",
     "achievementPlatelets100Description": "Leyenda del rescate: cien donaciones — eres un verdadero héroe de la humanidad.",
 
-    "shareTitle": "Compartir",
     "emptyDescription": "Sin descripción",
     "shareAchievementText": "¡He conseguido el logro «{title}» en Bloody!",
     "@shareAchievementText": { "placeholders": { "title": { "type": "String" } } }

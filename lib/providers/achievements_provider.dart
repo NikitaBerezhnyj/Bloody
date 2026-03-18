@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import '../models/achievement_category.dart';
 import '../services/achievement_service.dart';
 import '../l10n/app_localizations.dart';
 
