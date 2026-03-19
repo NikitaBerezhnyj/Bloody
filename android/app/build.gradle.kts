@@ -16,12 +16,17 @@ android {
         isCoreLibraryDesugaringEnabled = true
     }
 
+    tasks.withType<JavaCompile> {
+        options.compilerArgs.add("-Xlint:-options")
+    }
+
     dependencies {
         coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = "11"
+        freeCompilerArgs += listOf("-Xlint:-options")
     }
 
     defaultConfig {
@@ -41,6 +46,10 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
         }
+    }
+
+    tasks.withType<JavaCompile> {
+        options.compilerArgs.add("-Xlint:-options")
     }
 }
 
