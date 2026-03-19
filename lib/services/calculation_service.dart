@@ -1,13 +1,9 @@
+import '../constants/app_constants.dart';
 import '../models/donation.dart';
 import '../services/user_service.dart';
+import '../utils/date_formatters.dart';
 
 class CalculationService {
-  static const Map<String, int> donationCooldownDays = {
-    "donationWholeBlood": 60,
-    "donationPlasma": 30,
-    "donationPlatelets": 14,
-  };
-
   static const int maxWholeBloodMale = 5;
   static const int maxWholeBloodFemale = 4;
   static const int maxAgeForDonation = 65;
@@ -21,22 +17,22 @@ class CalculationService {
     if (user == null) return 0;
 
     final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
 
     donations.sort((a, b) => b.date.compareTo(a.date));
     final lastDonation = donations.first;
+    final lastDate = normalizeDate(lastDonation.date);
 
-    final cooldownDays =
-        donationCooldownDays[lastDonation.type] ?? 60;
+    final cooldownDays = donationCooldownDays[lastDonation.type] ?? 60;
 
-    final nextByType =
-    lastDonation.date.add(Duration(days: cooldownDays));
+    final nextByType = lastDate.add(Duration(days: cooldownDays));
 
-    final oneYearAgo = now.subtract(const Duration(days: 365));
+    final oneYearAgo = today.subtract(const Duration(days: 365));
 
     final wholeBloodDonations = donations
         .where((d) =>
-    d.type == wholeBloodType &&
-        d.date.isAfter(oneYearAgo))
+          d.type == wholeBloodType &&
+          normalizeDate(d.date).isAfter(oneYearAgo))
         .toList();
 
     final maxWholeBlood = user.gender == 'female'
@@ -47,11 +43,11 @@ class CalculationService {
 
     if (wholeBloodDonations.length >= maxWholeBlood) {
       final oldest = wholeBloodDonations.reduce(
-            (a, b) => a.date.isBefore(b.date) ? a : b,
+            (a, b) => normalizeDate(a.date).isBefore(b.date) ? a : b,
       );
 
       nextByYearLimit =
-          oldest.date.add(const Duration(days: 365));
+          normalizeDate(oldest.date).add(const Duration(days: 365));
     }
 
     final candidateDates = [nextByType];
@@ -63,7 +59,7 @@ class CalculationService {
     final nextPossibleDate =
     candidateDates.reduce((a, b) => a.isAfter(b) ? a : b);
 
-    final daysLeft = nextPossibleDate.difference(now).inDays;
+    final daysLeft = nextPossibleDate.difference(today).inDays;
 
     return daysLeft > 0 ? daysLeft : 0;
   }
