@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../constants/app_constants.dart';
 import '../models/donation.dart';
-import '../providers/achievements_provider.dart';
 import '../providers/donations_provider.dart';
 import '../l10n/app_localizations.dart';
 import '../services/donation_service.dart';

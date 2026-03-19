@@ -2,6 +2,7 @@ import 'package:bloody/providers/locale_provider.dart';
 import 'package:bloody/providers/theme_provider.dart';
 import 'package:bloody/screens/splash_screen.dart';
 import 'package:bloody/screens/welcome_screen.dart';
+import 'package:bloody/services/background_tasks_service.dart';
 import 'package:bloody/services/donation_service.dart';
 import 'package:bloody/services/notification_service.dart';
 import 'package:bloody/services/widget_service.dart';
@@ -10,12 +11,31 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bloody/l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workmanager/workmanager.dart';
 import 'providers/user_provider.dart';
 import 'screens/home_screen.dart';
 
 void main() async {
-    WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await NotificationService.init();
+
+  await Workmanager().initialize(
+    callbackDispatcher,
+    isInDebugMode: false,
+  );
+
+  await Workmanager().registerPeriodicTask(
+    'widget-update-daily',
+    widgetUpdateTask,
+    frequency: const Duration(hours: 24),
+    initialDelay: const Duration(minutes: 1),
+    existingWorkPolicy: ExistingPeriodicWorkPolicy.keep,
+    constraints: Constraints(
+      networkType: NetworkType.notRequired,
+      requiresBatteryNotLow: false,
+    ),
+  );
+
   runApp(const ProviderScope(child: BloodyApp()));
 }
 
