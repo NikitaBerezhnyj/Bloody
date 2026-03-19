@@ -1,12 +1,14 @@
 import 'package:bloody/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/donations_provider.dart';
 import '../providers/user_provider.dart';
 import '../services/database_service.dart';
 import '../services/user_service.dart';
 import '../services/widget_prompt_service.dart';
+import '../services/widget_service.dart';
 import '../widgets/common/header.dart';
 import '../widgets/profile/profile_form.dart';
 
@@ -54,10 +56,20 @@ class ProfileScreen extends ConsumerWidget {
                 ),
               );
               if (confirm != true) return;
+
               final db = await DatabaseService.getDatabase();
               await db.delete('users');
               await db.delete('donations');
               await WidgetPromptService.cleanShown();
+
+              final prefs = await SharedPreferences.getInstance();
+              final locale = prefs.getString('locale') ?? 'uk';
+
+              await WidgetService.updateWidget(
+                donations: [],
+                locale: locale,
+              );
+
               ref.invalidate(userProvider);
               ref.invalidate(donationsProvider);
             },

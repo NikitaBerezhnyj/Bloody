@@ -2,11 +2,14 @@ import 'package:bloody/providers/locale_provider.dart';
 import 'package:bloody/providers/theme_provider.dart';
 import 'package:bloody/screens/splash_screen.dart';
 import 'package:bloody/screens/welcome_screen.dart';
+import 'package:bloody/services/donation_service.dart';
 import 'package:bloody/services/notification_service.dart';
+import 'package:bloody/services/widget_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bloody/l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'providers/user_provider.dart';
 import 'screens/home_screen.dart';
 
@@ -67,6 +70,24 @@ class InitialScreen extends ConsumerStatefulWidget {
 
 class _InitialScreenState extends ConsumerState<InitialScreen> {
   bool _showSplash = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _updateWidgetOnStart();
+  }
+
+  Future<void> _updateWidgetOnStart() async {
+    final donations = await DonationService.getDonations();
+
+    final prefs = await SharedPreferences.getInstance();
+    final locale = prefs.getString('locale') ?? 'uk';
+
+    await WidgetService.updateWidget(
+      donations: donations,
+      locale: locale,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
