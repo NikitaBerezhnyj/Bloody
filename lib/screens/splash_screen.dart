@@ -51,8 +51,10 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -68,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen>
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(24),
                 child: Container(
-                  color: Colors.white,
+                  color: theme.cardColor,
                   padding: const EdgeInsets.all(8),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
@@ -88,12 +90,12 @@ class _SplashScreenState extends State<SplashScreen>
               builder: (context, child) {
                 return Opacity(opacity: _alphaAnimation.value, child: child);
               },
-              child: const Text(
+              child: Text(
                 'Bloody',
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: theme.textTheme.headlineMedium?.color,
                 ),
               ),
             ),
