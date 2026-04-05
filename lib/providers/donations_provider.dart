@@ -40,7 +40,7 @@ class DonationsNotifier extends AsyncNotifier<List<Donation>> {
 
   Future<String> _getLocale() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('locale') ?? 'uk';
+    return prefs.getString('locale') ?? 'en';
   }
 }
 

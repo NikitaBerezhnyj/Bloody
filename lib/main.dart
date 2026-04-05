@@ -21,7 +21,7 @@ Future<void> widgetBackgroundCallback(Uri? uri) async {
   await HomeWidget.setAppGroupId('com.nikitaberezhnyj.bloody');
   final donations = await DonationService.getDonations();
   final prefs = await SharedPreferences.getInstance();
-  final locale = prefs.getString('locale') ?? 'uk';
+  final locale = prefs.getString('locale') ?? 'en';
   await WidgetService.updateWidget(donations: donations, locale: locale);
 }
 
@@ -98,7 +98,7 @@ class _InitialScreenState extends ConsumerState<InitialScreen> {
     final donations = await DonationService.getDonations();
 
     final prefs = await SharedPreferences.getInstance();
-    final locale = prefs.getString('locale') ?? 'uk';
+    final locale = prefs.getString('locale') ?? 'en';
 
     await WidgetService.updateWidget(
       donations: donations,

@@ -26,7 +26,7 @@ class DonationDetailScreen extends ConsumerWidget {
     final donation = donations.where((d) => d.id == donationId).firstOrNull;
 
     if (donation == null) return const SizedBox.shrink();
-    
+
     final d = donation;
 
     final dateStr = formatDate(d.date);

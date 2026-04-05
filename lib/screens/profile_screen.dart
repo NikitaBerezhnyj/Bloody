@@ -63,7 +63,7 @@ class ProfileScreen extends ConsumerWidget {
               await WidgetPromptService.cleanShown();
 
               final prefs = await SharedPreferences.getInstance();
-              final locale = prefs.getString('locale') ?? 'uk';
+              final locale = prefs.getString('locale') ?? 'en';
 
               await WidgetService.updateWidget(
                 donations: [],
