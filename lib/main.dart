@@ -2,39 +2,36 @@ import 'package:bloody/providers/locale_provider.dart';
 import 'package:bloody/providers/theme_provider.dart';
 import 'package:bloody/screens/splash_screen.dart';
 import 'package:bloody/screens/welcome_screen.dart';
-import 'package:bloody/services/background_tasks_service.dart';
 import 'package:bloody/services/donation_service.dart';
 import 'package:bloody/services/notification_service.dart';
 import 'package:bloody/services/widget_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bloody/l10n/app_localizations.dart';
+import 'package:home_widget/home_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:workmanager/workmanager.dart';
 import 'providers/user_provider.dart';
 import 'screens/home_screen.dart';
 
+@pragma('vm:entry-point')
+Future<void> widgetBackgroundCallback(Uri? uri) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await HomeWidget.setAppGroupId('com.nikitaberezhnyj.bloody');
+  final donations = await DonationService.getDonations();
+  final prefs = await SharedPreferences.getInstance();
+  final locale = prefs.getString('locale') ?? 'uk';
+  await WidgetService.updateWidget(donations: donations, locale: locale);
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  HomeWidget.registerBackgroundCallback(widgetBackgroundCallback);
+
   await NotificationService.init();
 
-  await Workmanager().initialize(
-    callbackDispatcher,
-    isInDebugMode: false,
-  );
-
-  await Workmanager().registerPeriodicTask(
-    'widget-update-daily',
-    widgetUpdateTask,
-    frequency: const Duration(hours: 24),
-    initialDelay: const Duration(minutes: 1),
-    existingWorkPolicy: ExistingPeriodicWorkPolicy.keep,
-    constraints: Constraints(
-      networkType: NetworkType.notRequired,
-      requiresBatteryNotLow: false,
-    ),
-  );
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   runApp(const ProviderScope(child: BloodyApp()));
 }

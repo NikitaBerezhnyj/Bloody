@@ -6,8 +6,10 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.view.View
 import android.widget.RemoteViews
+import es.antonborri.home_widget.HomeWidgetBackgroundIntent
 import es.antonborri.home_widget.HomeWidgetPlugin
 import java.util.Calendar
 
@@ -37,15 +39,12 @@ class BloodyWidget : AppWidgetProvider() {
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
-
         if (intent.action == ACTION_MIDNIGHT_UPDATE) {
-            val appWidgetManager = AppWidgetManager.getInstance(context)
-            val appWidgetIds = appWidgetManager.getAppWidgetIds(
-                android.content.ComponentName(context, BloodyWidget::class.java)
+            val backgroundIntent = HomeWidgetBackgroundIntent.getBroadcast(
+                context,
+                Uri.parse("bloody://midnight-update")
             )
-            for (widgetId in appWidgetIds) {
-                updateWidgetView(context, appWidgetManager, widgetId)
-            }
+            backgroundIntent.send()
 
             scheduleMidnightUpdate(context)
         }
