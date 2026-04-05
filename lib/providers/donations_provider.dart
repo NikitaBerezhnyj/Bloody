@@ -33,8 +33,8 @@ class DonationsNotifier extends AsyncNotifier<List<Donation>> {
 
   Future<void> _reschedule() async {
     final donations = await DonationService.getDonations();
-    await NotificationService.rescheduleAll(donations);
     final locale = await _getLocale();
+    await NotificationService.rescheduleAll(donations, locale);
     await WidgetService.updateWidget(donations: donations, locale: locale);
   }
 
