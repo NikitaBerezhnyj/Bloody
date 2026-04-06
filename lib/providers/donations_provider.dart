@@ -45,6 +45,6 @@ class DonationsNotifier extends AsyncNotifier<List<Donation>> {
 }
 
 final donationsProvider =
-AsyncNotifierProvider<DonationsNotifier, List<Donation>>(
-  DonationsNotifier.new,
-);
+    AsyncNotifierProvider<DonationsNotifier, List<Donation>>(
+      DonationsNotifier.new,
+    );

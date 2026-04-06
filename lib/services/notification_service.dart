@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest.dart' as tz_data;
@@ -5,6 +6,8 @@ import 'package:timezone/timezone.dart' as tz;
 import '../constants/app_constants.dart';
 import '../constants/notification_strings.dart';
 import '../models/donation.dart';
+import 'dart:io';
+import 'package:flutter/services.dart';
 
 class NotificationService {
   static final _plugin = FlutterLocalNotificationsPlugin();
@@ -23,7 +26,7 @@ class NotificationService {
       tz.setLocalLocation(tz.UTC);
     }
 
-    const android = AndroidInitializationSettings('@mipmap/ic_launcher');
+    const android = AndroidInitializationSettings('@drawable/ic_notification');
     const ios = DarwinInitializationSettings();
     await _plugin.initialize(
       const InitializationSettings(android: android, iOS: ios),
@@ -36,17 +39,33 @@ class NotificationService {
         ?.requestNotificationsPermission();
   }
 
-  static Future<void> rescheduleAll(List<Donation> donations, String locale) async {
+  static Future<void> rescheduleAll(
+    List<Donation> donations,
+    String locale,
+  ) async {
     await _plugin.cancelAll();
     if (donations.isEmpty) return;
 
     final last = donations.first;
     final cooldown = donationCooldownDays[last.type] ?? 60;
+
     final lastDateTime = DateTime(
-      last.date.year, last.date.month, last.date.day,
-      last.time.hour, last.time.minute,
+      last.date.year,
+      last.date.month,
+      last.date.day,
+      last.time.hour,
+      last.time.minute,
     );
-    final cooldownDate = lastDateTime.add(Duration(days: cooldown));
+
+    final rawCooldownDate = lastDateTime.add(Duration(days: cooldown));
+
+    final cooldownDate = DateTime(
+      rawCooldownDate.year,
+      rawCooldownDate.month,
+      rawCooldownDate.day,
+      11,
+      30,
+    );
 
     await _scheduleIfFuture(
       id: 1,
@@ -93,7 +112,10 @@ class NotificationService {
     if (scheduledDate.isBefore(DateTime.now())) return;
     final tzDate = tz.TZDateTime.from(scheduledDate, tz.local);
     await _plugin.zonedSchedule(
-      id, title, body, tzDate,
+      id,
+      title,
+      body,
+      tzDate,
       NotificationDetails(
         android: AndroidNotificationDetails(
           'donation_reminders',
@@ -106,7 +128,7 @@ class NotificationService {
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
-      UILocalNotificationDateInterpretation.absoluteTime,
+          UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 }
