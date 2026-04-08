@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,10 +9,21 @@ import '../services/widget_service.dart';
 
 class LocaleNotifier extends AsyncNotifier<Locale?> {
   @override
-  Future<Locale?> build() async {
+  Future<Locale> build() async {
     final prefs = await SharedPreferences.getInstance();
-    final code = prefs.getString('locale');
-    return code != null ? Locale(code) : null;
+    final saved = prefs.getString('locale');
+
+    if (saved != null) {
+      return Locale(saved);
+    }
+
+    const supported = ['uk', 'es', 'en'];
+    final systemCode = PlatformDispatcher.instance.locale.languageCode;
+    final resolved = supported.contains(systemCode) ? systemCode : 'en';
+
+    await prefs.setString('locale', resolved);
+
+    return Locale(resolved);
   }
 
   Future<void> setLocale(Locale locale) async {
@@ -34,6 +47,12 @@ class LocaleNotifier extends AsyncNotifier<Locale?> {
       donations: donations,
       locale: locale.languageCode,
     );
+  }
+
+  String _resolveSystemLocale() {
+    const supported = ['uk', 'es', 'en'];
+    final systemCode = PlatformDispatcher.instance.locale.languageCode;
+    return supported.contains(systemCode) ? systemCode : 'en';
   }
 }
 
