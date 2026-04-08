@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest.dart' as tz_data;
@@ -6,8 +5,6 @@ import 'package:timezone/timezone.dart' as tz;
 import '../constants/app_constants.dart';
 import '../constants/notification_strings.dart';
 import '../models/donation.dart';
-import 'dart:io';
-import 'package:flutter/services.dart';
 
 class NotificationService {
   static final _plugin = FlutterLocalNotificationsPlugin();
@@ -39,11 +36,15 @@ class NotificationService {
         ?.requestNotificationsPermission();
   }
 
-  static Future<void> rescheduleAll(
-    List<Donation> donations,
-    String locale,
-  ) async {
-    await _plugin.cancelAll();
+  static Future<void> _scheduleAll({
+    required List<Donation> donations,
+    required String locale,
+    bool clearAll = false,
+  }) async {
+    if (clearAll) {
+      await _plugin.cancelAll();
+    }
+
     if (donations.isEmpty) return;
 
     final last = donations.first;
@@ -75,6 +76,7 @@ class NotificationService {
       channelName: NotificationStrings.get('channelName', locale),
       channelDescription: NotificationStrings.get('channelDescription', locale),
     );
+
     await _scheduleIfFuture(
       id: 2,
       title: NotificationStrings.get('todayTitle', locale),
@@ -83,6 +85,7 @@ class NotificationService {
       channelName: NotificationStrings.get('channelName', locale),
       channelDescription: NotificationStrings.get('channelDescription', locale),
     );
+
     await _scheduleIfFuture(
       id: 3,
       title: NotificationStrings.get('alreadyTitle', locale),
@@ -91,6 +94,7 @@ class NotificationService {
       channelName: NotificationStrings.get('channelName', locale),
       channelDescription: NotificationStrings.get('channelDescription', locale),
     );
+
     await _scheduleIfFuture(
       id: 4,
       title: NotificationStrings.get('longAgoTitle', locale),
@@ -98,6 +102,31 @@ class NotificationService {
       scheduledDate: cooldownDate.add(const Duration(days: 100)),
       channelName: NotificationStrings.get('channelName', locale),
       channelDescription: NotificationStrings.get('channelDescription', locale),
+    );
+  }
+
+  static Future<void> rescheduleAll(
+      List<Donation> donations,
+      String locale,
+      ) async {
+    await _scheduleAll(
+      donations: donations,
+      locale: locale,
+      clearAll: true,
+    );
+  }
+
+  static Future<void> rescheduleLocale({
+    required List<Donation> donations,
+    required String locale,
+  }) async {
+    final pending = await _plugin.pendingNotificationRequests();
+    if (pending.isEmpty) return;
+
+    await _scheduleAll(
+      donations: donations,
+      locale: locale,
+      clearAll: false,
     );
   }
 
@@ -128,7 +157,7 @@ class NotificationService {
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
+      UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 }

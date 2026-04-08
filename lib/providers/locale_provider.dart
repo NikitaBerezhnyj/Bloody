@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../services/donation_service.dart';
+import '../services/notification_service.dart';
 import '../services/widget_service.dart';
 
 class LocaleNotifier extends AsyncNotifier<Locale?> {
@@ -14,11 +15,21 @@ class LocaleNotifier extends AsyncNotifier<Locale?> {
 
   Future<void> setLocale(Locale locale) async {
     final prefs = await SharedPreferences.getInstance();
+    final oldLocale = prefs.getString('locale');
+
+    if (oldLocale == locale.languageCode) return;
+
     await prefs.setString('locale', locale.languageCode);
 
     state = AsyncData(locale);
 
     final donations = await DonationService.getDonations();
+
+    await NotificationService.rescheduleLocale(
+      donations: donations,
+      locale: locale.languageCode,
+    );
+
     await WidgetService.updateWidget(
       donations: donations,
       locale: locale.languageCode,
