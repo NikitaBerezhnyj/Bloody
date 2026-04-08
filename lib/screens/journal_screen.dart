@@ -11,21 +11,21 @@ import 'donation_detail_screen.dart';
 class JournalScreen extends ConsumerWidget {
   const JournalScreen({super.key});
 
-  Future<bool?> _confirmDelete(BuildContext context) {
+  Future<bool?> _confirmDelete(BuildContext context, AppLocalizations t) {
     return showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text("Видалити донацію?"),
-        content: const Text("Цю дію неможливо скасувати."),
+        title: Text(t.deleteDonation),
+        content: Text(t.deleteDonationContent),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx, false),
-            child: const Text("Скасувати"),
+            child: Text(t.cancel),
           ),
           TextButton(
             style: TextButton.styleFrom(foregroundColor: Colors.red),
             onPressed: () => Navigator.pop(ctx, true),
-            child: const Text("Видалити"),
+            child: Text(t.delete),
           ),
         ],
       ),
@@ -67,11 +67,11 @@ class JournalScreen extends ConsumerWidget {
                     key: ValueKey(d.id),
                     direction: DismissDirection.endToStart,
 
-                    confirmDismiss: (_) => _confirmDelete(context),
+                    confirmDismiss: (_) => _confirmDelete(context, t),
                     onDismissed: (_) {
                       ref.read(donationsProvider.notifier).delete(d.id!);
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Донацію видалено")),
+                        SnackBar(content: Text(t.donationDeleted)),
                       );
                     },
                     background: Container(

@@ -103,6 +103,7 @@
     "deleteDonation": "Eliminar donación",
     "deleteDonationTitle": "¿Eliminar registro?",
     "deleteDonationContent": "¿Está seguro de que desea eliminar este registro de donación? Esta acción no se puede deshacer.",
+    "donationDeleted": "Donación eliminada",
 
     "statsTotalDonations": "donaciones",
     "statsLivesLabel": "personas salvadas",

@@ -103,6 +103,7 @@
     "deleteDonation": "Видалити донацію",
     "deleteDonationTitle": "Видалити запис?",
     "deleteDonationContent": "Ви впевнені, що хочете видалити цей запис про донацію? Цю дію неможливо скасувати.",
+    "donationDeleted": "Донацію видалено",
 
     "statsTotalDonations": "донацій",
     "statsLivesLabel": "людей врятовано",

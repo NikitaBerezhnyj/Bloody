@@ -103,6 +103,7 @@
     "deleteDonation": "Delete donation",
     "deleteDonationTitle": "Delete entry?",
     "deleteDonationContent": "Are you sure you want to delete this donation entry? This action cannot be undone.",
+    "donationDeleted": "Donation deleted",
 
     "statsTotalDonations": "donations",
     "statsLivesLabel": "people saved",

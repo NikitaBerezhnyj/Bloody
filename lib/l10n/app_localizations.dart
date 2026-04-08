@@ -598,6 +598,12 @@ abstract class AppLocalizations {
   /// **'Are you sure you want to delete this donation entry? This action cannot be undone.'**
   String get deleteDonationContent;
 
+  /// No description provided for @donationDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Donation deleted'**
+  String get donationDeleted;
+
   /// No description provided for @statsTotalDonations.
   ///
   /// In en, this message translates to:
