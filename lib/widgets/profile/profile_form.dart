@@ -59,11 +59,15 @@ class _ProfileFormState extends State<ProfileForm> {
 
   Future<void> _pickBirthday(BuildContext context, AppLocalizations t) async {
     final now = DateTime.now();
+    final initialDate = _birthday ?? DateTime(now.year - 18, now.month, now.day);
+    final firstDate = DateTime(now.year - 100, now.month, now.day);
+    final lastDate = now;
+
     final picked = await showDatePicker(
       context: context,
-      initialDate: _birthday ?? DateTime(now.year - 18),
-      firstDate: DateTime(now.year - 100),
-      lastDate: now,
+      initialDate: initialDate,
+      firstDate: firstDate,
+      lastDate: lastDate,
     );
     if (picked != null) {
       setState(() => _birthday = picked);
