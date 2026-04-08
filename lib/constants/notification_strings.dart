@@ -2,7 +2,7 @@ class NotificationStrings {
   static const _translations = {
     'soonTitle': {
       'en': 'You can donate soon',
-      'uk': 'Незабаром можна донувати',
+      'uk': 'Незабаром можна здавати кров',
       'es': 'Pronto puedes donar',
     },
     'soonBody': {
@@ -12,7 +12,7 @@ class NotificationStrings {
     },
     'todayTitle': {
       'en': 'You can donate today',
-      'uk': 'Сьогодні можна донувати',
+      'uk': 'Сьогодні можна робити донацію',
       'es': 'Puedes donar hoy',
     },
     'todayBody': {
@@ -22,12 +22,12 @@ class NotificationStrings {
     },
     'alreadyTitle': {
       'en': 'You can donate now',
-      'uk': 'Ви вже можете донувати',
+      'uk': 'Ви вже можете здати кров',
       'es': 'Ya puedes donar',
     },
     'alreadyBody': {
       'en': 'You can already donate blood. Maybe it\'s time to plan your next donation.',
-      'uk': 'Ви вже можете донувати кров. Можливо, настав час запланувати наступну донацію.',
+      'uk': 'Ви вже можете здати кров. Можливо, настав час запланувати наступну донацію.',
       'es': 'Ya puedes donar sangre. Quizás es hora de planear tu próxima donación.',
     },
     'longAgoTitle': {

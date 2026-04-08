@@ -56,9 +56,9 @@ class WidgetService {
 
   static const Map<String, Map<String, String>> _translations = {
     'canDonateNow': {
-      'en': 'you can donate now',
-      'uk': 'можна здавати кров',
-      'es': 'puedes donar sangre',
+      'en': 'You can donate now',
+      'uk': 'Можна здавати кров',
+      'es': 'Puedes donar sangre',
     },
     'oneDayLeft': {
       'en': 'day until your next\ndonation',
