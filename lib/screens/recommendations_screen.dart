@@ -9,12 +9,11 @@ class RecommendationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
 
-    final List<({String title, List<String> items, IconData icon, Color color})>
+    final List<({String title, List<String> items, IconData icon})>
     recommendations = [
       (
       title: t.recBeforeDonation,
       icon: Icons.water_drop_outlined,
-      color: Colors.blue,
       items: [
         t.recBeforeDonation1,
         t.recBeforeDonation2,
@@ -27,7 +26,6 @@ class RecommendationsScreen extends StatelessWidget {
       (
       title: t.recAfterDonation,
       icon: Icons.healing_outlined,
-      color: Colors.green,
       items: [
         t.recAfterDonation1,
         t.recAfterDonation2,
@@ -39,7 +37,6 @@ class RecommendationsScreen extends StatelessWidget {
       (
       title: t.recNutrition,
       icon: Icons.restaurant_outlined,
-      color: Colors.orange,
       items: [
         t.recNutrition1,
         t.recNutrition2,
@@ -51,7 +48,6 @@ class RecommendationsScreen extends StatelessWidget {
       (
       title: t.recRestrictions,
       icon: Icons.block_outlined,
-      color: Colors.red,
       items: [
         t.recRestrictions1,
         t.recRestrictions2,
@@ -86,7 +82,6 @@ class _RecommendationCard extends StatelessWidget {
   String title,
   List<String> items,
   IconData icon,
-  Color color,
   }) section;
 
   const _RecommendationCard({required this.section});
@@ -98,7 +93,7 @@ class _RecommendationCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(
-          color: section.color.withOpacity(0.25),
+          color: Colors.red.withOpacity(0.25),
           width: 1.5,
         ),
       ),
@@ -113,10 +108,10 @@ class _RecommendationCard extends StatelessWidget {
                   width: 36,
                   height: 36,
                   decoration: BoxDecoration(
-                    color: section.color.withOpacity(0.12),
+                    color: Colors.red.withOpacity(0.12),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Icon(section.icon, color: section.color, size: 20),
+                  child: Icon(section.icon, color: Colors.red, size: 20),
                 ),
                 const SizedBox(width: 12),
                 Text(
@@ -139,7 +134,7 @@ class _RecommendationCard extends StatelessWidget {
                     Icon(
                       Icons.check_circle_outline,
                       size: 18,
-                      color: section.color,
+                      color: Colors.red,
                     ),
                     const SizedBox(width: 10),
                     Expanded(
