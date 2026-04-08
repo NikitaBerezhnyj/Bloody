@@ -38,10 +38,12 @@ class _StatsScreenState extends ConsumerState<StatsScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(Icons.favorite_border,
-                      color: Colors.red.shade200, size: 64),
+                      color: Colors.red, size: 64),
                   const SizedBox(height: 16),
-                  Text(t.noDonations,
-                      style: const TextStyle(color: Colors.grey)),
+                  Text(
+                    t.noDonations,
+                    textAlign: TextAlign.center,
+                  )
                 ],
               ),
             );

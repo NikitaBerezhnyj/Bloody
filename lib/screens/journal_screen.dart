@@ -46,7 +46,19 @@ class JournalScreen extends ConsumerWidget {
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('${t.error}: $e')),
         data: (donations) => donations.isEmpty
-            ? Center(child: Text(t.noDonations))
+            ? Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.book_outlined, color: Colors.red, size: 64),
+                    const SizedBox(height: 16),
+                    Text(
+                      t.noDonations,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              )
             : ListView.builder(
                 itemCount: donations.length,
                 itemBuilder: (context, i) {
