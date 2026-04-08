@@ -113,6 +113,38 @@
     "statsAvgInterval": "Average interval",
     "daysUntilNextDonation": "days until next donation",
 
+    "recommendationsTitle": "Recommendations",
+    
+    "recBeforeDonation": "Before Donation",
+    "recBeforeDonation1": "Get at least 7–8 hours of sleep the night before",
+    "recBeforeDonation2": "Drink 1.5–2 liters of water the day before your donation",
+    "recBeforeDonation3": "Eat a light, low-fat meal 2–3 hours before donating",
+    "recBeforeDonation4": "Avoid fatty, fried, and smoked foods for 24 hours before (especially for dinner)",
+    "recBeforeDonation5": "Avoid dairy products (milk, cheese, butter) and eggs for 24 hours before",
+    "recBeforeDonation6": "Do not consume alcohol for at least 48 hours before your donation",
+
+    "recAfterDonation": "After Donation",
+    "recAfterDonation1": "Drink at least 500 ml of water, juice, or tea immediately after",
+    "recAfterDonation2": "Rest for 15–20 minutes before leaving the donation center",
+    "recAfterDonation3": "Avoid lifting heavy objects or intense exercise for 24 hours",
+    "recAfterDonation4": "Keep the bandage on your arm for at least 4 hours",
+    "recAfterDonation5": "Eat a full meal within 2 hours after donating to restore energy",
+
+    "recNutrition": "Nutrition",
+    "recNutrition1": "Eat iron-rich foods: red meat, legumes, spinach, pumpkin seeds",
+    "recNutrition2": "Combine iron-rich foods with Vitamin C (citrus, bell peppers) for better absorption",
+    "recNutrition3": "Avoid coffee and tea for 1–2 hours after meals — they hinder iron absorption",
+    "recNutrition4": "Eat foods rich in B12 and folic acid: eggs, dairy, leafy greens",
+    "recNutrition5": "Stay hydrated — aim to drink 2 liters of water daily",
+
+    "recRestrictions": "Restrictions",
+    "recRestrictions1": "Do not smoke for at least 1 hour before and 3 hours after donation",
+    "recRestrictions2": "Avoid intense physical exercise and sports for 24 hours after",
+    "recRestrictions3": "Do not take aspirin or ibuprofen for at least 3 days before donating",
+    "recRestrictions4": "Do not donate if you feel unwell, have a fever, or had cold symptoms recently",
+    "recRestrictions5": "Donation is not recommended during menstruation or for 5 days after it ends",
+    "recRestrictions6": "Consult a doctor before donating if you regularly take any medication",
+
     "settingsTitle": "Settings",
     "languageLabel": "Language",
     "themeLabel": "Theme",

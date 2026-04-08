@@ -113,6 +113,38 @@
     "statsAvgInterval": "Intervalo promedio",
     "daysUntilNextDonation": "días hasta la próxima donación",
 
+    "recommendationsTitle": "Recomendaciones",
+
+    "recBeforeDonation": "Antes de la donación",
+    "recBeforeDonation1": "Duerme al menos 7–8 horas la noche anterior",
+    "recBeforeDonation2": "Bebe entre 1,5 y 2 litros de agua el día anterior",
+    "recBeforeDonation3": "Come algo ligero y bajo en grasas 2–3 horas antes de donar",
+    "recBeforeDonation4": "Evita alimentos grasos, fritos o ahumados 24 horas antes (especialmente en la cena)",
+    "recBeforeDonation5": "Evita lácteos (leche, queso, mantequilla) y huevos 24 horas antes",
+    "recBeforeDonation6": "No consumas alcohol al menos 48 horas antes de la donación",
+
+    "recAfterDonation": "Después de la donación",
+    "recAfterDonation1": "Bebe al menos 500 ml de agua, zumo o té inmediatamente después",
+    "recAfterDonation2": "Descansa 15–20 minutos antes de salir del centro de donación",
+    "recAfterDonation3": "Evita cargar objetos pesados o hacer esfuerzos intensos durante 24 horas",
+    "recAfterDonation4": "Mantén el vendaje en el brazo durante al menos 4 horas",
+    "recAfterDonation5": "Haz una comida completa en las 2 horas posteriores para recuperar fuerzas",
+
+    "recNutrition": "Nutrición",
+    "recNutrition1": "Consume alimentos ricos en hierro: carne roja, legumbres, espinacas, semillas de calabaza",
+    "recNutrition2": "Combina el hierro con vitamina C (cítricos, pimientos) para una mejor absorción",
+    "recNutrition3": "Evita el café y el té 1–2 horas después de comer — reducen la absorción de hierro",
+    "recNutrition4": "Come alimentos ricos en B12 y ácido fólico: huevos, lácteos, verduras de hoja verde",
+    "recNutrition5": "Mantente hidratado — intenta beber 2 litros de agua al día",
+
+    "recRestrictions": "Restricciones",
+    "recRestrictions1": "No fumes al menos 1 hora antes y 3 horas después de la donación",
+    "recRestrictions2": "Evita el ejercicio físico intenso y el deporte durante 24 horas",
+    "recRestrictions3": "No tomes aspirina o ibuprofeno al menos 3 días antes de la donación",
+    "recRestrictions4": "No dones si te sientes mal, tienes fiebre o has tenido síntomas de resfriado",
+    "recRestrictions5": "No se recomienda donar durante la menstruación ni hasta 5 días después de que termine",
+    "recRestrictions6": "Consulta con un médico si tomas algún medicamento de forma regular",
+
     "settingsTitle": "Configuración",
     "languageLabel": "Idioma",
     "themeLabel": "Tema",

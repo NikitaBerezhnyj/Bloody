@@ -646,6 +646,168 @@ abstract class AppLocalizations {
   /// **'days until next donation'**
   String get daysUntilNextDonation;
 
+  /// No description provided for @recommendationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommendations'**
+  String get recommendationsTitle;
+
+  /// No description provided for @recBeforeDonation.
+  ///
+  /// In en, this message translates to:
+  /// **'Before Donation'**
+  String get recBeforeDonation;
+
+  /// No description provided for @recBeforeDonation1.
+  ///
+  /// In en, this message translates to:
+  /// **'Get at least 7–8 hours of sleep the night before'**
+  String get recBeforeDonation1;
+
+  /// No description provided for @recBeforeDonation2.
+  ///
+  /// In en, this message translates to:
+  /// **'Drink 1.5–2 liters of water the day before your donation'**
+  String get recBeforeDonation2;
+
+  /// No description provided for @recBeforeDonation3.
+  ///
+  /// In en, this message translates to:
+  /// **'Eat a light, low-fat meal 2–3 hours before donating'**
+  String get recBeforeDonation3;
+
+  /// No description provided for @recBeforeDonation4.
+  ///
+  /// In en, this message translates to:
+  /// **'Avoid fatty, fried, and smoked foods for 24 hours before (especially for dinner)'**
+  String get recBeforeDonation4;
+
+  /// No description provided for @recBeforeDonation5.
+  ///
+  /// In en, this message translates to:
+  /// **'Avoid dairy products (milk, cheese, butter) and eggs for 24 hours before'**
+  String get recBeforeDonation5;
+
+  /// No description provided for @recBeforeDonation6.
+  ///
+  /// In en, this message translates to:
+  /// **'Do not consume alcohol for at least 48 hours before your donation'**
+  String get recBeforeDonation6;
+
+  /// No description provided for @recAfterDonation.
+  ///
+  /// In en, this message translates to:
+  /// **'After Donation'**
+  String get recAfterDonation;
+
+  /// No description provided for @recAfterDonation1.
+  ///
+  /// In en, this message translates to:
+  /// **'Drink at least 500 ml of water, juice, or tea immediately after'**
+  String get recAfterDonation1;
+
+  /// No description provided for @recAfterDonation2.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest for 15–20 minutes before leaving the donation center'**
+  String get recAfterDonation2;
+
+  /// No description provided for @recAfterDonation3.
+  ///
+  /// In en, this message translates to:
+  /// **'Avoid lifting heavy objects or intense exercise for 24 hours'**
+  String get recAfterDonation3;
+
+  /// No description provided for @recAfterDonation4.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the bandage on your arm for at least 4 hours'**
+  String get recAfterDonation4;
+
+  /// No description provided for @recAfterDonation5.
+  ///
+  /// In en, this message translates to:
+  /// **'Eat a full meal within 2 hours after donating to restore energy'**
+  String get recAfterDonation5;
+
+  /// No description provided for @recNutrition.
+  ///
+  /// In en, this message translates to:
+  /// **'Nutrition'**
+  String get recNutrition;
+
+  /// No description provided for @recNutrition1.
+  ///
+  /// In en, this message translates to:
+  /// **'Eat iron-rich foods: red meat, legumes, spinach, pumpkin seeds'**
+  String get recNutrition1;
+
+  /// No description provided for @recNutrition2.
+  ///
+  /// In en, this message translates to:
+  /// **'Combine iron-rich foods with Vitamin C (citrus, bell peppers) for better absorption'**
+  String get recNutrition2;
+
+  /// No description provided for @recNutrition3.
+  ///
+  /// In en, this message translates to:
+  /// **'Avoid coffee and tea for 1–2 hours after meals — they hinder iron absorption'**
+  String get recNutrition3;
+
+  /// No description provided for @recNutrition4.
+  ///
+  /// In en, this message translates to:
+  /// **'Eat foods rich in B12 and folic acid: eggs, dairy, leafy greens'**
+  String get recNutrition4;
+
+  /// No description provided for @recNutrition5.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay hydrated — aim to drink 2 liters of water daily'**
+  String get recNutrition5;
+
+  /// No description provided for @recRestrictions.
+  ///
+  /// In en, this message translates to:
+  /// **'Restrictions'**
+  String get recRestrictions;
+
+  /// No description provided for @recRestrictions1.
+  ///
+  /// In en, this message translates to:
+  /// **'Do not smoke for at least 1 hour before and 3 hours after donation'**
+  String get recRestrictions1;
+
+  /// No description provided for @recRestrictions2.
+  ///
+  /// In en, this message translates to:
+  /// **'Avoid intense physical exercise and sports for 24 hours after'**
+  String get recRestrictions2;
+
+  /// No description provided for @recRestrictions3.
+  ///
+  /// In en, this message translates to:
+  /// **'Do not take aspirin or ibuprofen for at least 3 days before donating'**
+  String get recRestrictions3;
+
+  /// No description provided for @recRestrictions4.
+  ///
+  /// In en, this message translates to:
+  /// **'Do not donate if you feel unwell, have a fever, or had cold symptoms recently'**
+  String get recRestrictions4;
+
+  /// No description provided for @recRestrictions5.
+  ///
+  /// In en, this message translates to:
+  /// **'Donation is not recommended during menstruation or for 5 days after it ends'**
+  String get recRestrictions5;
+
+  /// No description provided for @recRestrictions6.
+  ///
+  /// In en, this message translates to:
+  /// **'Consult a doctor before donating if you regularly take any medication'**
+  String get recRestrictions6;
+
   /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:

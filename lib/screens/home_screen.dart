@@ -10,6 +10,7 @@ import '../widgets/home/nav_card.dart';
 import 'profile_screen.dart';
 import 'journal_screen.dart';
 import 'stats_screen.dart';
+import 'recommendations_screen.dart';
 import 'add_donation_screen.dart';
 import '../widgets/home/home_banner.dart';
 import '../l10n/app_localizations.dart';
@@ -172,6 +173,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => const AchievementsScreen()),
+              ),
+            ),
+            NavCard(
+              icon: Icons.library_books_rounded,
+              label: t.recommendationsTitle,
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const RecommendationsScreen()),
               ),
             ),
           ],
