@@ -652,6 +652,24 @@ abstract class AppLocalizations {
   /// **'days until next donation'**
   String get daysUntilNextDonation;
 
+  /// No description provided for @statsFirstDonation.
+  ///
+  /// In en, this message translates to:
+  /// **'First donation'**
+  String get statsFirstDonation;
+
+  /// No description provided for @statsBestYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Best year'**
+  String get statsBestYear;
+
+  /// No description provided for @statsDays.
+  ///
+  /// In en, this message translates to:
+  /// **'days'**
+  String get statsDays;
+
   /// No description provided for @recommendationsTitle.
   ///
   /// In en, this message translates to:

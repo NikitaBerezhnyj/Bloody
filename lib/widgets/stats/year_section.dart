@@ -1,8 +1,9 @@
-import 'package:bloody/widgets/stats/year_nav_button.dart';
-import 'package:bloody/widgets/stats/year_type_breakdown.dart';
+import 'package:bloody/widgets/stats/section_label.dart';
+import 'package:bloody/widgets/stats/type_breakdown.dart';
 import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/donation_stats.dart';
+import 'year_nav_button.dart';
 
 class YearSection extends StatelessWidget {
   final int selectedYear;
@@ -12,6 +13,7 @@ class YearSection extends StatelessWidget {
   final ValueChanged<int> onYearChanged;
 
   const YearSection({
+    super.key,
     required this.selectedYear,
     required this.availableYears,
     required this.yearStats,
@@ -21,79 +23,89 @@ class YearSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final idx     = availableYears.indexOf(selectedYear);
+    final idx = availableYears.indexOf(selectedYear);
     final canPrev = idx > 0;
     final canNext = idx < availableYears.length - 1;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Text(
-              t.statsPerYear,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const Spacer(),
-            YearNavButton(
-              icon: Icons.chevron_left,
-              enabled: canPrev,
-              onTap: canPrev ? () => onYearChanged(availableYears[idx - 1]) : null,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Text(
-                '$selectedYear',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-            YearNavButton(
-              icon: Icons.chevron_right,
-              enabled: canNext,
-              onTap: canNext ? () => onYearChanged(availableYears[idx + 1]) : null,
-            ),
-          ],
-        ),
-        const SizedBox(height: 12),
-
+        SectionLabel(label: t.statsPerYear),
+        const SizedBox(height: 6),
         Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.red.shade100, width: 1.5),
+            color: Theme.of(context).cardColor,
+            border: Border.all(color: Colors.red.withOpacity(0.2), width: 1.5),
             borderRadius: BorderRadius.circular(16),
           ),
-          child: Row(
+          child: Column(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 children: [
                   Text(
-                    '${yearStats.total}',
-                    style: const TextStyle(
-                      fontSize: 48,
-                      fontWeight: FontWeight.bold,
-                      height: 1,
-                      color: Colors.red,
+                    t.statsDonationsYear,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(height: 2),
-                  Text(
-                    t.statsDonationsYear,
-                    style: TextStyle(
-                      color: Colors.grey.shade600,
-                      fontSize: 13,
+                  const Spacer(),
+                  YearNavButton(
+                    icon: Icons.chevron_left,
+                    enabled: canPrev,
+                    onTap: canPrev ? () => onYearChanged(availableYears[idx - 1]) : null,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: SizedBox(
+                      width: 44,
+                      child: Text(
+                        '$selectedYear',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
+                  ),
+                  YearNavButton(
+                    icon: Icons.chevron_right,
+                    enabled: canNext,
+                    onTap: canNext ? () => onYearChanged(availableYears[idx + 1]) : null,
                   ),
                 ],
               ),
-              const Spacer(),
-              if (yearStats.total > 0)
-                YearTypeBreakdown(stats: yearStats, t: t),
+              const SizedBox(height: 14),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${yearStats.total}',
+                        style: const TextStyle(
+                          fontSize: 52,
+                          fontWeight: FontWeight.bold,
+                          height: 1,
+                          color: Colors.red,
+                          letterSpacing: -1,
+                        ),
+                      ),
+                      const SizedBox(height: 3),
+                      Text(
+                        t.statsDonationsYear,
+                        style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+                      ),
+                    ],
+                  ),
+                  if (yearStats.total > 0) ...[
+                    const SizedBox(width: 20),
+                    Expanded(child: TypeBreakdown(stats: yearStats, t: t)),
+                  ],
+                ],
+              ),
             ],
           ),
         ),

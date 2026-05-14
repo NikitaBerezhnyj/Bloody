@@ -113,6 +113,11 @@
     "statsLastDonation": "Остання донація",
     "statsAvgInterval": "Середній інтервал",
     "daysUntilNextDonation": "днів до донації",
+    "statsFirstDonation": "Перша донація",
+    "statsLastDonation": "Остання донація",
+    "statsAvgInterval": "Середній інтервал",
+    "statsBestYear": "Найактивніший рік",
+    "statsDays": "дн.",
 
     "recommendationsTitle": "Рекомендації",
     

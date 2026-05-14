@@ -10,6 +10,10 @@ class DonationStats {
   final String lastDonationDate;
   final int daysSinceLast;
   final List<int> availableYears;
+  final DateTime? firstDate;
+  final DateTime? lastDate;
+  final int? bestYear;
+  final int? bestYearCount;
 
   const DonationStats({
     required this.total,
@@ -20,6 +24,10 @@ class DonationStats {
     required this.lastDonationDate,
     required this.daysSinceLast,
     required this.availableYears,
+    this.firstDate,
+    this.lastDate,
+    this.bestYear,
+    this.bestYearCount,
   });
 
   factory DonationStats.from(List<Donation> donations) =>
@@ -52,6 +60,26 @@ class DonationStats {
     final last = all.first;
     final lastDate = formatDate(last.date);
 
+    DateTime? firstDt;
+    DateTime? lastDt;
+    if (all.isNotEmpty) {
+      final sorted = [...all]..sort((a, b) => a.date.compareTo(b.date));
+      firstDt = sorted.first.date;
+      lastDt  = sorted.last.date;
+    }
+
+    int? bestYear;
+    int? bestYearCount;
+    if (all.isNotEmpty) {
+      final countByYear = <int, int>{};
+      for (final d in all) {
+        countByYear[d.date.year] = (countByYear[d.date.year] ?? 0) + 1;
+      }
+      final best = countByYear.entries.reduce((a, b) => a.value >= b.value ? a : b);
+      bestYear      = best.key;
+      bestYearCount = best.value;
+    }
+
     return DonationStats(
       total: total,
       wholeBlood: wholeBlood,
@@ -61,6 +89,10 @@ class DonationStats {
       lastDonationDate: lastDate,
       daysSinceLast: now.difference(last.date).inDays,
       availableYears: years,
+      firstDate: firstDt,
+      lastDate: lastDt,
+      bestYear: bestYear,
+      bestYearCount: bestYearCount,
     );
   }
 }

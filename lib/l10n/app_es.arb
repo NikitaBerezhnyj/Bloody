@@ -113,6 +113,11 @@
     "statsLastDonation": "Última donación",
     "statsAvgInterval": "Intervalo promedio",
     "daysUntilNextDonation": "días hasta la próxima donación",
+    "statsFirstDonation": "Primera donación",
+    "statsLastDonation": "Última donación",
+    "statsAvgInterval": "Intervalo promedio",
+    "statsBestYear": "Año más activo",
+    "statsDays": "días",
 
     "recommendationsTitle": "Recomendaciones",
 

@@ -55,14 +55,11 @@ class _StatsScreenState extends ConsumerState<StatsScreen> {
             _selectedYear = stats.availableYears.last;
           }
           final yearStats = DonationStats.forYear(donations, _selectedYear!);
-
           return ListView(
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
             children: [
-
               HeroSection(stats: stats, t: t),
-              const SizedBox(height: 24),
-
+              const SizedBox(height: 20),
               YearSection(
                 selectedYear: _selectedYear!,
                 availableYears: stats.availableYears,
@@ -70,8 +67,7 @@ class _StatsScreenState extends ConsumerState<StatsScreen> {
                 t: t,
                 onYearChanged: (y) => setState(() => _selectedYear = y),
               ),
-              const SizedBox(height: 24),
-
+              const SizedBox(height: 20),
               DetailsSection(stats: stats, t: t),
             ],
           );
