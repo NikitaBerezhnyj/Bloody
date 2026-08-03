@@ -142,6 +142,12 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get cancel;
 
+  /// No description provided for @skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
   /// No description provided for @share.
   ///
   /// In en, this message translates to:
@@ -169,7 +175,7 @@ abstract class AppLocalizations {
   /// No description provided for @notes.
   ///
   /// In en, this message translates to:
-  /// **'Notes'**
+  /// **'Notes (Optional)'**
   String get notes;
 
   /// No description provided for @days.

@@ -8,6 +8,7 @@ class NavigationButtons extends StatelessWidget {
   final VoidCallback? onNext;
   final VoidCallback? onBack;
   final VoidCallback? onSave;
+  final String? nextLabel;
 
   const NavigationButtons({
     required this.currentStep,
@@ -15,6 +16,7 @@ class NavigationButtons extends StatelessWidget {
     this.onNext,
     this.onBack,
     this.onSave,
+    this.nextLabel
   });
 
   @override
@@ -37,7 +39,7 @@ class NavigationButtons extends StatelessWidget {
           Expanded(
             flex: 2,
             child: PrimaryButton(
-              label: isLast ? t.save : t.next,
+              label: isLast ? t.save : (nextLabel ?? t.next),
               onPressed: isLast ? onSave : onNext,
             ),
           ),

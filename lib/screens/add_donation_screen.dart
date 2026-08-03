@@ -62,6 +62,13 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
     if (_currentStep > 0) setState(() => _currentStep--);
   }
 
+  String? _nextButtonLabel(AppLocalizations t) {
+    if (_currentStep == 3 && _notesController.text.trim().isEmpty) {
+      return t.skip;
+    }
+    return null;
+  }
+
   bool _validateCurrentStep() {
     final t = AppLocalizations.of(context)!;
     switch (_currentStep) {
@@ -136,12 +143,18 @@ class _AddDonationScreenState extends ConsumerState<AddDonationScreen> {
               ),
             ),
           ),
-          NavigationButtons(
-            currentStep: _currentStep,
-            totalSteps: _totalSteps,
-            onNext: _currentStep < _totalSteps - 1 ? _nextStep : null,
-            onBack: _currentStep > 0 ? _prevStep : null,
-            onSave: _currentStep == _totalSteps - 1 ? _saveDonation : null,
+          ValueListenableBuilder<TextEditingValue>(
+            valueListenable: _notesController,
+            builder: (context, value, _) {
+              return NavigationButtons(
+                currentStep: _currentStep,
+                totalSteps: _totalSteps,
+                onNext: _currentStep < _totalSteps - 1 ? _nextStep : null,
+                onBack: _currentStep > 0 ? _prevStep : null,
+                onSave: _currentStep == _totalSteps - 1 ? _saveDonation : null,
+                nextLabel: _currentStep == 3 && value.text.trim().isEmpty ? t.skip : null,
+              );
+            },
           ),
         ],
       ),
