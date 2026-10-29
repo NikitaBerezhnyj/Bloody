@@ -147,7 +147,10 @@ class _ProfileFormState extends State<ProfileForm> {
         initialValue: _bloodType,
         decoration: InputDecoration(labelText: t.bloodTypeLabel),
         items: bloodTypes
-            .map((bt) => DropdownMenuItem(value: bt, child: Text(bt)))
+            .map(
+              (bt) =>
+                  DropdownMenuItem(value: bt, child: Text(bloodTypeLabel(bt))),
+            )
             .toList(),
         onChanged: (val) => setState(() => _bloodType = val),
         validator: (v) => validateRequired(v, t.bloodTypeError),
