@@ -13,7 +13,9 @@
     "date": "Дата",
     "time": "Час",
     "feeling": "Самопочуття",
-    "notes": "Нотатки (Опціонально)",
+    "notes": "Нотатки",
+    "notesOptional": "Нотатки (Опціонально)",
+    "notesEmpty": "Немає нотаток",
     "days": "днів",
     "today": "сьогодні",
     "yesterday": "вчора",
@@ -41,6 +43,10 @@
     "genderError": "Оберіть стать",
     "bloodTypeLabel": "Група крові",
     "bloodTypeError": "Оберіть групу крові",
+
+    "changesSavedTitle": "Зміни збережено",
+    "changesSavedBody": "Ваші дані про донацію оновлено.",
+    "backToDetails": "Повернутись до деталей",
 
     "profileTitle": "Профіль",
     "profileUpdated": "Профіль оновлено!",

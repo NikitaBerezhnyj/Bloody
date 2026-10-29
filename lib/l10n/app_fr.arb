@@ -1,0 +1,317 @@
+{
+  "@@locale": "fr",
+  "yes": "Oui",
+  "no": "Non",
+  "notNow": "Pas maintenant",
+  "done": "Terminé",
+  "save": "Enregistrer",
+  "delete": "Supprimer",
+  "cancel": "Annuler",
+  "skip": "Passer",
+  "share": "Partager",
+  "date": "Date",
+  "time": "Heure",
+  "feeling": "État de santé",
+  "notes": "Notes",
+  "notesOptional": "Notes (facultatif)",
+  "notesEmpty": "Aucune note",
+  "days": "jours",
+  "today": "aujourd’hui",
+  "yesterday": "hier",
+  "daysAgo1": "Il y a {count} jour",
+  "@daysAgo1": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "daysAgo2": "Il y a {count} jours",
+  "@daysAgo2": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "daysAgoMany": "Il y a {count} jours",
+  "@daysAgoMany": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "error": "Erreur",
+  "welcomeSubtitle": "Suivez vos dons de sang",
+  "createProfile": "Créer un profil",
+  "restoreFromBackup": "Restaurer à partir d’un fichier",
+  "createProfileTitle": "Création du profil",
+  "nameLabel": "Prénom",
+  "nameError": "Saisissez votre prénom",
+  "birthdayLabel": "Date de naissance",
+  "birthdayError": "Sélectionnez votre date de naissance",
+  "birthdayValidation": "Vous devez avoir au moins 18 ans",
+  "genderLabel": "Sexe",
+  "male": "Homme",
+  "female": "Femme",
+  "genderError": "Sélectionnez votre sexe",
+  "bloodTypeLabel": "Groupe sanguin",
+  "bloodTypeError": "Sélectionnez votre groupe sanguin",
+  "changesSavedTitle": "Modifications enregistrées",
+  "changesSavedBody": "Vos informations de don ont été mises à jour.",
+  "backToDetails": "Retour aux détails",
+  "profileTitle": "Profil",
+  "profileUpdated": "Profil mis à jour !",
+  "logout": "Se déconnecter",
+  "logoutConfirmTitle": "Se déconnecter ?",
+  "logoutConfirmContent": "Toutes les données seront supprimées de cet appareil. Voulez-vous continuer ?",
+  "welcomeUser": "Bonjour, {name} 👋",
+  "journalTitle": "Journal des dons",
+  "statsTitle": "Statistiques",
+  "achievementsTitle": "Succès",
+  "canDonate": "Vous pouvez donner votre sang",
+  "cannotDonate": "Vous pourrez à nouveau donner votre sang dans {days} jours",
+  "tooEarlyToDonate": "Il est encore trop tôt pour donner votre sang",
+  "ageLimitBanner": "Après 65 ans, le don de sang n’est possible qu’avec l’autorisation d’un médecin.",
+  "motivational1": "Vous avez déjà donné votre sang {count} fois, sauvant ainsi environ {countTimesThree} vies !",
+  "@motivational1": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "countTimesThree": {
+        "type": "int"
+      }
+    }
+  },
+  "motivational2": "Vos {count} dons ont contribué à sauver {countTimesThree} personnes !",
+  "@motivational2": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "countTimesThree": {
+        "type": "int"
+      }
+    }
+  },
+  "motivational3": "Bravo, {name} ! Vous avez déjà fait une bonne action {count} fois.",
+  "@motivational3": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "motivational4": "Impressionnant ! {count} dons, c’est vraiment remarquable, {name} !",
+  "@motivational4": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "motivational5": "{name}, n’oubliez pas que chaque don compte. Cela fait déjà {daysSince} jours !",
+  "@motivational5": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "daysSince": {
+        "type": "int"
+      }
+    }
+  },
+  "motivational6": "Votre force contribue à changer le monde, {name} !",
+  "@motivational6": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "motivational7": "{name}, vous êtes un véritable héros pour les personnes qui vous entourent !",
+  "@motivational7": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "motivational8": "Chaque goutte de sang compte, et vous le savez !",
+  "motivational9": "Merci, {name} ! Grâce à vos dons, le monde devient meilleur.",
+  "@motivational9": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "addDonation": "Ajouter un don",
+  "editDonation": "Modifier un don",
+  "donationType": "Type de don",
+  "donationTypeError": "Sélectionnez le type de don",
+  "donationWholeBlood": "Sang total",
+  "donationPlasma": "Plasma",
+  "donationPlatelets": "Plaquettes",
+  "dateError": "Sélectionnez une date",
+  "timeError": "Sélectionnez une heure",
+  "feelingError": "Indiquez votre état de santé",
+  "notesHint": "Commentaires supplémentaires",
+  "fillAllFields": "Veuillez remplir tous les champs obligatoires",
+  "feelingGood": "Bien",
+  "feelingNormal": "Normal",
+  "feelingTired": "Fatigué(e)",
+  "step": "Étape",
+  "next": "Suivant",
+  "back": "Retour",
+  "confirmation": "Confirmation",
+  "thankYouTitle": "Merci pour votre don !",
+  "thankYouBody": "Votre don peut sauver jusqu’à trois vies. Vous contribuez à rendre le monde meilleur.",
+  "goToJournal": "Accéder au journal",
+  "detailsView": "Détails du don",
+  "noDonations": "Vous n’avez encore effectué aucun don",
+  "deleteDonation": "Supprimer le don",
+  "deleteDonationTitle": "Supprimer cet enregistrement ?",
+  "deleteDonationContent": "Voulez-vous vraiment supprimer cet enregistrement de don ? Cette action est irréversible.",
+  "donationDeleted": "Don supprimé",
+  "statsTotalDonations": "dons",
+  "statsLivesLabel": "personnes sauvées",
+  "statsPerYear": "Par année",
+  "statsDonationsYear": "dons par an",
+  "statsDetails": "Détails",
+  "statsLastDonation": "Dernier don",
+  "statsAvgInterval": "Intervalle moyen",
+  "daysUntilNextDonation": "jours avant le prochain don",
+  "statsFirstDonation": "Premier don",
+  "statsBestYear": "Année la plus active",
+  "statsDays": "j",
+  "recommendationsTitle": "Recommandations",
+  "recBeforeDonation": "Avant le don",
+  "recBeforeDonation1": "Dormez au moins 7 à 8 heures la nuit précédant le don.",
+  "recBeforeDonation2": "Buvez 1,5 à 2 litres d’eau au cours de la journée précédant le don.",
+  "recBeforeDonation3": "Prenez un repas léger et pauvre en graisses 2 à 3 heures avant le don.",
+  "recBeforeDonation4": "Évitez les aliments gras, frits et fumés pendant les 24 heures précédant le don, en particulier au dîner la veille.",
+  "recBeforeDonation5": "Évitez les produits laitiers (lait, fromage, beurre) et les œufs dans les 24 heures précédant le don.",
+  "recBeforeDonation6": "Ne consommez pas d’alcool pendant au moins 48 heures avant le don.",
+  "recAfterDonation": "Après le don",
+  "recAfterDonation1": "Juste après le don, buvez au moins 500 ml d’eau, de jus ou de thé.",
+  "recAfterDonation2": "Reposez-vous pendant 15 à 20 minutes avant de quitter le centre de don.",
+  "recAfterDonation3": "Évitez de soulever des objets lourds et les efforts physiques intenses pendant 24 heures.",
+  "recAfterDonation4": "Gardez le pansement sur votre bras pendant au moins 4 heures.",
+  "recAfterDonation5": "Prenez un repas complet dans les 2 heures suivant le don pour reprendre des forces.",
+  "recNutrition": "Alimentation",
+  "recNutrition1": "Consommez des aliments riches en fer : viande rouge, légumineuses, épinards et graines de courge.",
+  "recNutrition2": "Associez les aliments riches en fer à de la vitamine C (agrumes, poivrons) pour favoriser son absorption.",
+  "recNutrition3": "Évitez le café et le thé pendant 1 à 2 heures après les repas, car ils réduisent l’absorption du fer.",
+  "recNutrition4": "Consommez des aliments riches en vitamine B12 et en acide folique : œufs, produits laitiers et légumes à feuilles vertes.",
+  "recNutrition5": "Veillez à rester bien hydraté(e) et essayez de boire 2 litres d’eau par jour.",
+  "recRestrictions": "Précautions",
+  "recRestrictions1": "Ne fumez pas pendant au moins 1 heure avant et 3 heures après le don.",
+  "recRestrictions2": "Évitez les exercices physiques intenses et le sport pendant 24 heures après le don.",
+  "recRestrictions3": "Ne prenez pas d’aspirine ni d’ibuprofène pendant au moins les 3 jours précédant le don.",
+  "recRestrictions4": "Ne donnez pas votre sang si vous ne vous sentez pas bien, si vous avez de la fièvre ou si vous avez récemment présenté des symptômes de rhume.",
+  "recRestrictions5": "Il est déconseillé aux femmes de donner leur sang pendant leurs règles et dans les 5 jours qui suivent leur fin.",
+  "recRestrictions6": "Consultez un médecin avant le don si vous prenez régulièrement des médicaments.",
+  "settingsTitle": "Paramètres",
+  "languageLabel": "Langue",
+  "themeLabel": "Thème",
+  "lightThemeLabel": "Clair",
+  "darkThemeLabel": "Sombre",
+  "systemThemeLabel": "Système",
+  "backupTitle": "Sauvegarde",
+  "exportBackup": "Exporter",
+  "importBackup": "Importer",
+  "importSuccess": "Données restaurées avec succès",
+  "importError": "Erreur : format de fichier invalide",
+  "widgetSectionTitle": "Widget",
+  "widgetPromptTitle": "Gardez le rythme",
+  "widgetPromptBody": "Ajoutez un widget à votre écran d’accueil pour savoir combien de jours il reste avant votre prochain don, sans même ouvrir l’application.",
+  "widgetPromptAdd": "Comment ajouter un widget",
+  "widgetInstructionsTitle": "Ajouter un widget",
+  "widgetStep1": "Maintenez votre doigt appuyé sur un espace vide de l’écran d’accueil.",
+  "widgetStep2": "Sélectionnez « Widgets » dans le menu qui apparaît.",
+  "widgetStep3": "Recherchez « Bloody » dans la liste des widgets.",
+  "widgetStep4": "Faites glisser le widget à l’endroit souhaité sur l’écran.",
+  "achievementUnlocked": "Succès débloqué !",
+  "viewAllAchievements": "Voir tous les succès",
+  "permissionDialogTitle": "Autorisation de donner son sang",
+  "permissionDialogDescription": "Vous avez plus de 65 ans. Disposez-vous d’une autorisation médicale pour donner votre sang ?",
+  "month1": "Janv.",
+  "month2": "Févr.",
+  "month3": "Mars",
+  "month4": "Avr.",
+  "month5": "Mai",
+  "month6": "Juin",
+  "month7": "Juill.",
+  "month8": "Août",
+  "month9": "Sept.",
+  "month10": "Oct.",
+  "month11": "Nov.",
+  "month12": "Déc.",
+  "achievementOtherTitle": "Autres",
+  "achievementUniversal": "Donneur universel",
+  "achievementUniversalDescription": "A donné tous les types de dons",
+  "achievementHolidayDonor": "Donneur des jours fériés",
+  "achievementHolidayDonorDescription": "Don de sang effectué un jour férié",
+  "achievementEarlyBird": "Lève-tôt",
+  "achievementEarlyBirdDescription": "Effectuez un don avant 10 h du matin",
+  "achievementWholeBlood1": "Premier don",
+  "achievementWholeBlood3": "Cœur vaillant",
+  "achievementWholeBlood5": "Protecteur rouge",
+  "achievementWholeBlood10": "Cœur d’acier",
+  "achievementWholeBlood25": "Héros du sang",
+  "achievementWholeBlood50": "Donneur infatigable",
+  "achievementWholeBlood100": "Légende de la vie",
+  "achievementWholeBlood1Description": "Débutant courageux : votre première goutte de sang donnée a contribué à sauver une vie.",
+  "achievementWholeBlood3Description": "Trois pas vers le courage : vous êtes déjà sur la voie d’un véritable donneur.",
+  "achievementWholeBlood5Description": "Protecteur rouge : cinq dons, cinq vies sauvées.",
+  "achievementWholeBlood10Description": "Cœur d’acier : dix fois, vous avez redonné espoir à ceux qui en avaient besoin.",
+  "achievementWholeBlood25Description": "Héros du sang : vingt-cinq dons, une contribution au sauvetage de centaines de personnes.",
+  "achievementWholeBlood50Description": "Donneur infatigable : cinquante fois, vous avez fait preuve d’un engagement remarquable.",
+  "achievementWholeBlood100Description": "Légende de la vie : cent dons, un exploit légendaire au service de l’humanité.",
+  "achievementPlasma1": "Goutte de bonté",
+  "achievementPlasma3": "Vague d’argent",
+  "achievementPlasma5": "Rayon d’espoir",
+  "achievementPlasma10": "Protecteur de la vie",
+  "achievementPlasma25": "Courant d’or",
+  "achievementPlasma50": "Gardien du plasma",
+  "achievementPlasma100": "Donneur immortel",
+  "achievementPlasma1Description": "Goutte de bonté : votre premier don de plasma, une petite contribution mais importante.",
+  "achievementPlasma3Description": "Vague d’argent : trois dons de plasma, et vous ressentez déjà la force de votre aide.",
+  "achievementPlasma5Description": "Rayon d’espoir : à cinq reprises, votre plasma a été un rayon de vie.",
+  "achievementPlasma10Description": "Protecteur de la vie : dix dons, vous êtes un bouclier fiable pour ceux qui en ont besoin.",
+  "achievementPlasma25Description": "Courant d’or : vingt-cinq fois, votre plasma a redonné espoir.",
+  "achievementPlasma50Description": "Gardien du plasma : cinquante dons, votre aide est inestimable.",
+  "achievementPlasma100Description": "Donneur immortel : cent dons, votre bonté laisse une empreinte dans le temps.",
+  "achievementPlatelets1": "Petit héros",
+  "achievementPlatelets3": "Petit sauveur",
+  "achievementPlatelets5": "Chevalier blanc",
+  "achievementPlatelets10": "Protecteur du sang",
+  "achievementPlatelets25": "Maître des plaquettes",
+  "achievementPlatelets50": "Gardien de la vie",
+  "achievementPlatelets100": "Légende du sauvetage",
+  "achievementPlatelets1Description": "Petit héros : vos premières plaquettes, un premier pas vers une grande cause.",
+  "achievementPlatelets3Description": "Petit sauveur : trois dons de plaquettes, et vous contribuez déjà à changer le monde.",
+  "achievementPlatelets5Description": "Chevalier blanc : à cinq reprises, vos plaquettes ont été un bouclier pour la vie.",
+  "achievementPlatelets10Description": "Protecteur du sang : dix dons, vous êtes un défenseur fiable de l’humanité.",
+  "achievementPlatelets25Description": "Maître des plaquettes : vingt-cinq dons, la maîtrise dans chaque goutte.",
+  "achievementPlatelets50Description": "Gardien de la vie : cinquante dons de plaquettes, votre dévouement est impressionnant.",
+  "achievementPlatelets100Description": "Légende du sauvetage : cent dons, vous êtes un véritable héros de l’humanité.",
+  "emptyDescription": "Aucune description",
+  "shareAchievementText": "J’ai débloqué le succès « {title} » dans Bloody !",
+  "@shareAchievementText": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  }
+}

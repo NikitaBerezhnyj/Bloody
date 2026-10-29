@@ -7,6 +7,7 @@ import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
+import 'app_localizations_fr.dart';
 import 'app_localizations_uk.dart';
 
 // ignore_for_file: type=lint
@@ -97,6 +98,7 @@ abstract class AppLocalizations {
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
     Locale('es'),
+    Locale('fr'),
     Locale('uk'),
   ];
 
@@ -175,8 +177,20 @@ abstract class AppLocalizations {
   /// No description provided for @notes.
   ///
   /// In en, this message translates to:
-  /// **'Notes (Optional)'**
+  /// **'Notes'**
   String get notes;
+
+  /// No description provided for @notesOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes (Optional)'**
+  String get notesOptional;
+
+  /// No description provided for @notesEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No notes'**
+  String get notesEmpty;
 
   /// No description provided for @days.
   ///
@@ -309,6 +323,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Select blood type'**
   String get bloodTypeError;
+
+  /// No description provided for @changesSavedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes Saved'**
+  String get changesSavedTitle;
+
+  /// No description provided for @changesSavedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your donation data has been updated.'**
+  String get changesSavedBody;
+
+  /// No description provided for @backToDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Details'**
+  String get backToDetails;
 
   /// No description provided for @profileTitle.
   ///
@@ -1372,7 +1404,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en', 'es', 'uk'].contains(locale.languageCode);
+      <String>['en', 'es', 'fr', 'uk'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -1385,6 +1417,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsEn();
     case 'es':
       return AppLocalizationsEs();
+    case 'fr':
+      return AppLocalizationsFr();
     case 'uk':
       return AppLocalizationsUk();
   }

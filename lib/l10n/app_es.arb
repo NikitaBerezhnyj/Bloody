@@ -13,7 +13,9 @@
     "date": "Fecha",
     "time": "Hora",
     "feeling": "Estado",
-    "notes": "Notas (Opcional)",
+    "notes": "Notas",
+    "notesOptional": "Notas (Opcional)",
+    "notesEmpty": "No hay notas",
     "days": "días",
     "today": "hoy",
     "yesterday": "ayer",
@@ -41,6 +43,10 @@
     "genderError": "Seleccione un género",
     "bloodTypeLabel": "Tipo de sangre",
     "bloodTypeError": "Seleccione un tipo de sangre",
+
+    "changesSavedTitle": "Cambios guardados",
+    "changesSavedBody": "Los datos de tu donación se han actualizado.",
+    "backToDetails": "Volver a los detalles",
 
     "profileTitle": "Perfil",
     "profileUpdated": "¡Perfil actualizado!",

@@ -13,7 +13,9 @@
     "date": "Date",
     "time": "Time",
     "feeling": "Feeling",
-    "notes": "Notes (Optional)",
+    "notes": "Notes",
+    "notesOptional": "Notes (Optional)",
+    "notesEmpty": "No notes",
     "days": "days",
     "today": "Today",
     "yesterday": "Yesterday",
@@ -41,6 +43,10 @@
     "genderError": "Select gender",
     "bloodTypeLabel": "Blood type",
     "bloodTypeError": "Select blood type",
+
+    "changesSavedTitle": "Changes Saved",
+    "changesSavedBody": "Your donation data has been updated.",
+    "backToDetails": "Back to Details",
 
     "profileTitle": "Profile",
     "profileUpdated": "Profile updated!",
