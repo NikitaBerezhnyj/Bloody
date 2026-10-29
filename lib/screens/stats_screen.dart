@@ -1,3 +1,6 @@
+import 'package:bloody/widgets/stats/hero_section.dart';
+import 'package:bloody/widgets/stats/summary_section.dart';
+import 'package:bloody/widgets/stats/type_tiles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../l10n/app_localizations.dart';
@@ -5,29 +8,20 @@ import '../models/donation_stats.dart';
 import '../providers/donations_provider.dart';
 import '../widgets/common/header.dart';
 import '../widgets/stats/details_section.dart';
-import '../widgets/stats/hero_section.dart';
-import '../widgets/stats/year_section.dart';
+import '../widgets/stats/years_section.dart';
 
-class StatsScreen extends ConsumerStatefulWidget {
+class StatsScreen extends ConsumerWidget {
   const StatsScreen({super.key});
 
   @override
-  ConsumerState<StatsScreen> createState() => _StatsScreenState();
-}
-
-class _StatsScreenState extends ConsumerState<StatsScreen> {
-  int? _selectedYear;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
     final donationsAsync = ref.watch(donationsProvider);
 
     return Scaffold(
-      appBar: AppHeader(
-        title: t.statsTitle,
-        showBackButton: true,
-      ),
+      appBar: AppHeader(title: t.statsTitle, showBackButton: true),
       body: donationsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('${t.error}: $e')),
@@ -37,37 +31,27 @@ class _StatsScreenState extends ConsumerState<StatsScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.favorite_border,
-                      color: Colors.red, size: 64),
+                  Icon(
+                    Icons.favorite_border,
+                    color: colorScheme.primary,
+                    size: 64,
+                  ),
                   const SizedBox(height: 16),
-                  Text(
-                    t.noDonations,
-                    textAlign: TextAlign.center,
-                  )
+                  Text(t.noDonations, textAlign: TextAlign.center),
                 ],
               ),
             );
           }
 
           final stats = DonationStats.from(donations);
-          _selectedYear ??= DateTime.now().year;
-          if (!stats.availableYears.contains(_selectedYear)) {
-            _selectedYear = stats.availableYears.last;
-          }
-          final yearStats = DonationStats.forYear(donations, _selectedYear!);
+
           return ListView(
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
             children: [
-              HeroSection(stats: stats, t: t),
-              const SizedBox(height: 20),
-              YearSection(
-                selectedYear: _selectedYear!,
-                availableYears: stats.availableYears,
-                yearStats: yearStats,
-                t: t,
-                onYearChanged: (y) => setState(() => _selectedYear = y),
-              ),
-              const SizedBox(height: 20),
+              SummarySection(stats: stats, t: t),
+              const SizedBox(height: 24),
+              YearsSection(donations: donations, t: t),
+              const SizedBox(height: 24),
               DetailsSection(stats: stats, t: t),
             ],
           );
