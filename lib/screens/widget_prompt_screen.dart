@@ -40,6 +40,9 @@ class _PromoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
 
     return Column(
       children: [
@@ -48,11 +51,13 @@ class _PromoView extends StatelessWidget {
           width: 160,
           height: 160,
           decoration: BoxDecoration(
-            color: Colors.red,
+            color: colorScheme.primary,
             borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(
-                color: Colors.red.withOpacity(0.3),
+                color: Theme.of(
+                  context,
+                ).colorScheme.primary.withValues(alpha: 0.3),
                 blurRadius: 24,
                 offset: const Offset(0, 8),
               ),
@@ -92,16 +97,14 @@ class _PromoView extends StatelessWidget {
         const SizedBox(height: 12),
         Text(
           t.widgetPromptBody,
-          style: Theme.of(
-            context,
-          ).textTheme.bodyMedium?.copyWith(color: Colors.grey, height: 1.5),
+          style: textTheme.bodyMedium?.copyWith(
+            color: colorScheme.onSurfaceVariant,
+            height: 1.5,
+          ),
           textAlign: TextAlign.center,
         ),
         const Spacer(flex: 2),
-        PrimaryButton(
-          label: t.widgetPromptAdd,
-          onPressed: onAddWidget,
-        ),
+        PrimaryButton(label: t.widgetPromptAdd, onPressed: onAddWidget),
 
         const SizedBox(height: 12),
 
@@ -121,6 +124,8 @@ class _InstructionsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
     final steps = [
       (icon: Icons.touch_app_outlined, text: t.widgetStep1),
@@ -132,7 +137,7 @@ class _InstructionsView extends StatelessWidget {
     return Column(
       children: [
         const Spacer(),
-        const Icon(Icons.widgets_outlined, color: Colors.red, size: 48),
+        Icon(Icons.widgets_outlined, color: colorScheme.primary, size: 48),
         const SizedBox(height: 16),
         Text(
           t.widgetInstructionsTitle,
@@ -151,8 +156,8 @@ class _InstructionsView extends StatelessWidget {
                 Container(
                   width: 32,
                   height: 32,
-                  decoration: const BoxDecoration(
-                    color: Colors.red,
+                  decoration: BoxDecoration(
+                    color: colorScheme.primary,
                     shape: BoxShape.circle,
                   ),
                   child: Center(

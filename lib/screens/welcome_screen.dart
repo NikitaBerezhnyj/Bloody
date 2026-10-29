@@ -15,6 +15,9 @@ class WelcomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
 
     ref.listen(userProvider, (_, next) {
       next.whenData((user) {
@@ -45,21 +48,21 @@ class WelcomeScreen extends ConsumerWidget {
           children: [
             const Spacer(flex: 2),
 
-            const Icon(Icons.opacity, color: Colors.red, size: 72),
+            Icon(Icons.opacity, color: colorScheme.primary, size: 72),
             const SizedBox(height: 16),
             Text(
               'Bloody',
-              style: Theme.of(context).textTheme.displaySmall?.copyWith(
+              style: textTheme.displaySmall?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: Colors.red,
+                color: colorScheme.primary,
               ),
             ),
             const SizedBox(height: 8),
             Text(
               t.welcomeSubtitle,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: Colors.grey),
+              style: textTheme.bodyMedium?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+              ),
               textAlign: TextAlign.center,
             ),
 

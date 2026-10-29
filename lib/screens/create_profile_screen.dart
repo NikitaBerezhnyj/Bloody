@@ -14,7 +14,11 @@ class CreateProfileScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppHeader(title: t.createProfileTitle, showBackButton: true, showSettingsButton: true),
+      appBar: AppHeader(
+        title: t.createProfileTitle,
+        showBackButton: true,
+        showSettingsButton: true,
+      ),
       body: ProfileForm(
         onSave: (user) async {
           await UserService.saveUser(user);
@@ -22,7 +26,7 @@ class CreateProfileScreen extends ConsumerWidget {
           if (!context.mounted) return;
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (_) => const HomeScreen()),
-                (route) => false,
+            (route) => false,
           );
         },
         fixedButtonAtBottom: true,

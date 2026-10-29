@@ -56,11 +56,20 @@ class _HomeBannerState extends State<HomeBanner> {
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final bannersCount = widget.hasDonations ? 2 : 1;
-    final motivationalMessage = (widget.hasDonations && widget.userStats != null)
-        ? _generateMessage(widget.userStats!)
-        : "";
+    final t = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    final showStats = widget.hasDonations && widget.userStats != null;
+    final message = showStats ? _generateMessage(widget.userStats!) : '';
+    final pages = showStats ? 2 : 1;
 
     return Column(
       children: [
@@ -68,77 +77,90 @@ class _HomeBannerState extends State<HomeBanner> {
           height: 120,
           child: PageView(
             controller: _controller,
-            onPageChanged: (index) {
-              setState(() {
-                _currentPage = index;
-              });
-            },
+            onPageChanged: (index) => setState(() => _currentPage = index),
             children: [
-              Card(
-                color: Colors.red.shade100,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.favorite, color: Colors.red, size: 40),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Text(
-                          widget.daysLeft > 0
-                              ? AppLocalizations.of(context)!.cannotDonate(widget.daysLeft)
-                              : AppLocalizations.of(context)!.canDonate,
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              _BannerCard(
+                icon: Icons.favorite,
+                text: widget.daysLeft > 0
+                    ? t.cannotDonate(widget.daysLeft)
+                    : t.canDonate,
+                highlighted: true,
               ),
-              if (widget.hasDonations && widget.userStats != null)
-                Card(
-                  color: Colors.orange.shade100,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Row(
-                      children: [
-                        const Icon(Icons.emoji_events, color: Colors.orange, size: 40),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Text(
-                            motivationalMessage,
-                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+              if (showStats)
+                _BannerCard(icon: Icons.emoji_events, text: message),
             ],
           ),
         ),
-        const SizedBox(height: 8),
-        if (widget.hasDonations)
+        if (pages > 1) ...[
+          const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(bannersCount, (index) {
-              return Container(
+            children: List.generate(
+              pages,
+              (i) => AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
                 margin: const EdgeInsets.symmetric(horizontal: 4),
-                width: _currentPage == index ? 12 : 8,
-                height: _currentPage == index ? 12 : 8,
+                width: i == _currentPage ? 24 : 8,
+                height: 8,
                 decoration: BoxDecoration(
-                  color: _currentPage == index ? Colors.red : Colors.grey,
-                  shape: BoxShape.circle,
+                  color: i == _currentPage
+                      ? colorScheme.primary
+                      : colorScheme.outlineVariant,
+                  borderRadius: BorderRadius.circular(4),
                 ),
-              );
-            }),
+              ),
+            ),
           ),
+        ],
       ],
+    );
+  }
+}
+
+class _BannerCard extends StatelessWidget {
+  final IconData icon;
+  final String text;
+  final bool highlighted;
+
+  const _BannerCard({
+    required this.icon,
+    required this.text,
+    this.highlighted = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Card(
+      margin: EdgeInsets.zero,
+      color: highlighted ? colorScheme.primaryContainer : null,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              size: 40,
+              color: highlighted
+                  ? colorScheme.onPrimaryContainer
+                  : colorScheme.primary,
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                text,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  color: highlighted
+                      ? colorScheme.onPrimaryContainer
+                      : colorScheme.onSurface,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

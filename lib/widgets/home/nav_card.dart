@@ -14,19 +14,14 @@ class NavCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              Icon(icon),
-              const SizedBox(width: 24),
-              Text(label),
-            ],
-          ),
-        ),
+    return Card(
+      margin: const EdgeInsets.only(bottom: 8),
+      clipBehavior: Clip.antiAlias,
+      child: ListTile(
+        leading: Icon(icon, color: Theme.of(context).colorScheme.primary),
+        title: Text(label),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: onTap,
       ),
     );
   }

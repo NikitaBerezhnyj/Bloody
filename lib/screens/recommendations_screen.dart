@@ -12,58 +12,55 @@ class RecommendationsScreen extends StatelessWidget {
     final List<({String title, List<String> items, IconData icon})>
     recommendations = [
       (
-      title: t.recBeforeDonation,
-      icon: Icons.water_drop_outlined,
-      items: [
-        t.recBeforeDonation1,
-        t.recBeforeDonation2,
-        t.recBeforeDonation3,
-        t.recBeforeDonation4,
-        t.recBeforeDonation5,
-        t.recBeforeDonation6,
-      ],
+        title: t.recBeforeDonation,
+        icon: Icons.water_drop_outlined,
+        items: [
+          t.recBeforeDonation1,
+          t.recBeforeDonation2,
+          t.recBeforeDonation3,
+          t.recBeforeDonation4,
+          t.recBeforeDonation5,
+          t.recBeforeDonation6,
+        ],
       ),
       (
-      title: t.recAfterDonation,
-      icon: Icons.healing_outlined,
-      items: [
-        t.recAfterDonation1,
-        t.recAfterDonation2,
-        t.recAfterDonation3,
-        t.recAfterDonation4,
-        t.recAfterDonation5,
-      ],
+        title: t.recAfterDonation,
+        icon: Icons.healing_outlined,
+        items: [
+          t.recAfterDonation1,
+          t.recAfterDonation2,
+          t.recAfterDonation3,
+          t.recAfterDonation4,
+          t.recAfterDonation5,
+        ],
       ),
       (
-      title: t.recNutrition,
-      icon: Icons.restaurant_outlined,
-      items: [
-        t.recNutrition1,
-        t.recNutrition2,
-        t.recNutrition3,
-        t.recNutrition4,
-        t.recNutrition5,
-      ],
+        title: t.recNutrition,
+        icon: Icons.restaurant_outlined,
+        items: [
+          t.recNutrition1,
+          t.recNutrition2,
+          t.recNutrition3,
+          t.recNutrition4,
+          t.recNutrition5,
+        ],
       ),
       (
-      title: t.recRestrictions,
-      icon: Icons.block_outlined,
-      items: [
-        t.recRestrictions1,
-        t.recRestrictions2,
-        t.recRestrictions3,
-        t.recRestrictions4,
-        t.recRestrictions5,
-        t.recRestrictions6,
-      ],
+        title: t.recRestrictions,
+        icon: Icons.block_outlined,
+        items: [
+          t.recRestrictions1,
+          t.recRestrictions2,
+          t.recRestrictions3,
+          t.recRestrictions4,
+          t.recRestrictions5,
+          t.recRestrictions6,
+        ],
       ),
     ];
 
     return Scaffold(
-      appBar: AppHeader(
-        title: t.recommendationsTitle,
-        showBackButton: true,
-      ),
+      appBar: AppHeader(title: t.recommendationsTitle, showBackButton: true),
       body: ListView.separated(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
         itemCount: recommendations.length,
@@ -78,25 +75,17 @@ class RecommendationsScreen extends StatelessWidget {
 }
 
 class _RecommendationCard extends StatelessWidget {
-  final ({
-  String title,
-  List<String> items,
-  IconData icon,
-  }) section;
+  final ({String title, List<String> items, IconData icon}) section;
 
   const _RecommendationCard({required this.section});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side: BorderSide(
-          color: Colors.red.withOpacity(0.25),
-          width: 1.5,
-        ),
-      ),
+      margin: EdgeInsets.zero,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -105,43 +94,50 @@ class _RecommendationCard extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  width: 36,
-                  height: 36,
+                  width: 40,
+                  height: 40,
                   decoration: BoxDecoration(
-                    color: Colors.red.withOpacity(0.12),
-                    borderRadius: BorderRadius.circular(8),
+                    color: colorScheme.primaryContainer,
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Icon(section.icon, color: Colors.red, size: 20),
+                  child: Icon(
+                    section.icon,
+                    color: colorScheme.onPrimaryContainer,
+                    size: 22,
+                  ),
                 ),
                 const SizedBox(width: 12),
-                Text(
-                  section.title,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Text(
+                    section.title,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 14),
-            const Divider(height: 1),
-            const SizedBox(height: 10),
+            const SizedBox(height: 16),
             ...section.items.map(
-                  (advice) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
+              (advice) => Padding(
+                padding: const EdgeInsets.only(bottom: 10),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(
-                      Icons.check_circle_outline,
-                      size: 18,
-                      color: Colors.red,
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Text(
-                        advice,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 7),
+                      child: Container(
+                        width: 6,
+                        height: 6,
+                        decoration: BoxDecoration(
+                          color: colorScheme.primary,
+                          shape: BoxShape.circle,
+                        ),
                       ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(advice, style: theme.textTheme.bodyMedium),
                     ),
                   ],
                 ),

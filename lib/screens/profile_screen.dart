@@ -18,17 +18,26 @@ class ProfileScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     final userAsync = ref.watch(userProvider);
 
     return userAsync.when(
-      loading: () => const Scaffold(body: Center(child: CircularProgressIndicator())),
+      loading: () =>
+          const Scaffold(body: Center(child: CircularProgressIndicator())),
       error: (e, _) => Scaffold(body: Center(child: Text('${t.error}: $e'))),
       data: (user) {
         if (user == null) {
-          Future.microtask(() => Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (_) => const WelcomeScreen()),
-                (route) => false,
-          ));
+          Future.microtask(() {
+            if (!context.mounted) return;
+
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (_) => const WelcomeScreen()),
+              (route) => false,
+            );
+          });
+
           return const SizedBox.shrink();
         }
         return Scaffold(
@@ -40,8 +49,9 @@ class ProfileScreen extends ConsumerWidget {
               await UserService.saveUser(updatedUser);
               ref.invalidate(userProvider);
               if (!context.mounted) return;
-              ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(t.profileUpdated)));
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(t.profileUpdated)));
             },
             onLogout: () async {
               final confirm = await showDialog<bool>(
@@ -50,8 +60,17 @@ class ProfileScreen extends ConsumerWidget {
                   title: Text(t.logoutConfirmTitle),
                   content: Text(t.logoutConfirmContent),
                   actions: [
-                    TextButton(onPressed: () => Navigator.pop(context, false), child: Text(t.cancel)),
-                    TextButton(onPressed: () => Navigator.pop(context, true), child: Text(t.logout, style: const TextStyle(color: Colors.red))),
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, false),
+                      child: Text(t.cancel),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, true),
+                      child: Text(
+                        t.logout,
+                        style: TextStyle(color: colorScheme.primary),
+                      ),
+                    ),
                   ],
                 ),
               );
@@ -65,10 +84,7 @@ class ProfileScreen extends ConsumerWidget {
               final prefs = await SharedPreferences.getInstance();
               final locale = prefs.getString('locale') ?? 'en';
 
-              await WidgetService.updateWidget(
-                donations: [],
-                locale: locale,
-              );
+              await WidgetService.updateWidget(donations: [], locale: locale);
 
               ref.invalidate(userProvider);
               ref.invalidate(donationsProvider);

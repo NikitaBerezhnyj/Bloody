@@ -12,6 +12,9 @@ class JournalScreen extends ConsumerWidget {
   const JournalScreen({super.key});
 
   Future<bool?> _confirmDelete(BuildContext context, AppLocalizations t) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -23,7 +26,7 @@ class JournalScreen extends ConsumerWidget {
             child: Text(t.cancel),
           ),
           TextButton(
-            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            style: TextButton.styleFrom(foregroundColor: colorScheme.primary),
             onPressed: () => Navigator.pop(ctx, true),
             child: Text(t.delete),
           ),
@@ -35,13 +38,13 @@ class JournalScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     final donationsAsync = ref.watch(donationsProvider);
 
     return Scaffold(
-      appBar: AppHeader(
-        title: t.journalTitle,
-        showBackButton: true,
-      ),
+      appBar: AppHeader(title: t.journalTitle, showBackButton: true),
       body: donationsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('${t.error}: $e')),
@@ -50,12 +53,13 @@ class JournalScreen extends ConsumerWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.book_outlined, color: Colors.red, size: 64),
-                    const SizedBox(height: 16),
-                    Text(
-                      t.noDonations,
-                      textAlign: TextAlign.center,
+                    Icon(
+                      Icons.book_outlined,
+                      color: colorScheme.primary,
+                      size: 64,
                     ),
+                    const SizedBox(height: 16),
+                    Text(t.noDonations, textAlign: TextAlign.center),
                   ],
                 ),
               )
@@ -78,7 +82,7 @@ class JournalScreen extends ConsumerWidget {
                       alignment: Alignment.centerRight,
                       padding: const EdgeInsets.only(right: 20),
                       decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: colorScheme.primary,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       margin: const EdgeInsets.symmetric(
@@ -103,14 +107,19 @@ class JournalScreen extends ConsumerWidget {
                         onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => DonationDetailScreen(donationId: d.id!),
+                            builder: (_) =>
+                                DonationDetailScreen(donationId: d.id!),
                           ),
                         ),
                         contentPadding: const EdgeInsets.symmetric(
                           horizontal: 16,
                           vertical: 12,
                         ),
-                        leading: Icon(typeIcon((d.type)), color: Colors.red, size: 36),
+                        leading: Icon(
+                          typeIcon((d.type)),
+                          color: colorScheme.primary,
+                          size: 36,
+                        ),
                         title: Text(
                           "${typeLabel(t, d.type)} — ${formatDate(d.date)} ${formatTime(d.time)}",
                         ),
@@ -131,7 +140,7 @@ class JournalScreen extends ConsumerWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (_) => AddDonationScreen(existing: d),
+                                builder: (_) => AddDonationScreen(),
                               ),
                             );
                           },

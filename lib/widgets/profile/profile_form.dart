@@ -59,7 +59,8 @@ class _ProfileFormState extends State<ProfileForm> {
 
   Future<void> _pickBirthday(BuildContext context, AppLocalizations t) async {
     final now = DateTime.now();
-    final initialDate = _birthday ?? DateTime(now.year - 18, now.month, now.day);
+    final initialDate =
+        _birthday ?? DateTime(now.year - 18, now.month, now.day);
     final firstDate = DateTime(now.year - 100, now.month, now.day);
     final lastDate = now;
 
@@ -80,7 +81,12 @@ class _ProfileFormState extends State<ProfileForm> {
       _autoValidate = true;
     });
 
-    if (!_formKey.currentState!.validate() || _birthday == null || _genderKey == null || _bloodType == null) return;
+    if (!_formKey.currentState!.validate() ||
+        _birthday == null ||
+        _genderKey == null ||
+        _bloodType == null) {
+      return;
+    }
 
     final user = User(
       id: widget.initialUser?.id,
@@ -112,19 +118,23 @@ class _ProfileFormState extends State<ProfileForm> {
         child: AbsorbPointer(
           child: TextFormField(
             controller: TextEditingController(
-                text: _birthday != null ? formatDate(_birthday!) : ''),
+              text: _birthday != null ? formatDate(_birthday!) : '',
+            ),
             decoration: InputDecoration(
               labelText: t.birthdayLabel,
               hintText: t.birthdayError,
             ),
-            validator: (_) =>
-                validateBirthday(_birthday, t.birthdayError, t.birthdayValidation),
+            validator: (_) => validateBirthday(
+              _birthday,
+              t.birthdayError,
+              t.birthdayValidation,
+            ),
           ),
         ),
       ),
       const SizedBox(height: 12),
       DropdownButtonFormField<String>(
-        value: _genderKey,
+        initialValue: _genderKey,
         decoration: InputDecoration(labelText: t.genderLabel),
         items: genderMap.entries
             .map((e) => DropdownMenuItem(value: e.key, child: Text(e.value)))
@@ -134,7 +144,7 @@ class _ProfileFormState extends State<ProfileForm> {
       ),
       const SizedBox(height: 12),
       DropdownButtonFormField<String>(
-        value: _bloodType,
+        initialValue: _bloodType,
         decoration: InputDecoration(labelText: t.bloodTypeLabel),
         items: bloodTypes
             .map((bt) => DropdownMenuItem(value: bt, child: Text(bt)))
@@ -153,10 +163,7 @@ class _ProfileFormState extends State<ProfileForm> {
         const SizedBox(height: 12),
         SizedBox(
           width: double.infinity,
-          child: OutlineButton(
-            label: t.logout,
-            onPressed: widget.onLogout,
-          ),
+          child: OutlineButton(label: t.logout, onPressed: widget.onLogout),
         ),
       ],
     ];
@@ -198,11 +205,7 @@ class _ProfileFormState extends State<ProfileForm> {
                 : AutovalidateMode.disabled,
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: [
-                ...formFields,
-                const SizedBox(height: 24),
-                ...buttons,
-              ],
+              children: [...formFields, const SizedBox(height: 24), ...buttons],
             ),
           ),
         ),
