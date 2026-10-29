@@ -5,6 +5,7 @@ import 'package:bloody/screens/welcome_screen.dart';
 import 'package:bloody/services/donation_service.dart';
 import 'package:bloody/services/notification_service.dart';
 import 'package:bloody/services/widget_service.dart';
+import 'package:bloody/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -27,7 +28,7 @@ Future<void> widgetBackgroundCallback(Uri? uri) async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  HomeWidget.registerBackgroundCallback(widgetBackgroundCallback);
+  HomeWidget.registerInteractivityCallback(widgetBackgroundCallback);
 
   await NotificationService.init();
 
@@ -49,23 +50,15 @@ class BloodyApp extends ConsumerWidget {
 
     return MaterialApp(
       title: 'Bloody',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
-        useMaterial3: true,
-      ),
-      darkTheme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.red,
-          brightness: Brightness.dark,
-        ),
-        useMaterial3: true,
-      ),
+      theme: buildAppTheme(Brightness.light),
+      darkTheme: buildAppTheme(Brightness.dark),
       themeMode: themeMode,
       locale: locale,
       supportedLocales: const [
         Locale('en'),
         Locale('uk'),
         Locale('es'),
+        Locale("fr"),
       ],
       localizationsDelegates: const [
         AppLocalizations.delegate,
@@ -100,10 +93,7 @@ class _InitialScreenState extends ConsumerState<InitialScreen> {
     final prefs = await SharedPreferences.getInstance();
     final locale = prefs.getString('locale') ?? 'en';
 
-    await WidgetService.updateWidget(
-      donations: donations,
-      locale: locale,
-    );
+    await WidgetService.updateWidget(donations: donations, locale: locale);
   }
 
   @override
@@ -115,11 +105,10 @@ class _InitialScreenState extends ConsumerState<InitialScreen> {
     final userAsync = ref.watch(userProvider);
 
     return userAsync.when(
-      loading: () => const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      ),
+      loading: () =>
+          const Scaffold(body: Center(child: CircularProgressIndicator())),
       error: (e, _) => Scaffold(
-        body: Center(child: Text('${AppLocalizations.of(context)!.error}: $e'),),
+        body: Center(child: Text('${AppLocalizations.of(context)!.error}: $e')),
       ),
       data: (user) => user == null ? const WelcomeScreen() : const HomeScreen(),
     );
