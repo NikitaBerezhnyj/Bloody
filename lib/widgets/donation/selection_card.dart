@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class SelectionCard extends StatelessWidget {
   final IconData? icon;
-  final String? emoji;
   final String label;
   final bool isSelected;
   final VoidCallback onTap;
@@ -10,7 +9,6 @@ class SelectionCard extends StatelessWidget {
   const SelectionCard({
     super.key,
     this.icon,
-    this.emoji,
     required this.label,
     required this.isSelected,
     required this.onTap,
@@ -42,12 +40,11 @@ class SelectionCard extends StatelessWidget {
             if (icon != null)
               Icon(
                 icon,
+                size: 24,
                 color: isSelected
                     ? colorScheme.primary
                     : colorScheme.onSurfaceVariant,
               ),
-            if (emoji != null)
-              Text(emoji!, style: const TextStyle(fontSize: 22)),
             const SizedBox(width: 12),
             Text(
               label,

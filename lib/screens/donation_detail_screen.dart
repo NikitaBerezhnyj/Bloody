@@ -105,9 +105,9 @@ class DonationDetailScreen extends ConsumerWidget {
                   value: typeLabel(t, d.type),
                 ),
                 DetailRow(
-                  icon: Icons.mood,
+                  icon: feelingIcon(d.feeling),
                   label: t.feeling,
-                  value: feelingLabelWithEmoji(t, d.feeling),
+                  value: feelingLabel(t, d.feeling),
                 ),
                 if (d.notes.isNotEmpty)
                   DetailRow(icon: Icons.notes, label: t.notes, value: d.notes),

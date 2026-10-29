@@ -55,11 +55,9 @@ class StepConfirmation extends StatelessWidget {
               ),
               ConfirmRow(
                 label: t.feeling,
-                value: feelingLabelWithEmoji(t, feelingKey),
+                value: feelingLabel(t, feelingKey),
                 onTap: onEditStep != null ? () => onEditStep!(2) : null,
               ),
-              // у create-режимі ховаємо порожні нотатки (як і було);
-              // у edit-режимі завжди показуємо рядок — щоб можна було додати нотатку пізніше
               if (notes.isNotEmpty || onEditStep != null)
                 ConfirmRow(
                   label: t.notes,

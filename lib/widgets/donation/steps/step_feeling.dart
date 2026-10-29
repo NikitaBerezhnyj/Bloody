@@ -8,7 +8,11 @@ class StepFeeling extends StatelessWidget {
   final String? selected;
   final ValueChanged<String> onChanged;
 
-  const StepFeeling({super.key, required this.selected, required this.onChanged});
+  const StepFeeling({
+    super.key,
+    required this.selected,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,7 @@ class StepFeeling extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.only(bottom: 12),
             child: SelectionCard(
-              emoji: f.emoji,
+              icon: f.icon,
               label: f.label,
               isSelected: isSelected,
               onTap: () => onChanged(f.key),

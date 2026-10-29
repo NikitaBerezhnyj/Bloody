@@ -128,7 +128,7 @@ class JournalScreen extends ConsumerWidget {
                           children: [
                             if (d.feeling.isNotEmpty)
                               Text(
-                                "${t.feeling}: ${feelingLabelWithEmoji(t, d.feeling)}",
+                                "${t.feeling}: ${feelingLabel(t, d.feeling)}",
                               ),
                             if (d.notes.isNotEmpty)
                               Text("${t.notes}: ${d.notes}"),

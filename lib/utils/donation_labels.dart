@@ -18,30 +18,40 @@ IconData typeIcon(String key) => typeIcons[key] ?? Icons.bloodtype;
 class Feeling {
   final String key;
   final String label;
-  final String emoji;
+  final IconData icon;
 
-  const Feeling({required this.key, required this.label, required this.emoji});
+  const Feeling({required this.key, required this.label, required this.icon});
 }
 
 List<Feeling> getFeelings(AppLocalizations t) => [
-  Feeling(key: 'feelingGood', label: t.feelingGood, emoji: '😃'),
-  Feeling(key: 'feelingNormal', label: t.feelingNormal, emoji: '😐'),
-  Feeling(key: 'feelingTired', label: t.feelingTired, emoji: '😔'),
+  Feeling(
+    key: 'feelingGood',
+    label: t.feelingGood,
+    icon: Icons.sentiment_satisfied_rounded,
+  ),
+  Feeling(
+    key: 'feelingNormal',
+    label: t.feelingNormal,
+    icon: Icons.sentiment_neutral_rounded,
+  ),
+  Feeling(
+    key: 'feelingTired',
+    label: t.feelingTired,
+    icon: Icons.sentiment_dissatisfied_rounded,
+  ),
 ];
 
 String feelingLabel(AppLocalizations t, String key) => getFeelings(t)
     .firstWhere(
       (f) => f.key == key,
-      orElse: () => Feeling(key: key, label: key, emoji: ''),
+      orElse: () =>
+          Feeling(key: key, label: key, icon: Icons.sentiment_neutral_rounded),
     )
     .label;
 
-String feelingEmoji(AppLocalizations t, String key) => getFeelings(t)
-    .firstWhere(
-      (f) => f.key == key,
-      orElse: () => Feeling(key: key, label: key, emoji: ''),
-    )
-    .emoji;
-
-String feelingLabelWithEmoji(AppLocalizations t, String key) =>
-    '${feelingEmoji(t, key)} ${feelingLabel(t, key)}';
+IconData feelingIcon(String key) => switch (key) {
+  'feelingGood' => Icons.sentiment_satisfied_rounded,
+  'feelingNormal' => Icons.sentiment_neutral_rounded,
+  'feelingTired' => Icons.sentiment_dissatisfied_rounded,
+  _ => Icons.sentiment_neutral_rounded,
+};
