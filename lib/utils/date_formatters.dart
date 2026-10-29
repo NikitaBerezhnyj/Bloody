@@ -7,4 +7,4 @@ String formatTime(TimeOfDay t) =>
     "${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}";
 
 DateTime normalizeDate(DateTime date) =>
-  DateTime(date.year, date.month, date.day);
+    DateTime(date.year, date.month, date.day);

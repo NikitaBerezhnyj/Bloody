@@ -1,6 +1,4 @@
 import 'dart:ui';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../services/donation_service.dart';
@@ -17,7 +15,7 @@ class LocaleNotifier extends AsyncNotifier<Locale?> {
       return Locale(saved);
     }
 
-    const supported = ['uk', 'es', 'en'];
+    const supported = ['uk', 'es', 'fr', 'en'];
     final systemCode = PlatformDispatcher.instance.locale.languageCode;
     final resolved = supported.contains(systemCode) ? systemCode : 'en';
 
@@ -47,12 +45,6 @@ class LocaleNotifier extends AsyncNotifier<Locale?> {
       donations: donations,
       locale: locale.languageCode,
     );
-  }
-
-  String _resolveSystemLocale() {
-    const supported = ['uk', 'es', 'en'];
-    final systemCode = PlatformDispatcher.instance.locale.languageCode;
-    return supported.contains(systemCode) ? systemCode : 'en';
   }
 }
 

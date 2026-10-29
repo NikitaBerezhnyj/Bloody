@@ -9,9 +9,9 @@ class ThemeNotifier extends AsyncNotifier<ThemeMode> {
     final theme = prefs.getString('theme');
     return theme != null
         ? ThemeMode.values.firstWhere(
-          (e) => e.toString() == theme,
-      orElse: () => ThemeMode.system,
-    )
+            (e) => e.toString() == theme,
+            orElse: () => ThemeMode.system,
+          )
         : ThemeMode.system;
   }
 

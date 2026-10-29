@@ -18,7 +18,11 @@ String? validateName(String? value, String errorText) {
   return null;
 }
 
-String? validateBirthday(DateTime? birthday, String emptyError, String ageError) {
+String? validateBirthday(
+  DateTime? birthday,
+  String emptyError,
+  String ageError,
+) {
   if (birthday == null) return emptyError;
 
   if (calculateAge(birthday) < 18) {

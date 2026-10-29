@@ -41,7 +41,9 @@ class DatabaseService {
           await db.execute('ALTER TABLE users ADD COLUMN createdAt TEXT');
         }
         if (oldVersion < 3) {
-          await db.execute('ALTER TABLE donations ADD COLUMN time TEXT DEFAULT "12:00"');
+          await db.execute(
+            'ALTER TABLE donations ADD COLUMN time TEXT DEFAULT "12:00"',
+          );
         }
         if (oldVersion < 4) {
           await db.execute('ALTER TABLE users ADD COLUMN birthday TEXT');

@@ -24,7 +24,9 @@ class BackupService {
     final file = File('${dir.path}/bloody_backup.json');
     await file.writeAsString(payload);
 
-    await Share.shareXFiles([XFile(file.path)], subject: 'Bloody — backup');
+    await SharePlus.instance.share(
+      ShareParams(files: [XFile(file.path)], subject: 'Bloody — backup'),
+    );
   }
 
   static Future<bool> importBackup() async {

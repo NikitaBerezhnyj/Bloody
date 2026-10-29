@@ -295,14 +295,15 @@ class AchievementService {
   }
 
   static Future<List<Achievement>> getNewlyUnlocked(
-      AppLocalizations t,
-      int? excludeId,
-      ) async {
+    AppLocalizations t,
+    int? excludeId,
+  ) async {
     final allDonations = await DonationService.getDonations();
     final user = await UserService.getUser();
 
-    final previousDonations =
-    allDonations.where((d) => d.id != excludeId).toList();
+    final previousDonations = allDonations
+        .where((d) => d.id != excludeId)
+        .toList();
 
     final before = _getAllAchievements(previousDonations, user, t);
     final after = _getAllAchievements(allDonations, user, t);
@@ -311,13 +312,9 @@ class AchievementService {
 
     for (final afterAch in after) {
       final beforeAch = before.firstWhere(
-            (b) => b.id == afterAch.id,
-        orElse: () => Achievement(
-          id: '',
-          title: '',
-          achieved: false,
-          description: '',
-        ),
+        (b) => b.id == afterAch.id,
+        orElse: () =>
+            Achievement(id: '', title: '', achieved: false, description: ''),
       );
 
       if (!beforeAch.achieved && afterAch.achieved) {
@@ -329,18 +326,26 @@ class AchievementService {
   }
 
   static List<Achievement> _getAllAchievements(
-      List<Donation> donations,
-      User? user,
-      AppLocalizations t,
-      ) {
+    List<Donation> donations,
+    User? user,
+    AppLocalizations t,
+  ) {
     final byType = {
-      'wholeBlood': donations.where((d) => d.type == 'donationWholeBlood').toList(),
+      'wholeBlood': donations
+          .where((d) => d.type == 'donationWholeBlood')
+          .toList(),
       'plasma': donations.where((d) => d.type == 'donationPlasma').toList(),
-      'platelets': donations.where((d) => d.type == 'donationPlatelets').toList(),
+      'platelets': donations
+          .where((d) => d.type == 'donationPlatelets')
+          .toList(),
     };
 
     return [
-      ..._buildAchievementsForType(byType['wholeBlood']!.length, 'wholeBlood', t),
+      ..._buildAchievementsForType(
+        byType['wholeBlood']!.length,
+        'wholeBlood',
+        t,
+      ),
       ..._buildAchievementsForType(byType['plasma']!.length, 'plasma', t),
       ..._buildAchievementsForType(byType['platelets']!.length, 'platelets', t),
       ..._buildSpecialAchievements(donations, byType, user, t),

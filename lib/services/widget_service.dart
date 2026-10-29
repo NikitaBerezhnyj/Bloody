@@ -30,8 +30,7 @@ class WidgetService {
       } else {
         showIcon = false;
         daysText = '$daysLeft';
-        labelText =
-        daysLeft == 1 ? _oneDayLeft(locale) : _daysLeft(locale);
+        labelText = daysLeft == 1 ? _oneDayLeft(locale) : _daysLeft(locale);
       }
     }
 
@@ -43,15 +42,18 @@ class WidgetService {
   }
 
   static String _canDonateNow(String locale) {
-    return _translations['canDonateNow']?[locale] ?? _translations['canDonateNow']!['en']!;
+    return _translations['canDonateNow']?[locale] ??
+        _translations['canDonateNow']!['en']!;
   }
 
   static String _oneDayLeft(String locale) {
-    return _translations['oneDayLeft']?[locale] ?? _translations['oneDayLeft']!['en']!;
+    return _translations['oneDayLeft']?[locale] ??
+        _translations['oneDayLeft']!['en']!;
   }
 
   static String _daysLeft(String locale) {
-    return _translations['daysLeft']?[locale] ?? _translations['daysLeft']!['en']!;
+    return _translations['daysLeft']?[locale] ??
+        _translations['daysLeft']!['en']!;
   }
 
   static const Map<String, Map<String, String>> _translations = {
@@ -59,16 +61,19 @@ class WidgetService {
       'en': 'You can donate now',
       'uk': 'Можна здавати кров',
       'es': 'Puedes donar sangre',
+      'fr': 'Vous pouvez donner votre sang',
     },
     'oneDayLeft': {
       'en': 'day until your next\ndonation',
       'uk': 'день до наступної\nдонації',
       'es': 'día hasta la próxima\ndonación',
+      'fr': 'jour avant votre prochain\ndon',
     },
     'daysLeft': {
       'en': 'days until your next\ndonation',
       'uk': 'днів до наступної\nдонації',
       'es': 'días hasta la próxima\ndonación',
+      'fr': 'jours avant votre prochain\ndon',
     },
   };
 }

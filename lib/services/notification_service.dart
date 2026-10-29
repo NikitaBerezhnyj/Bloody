@@ -106,14 +106,10 @@ class NotificationService {
   }
 
   static Future<void> rescheduleAll(
-      List<Donation> donations,
-      String locale,
-      ) async {
-    await _scheduleAll(
-      donations: donations,
-      locale: locale,
-      clearAll: true,
-    );
+    List<Donation> donations,
+    String locale,
+  ) async {
+    await _scheduleAll(donations: donations, locale: locale, clearAll: true);
   }
 
   static Future<void> rescheduleLocale({
@@ -123,11 +119,7 @@ class NotificationService {
     final pending = await _plugin.pendingNotificationRequests();
     if (pending.isEmpty) return;
 
-    await _scheduleAll(
-      donations: donations,
-      locale: locale,
-      clearAll: false,
-    );
+    await _scheduleAll(donations: donations, locale: locale, clearAll: false);
   }
 
   static Future<void> _scheduleIfFuture({
@@ -157,7 +149,7 @@ class NotificationService {
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
-      UILocalNotificationDateInterpretation.absoluteTime,
+          UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 }
