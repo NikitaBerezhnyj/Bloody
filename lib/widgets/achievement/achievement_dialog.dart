@@ -6,20 +6,22 @@ class AchievementDialog extends StatelessWidget {
   final IconData icon;
   final String title;
   final String description;
-  final Color color;
 
   const AchievementDialog({
     super.key,
     required this.icon,
     required this.title,
     required this.description,
-    required this.color,
   });
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Dialog(
-      insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+      insetPadding: const EdgeInsets.all(24),
       child: SizedBox(
         width: double.infinity,
         child: Padding(
@@ -28,52 +30,45 @@ class AchievementDialog extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                width: 120,
-                height: 120,
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.1),
+                  color: colorScheme.primaryContainer,
                   shape: BoxShape.circle,
                 ),
-                child: Center(
-                  child: Icon(
-                    icon,
-                    size: 60,
-                    color: color,
-                  ),
+                child: Icon(
+                  icon,
+                  size: 64,
+                  color: colorScheme.onPrimaryContainer,
                 ),
               ),
               const SizedBox(height: 24),
               Text(
                 title,
-                style: const TextStyle(
+                style: theme.textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
-                  fontSize: 22,
                 ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 12),
               Text(
-                description.isNotEmpty
-                    ? description
-                    : AppLocalizations.of(context)!.emptyDescription,
-                style: const TextStyle(fontSize: 16),
+                description.isNotEmpty ? description : t.emptyDescription,
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 24),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton.icon(
-                  onPressed: () async {
-                    await ShareService.shareAchievement(
-                      context: context,
-                      icon: icon,
-                      title: title,
-                      description: description,
-                      color: color,
-                    );
-                  },
+                  onPressed: () => ShareService.shareAchievement(
+                    context: context,
+                    icon: icon,
+                    title: title,
+                    description: description,
+                  ),
                   icon: const Icon(Icons.share),
-                  label: Text(AppLocalizations.of(context)!.share),
+                  label: Text(t.share),
                 ),
               ),
             ],

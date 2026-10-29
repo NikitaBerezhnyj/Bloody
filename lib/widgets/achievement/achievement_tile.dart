@@ -19,22 +19,27 @@ class AchievementTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = achieved ? Colors.red : Colors.grey;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final background = achieved
+        ? colorScheme.primaryContainer
+        : colorScheme.surfaceContainerHighest;
+    final foreground = achieved
+        ? colorScheme.onPrimaryContainer
+        : colorScheme.onSurfaceVariant;
 
-    return GestureDetector(
-      onTap: () {
-        if (!achieved) return;
-
-        showDialog(
-          context: context,
-          builder: (_) => AchievementDialog(
-            icon: icon,
-            title: title,
-            description: description,
-            color: color,
-          ),
-        );
-      },
+    return InkWell(
+      borderRadius: BorderRadius.circular(16),
+      onTap: achieved
+          ? () => showDialog(
+              context: context,
+              builder: (_) => AchievementDialog(
+                icon: icon,
+                title: title,
+                description: description,
+              ),
+            )
+          : null,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -42,36 +47,35 @@ class AchievementTile extends StatelessWidget {
             width: 90,
             height: 90,
             decoration: BoxDecoration(
-              color: color.withOpacity(0.1),
+              color: background,
               shape: BoxShape.circle,
             ),
             child: Center(
-              child: subtitle.isNotEmpty
-                  ? Column(
+              child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(icon, size: 40, color: color),
-                  const SizedBox(height: 4),
-                  Text(
-                    subtitle,
-                    style: TextStyle(
-                      color: color,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
+                  Icon(icon, size: 40, color: foreground),
+                  if (subtitle.isNotEmpty) ...[
+                    const SizedBox(height: 4),
+                    Text(
+                      subtitle,
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        color: foreground,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    textAlign: TextAlign.center,
-                  ),
+                  ],
                 ],
-              )
-                  : Icon(icon, size: 40, color: color),
+              ),
             ),
           ),
           const SizedBox(height: 8),
           Text(
             title,
-            style: TextStyle(
-              color: color,
-              fontWeight: FontWeight.bold,
+            style: theme.textTheme.labelLarge?.copyWith(
+              color: achieved
+                  ? colorScheme.onSurface
+                  : colorScheme.onSurfaceVariant,
             ),
             textAlign: TextAlign.center,
           ),

@@ -1,3 +1,4 @@
+import 'package:bloody/widgets/common/section_label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/achievements_provider.dart';
@@ -15,10 +16,7 @@ class AchievementsScreen extends ConsumerWidget {
     final achievementsAsync = ref.watch(achievementsProvider(localeCode));
 
     return Scaffold(
-      appBar: AppHeader(
-        title: t.achievementsTitle,
-        showBackButton: true,
-      ),
+      appBar: AppHeader(title: t.achievementsTitle, showBackButton: true),
       body: achievementsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('${t.error}: $e')),
@@ -29,35 +27,35 @@ class AchievementsScreen extends ConsumerWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  category.name,
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
-                ),
+                SectionLabel(label: category.name),
                 const SizedBox(height: 12),
-                LayoutBuilder(builder: (context, constraints) {
-                  const columns = 3;
-                  const spacing = 16.0;
-                  final tileWidth =
-                      (constraints.maxWidth - spacing * (columns - 1)) /
-                          columns;
-                  return Wrap(
-                    spacing: spacing,
-                    runSpacing: spacing,
-                    children: category.achievements
-                        .map<Widget>((a) => SizedBox(
-                      width: tileWidth,
-                      child: AchievementTile(
-                        icon: a.icon ?? category.icon,
-                        title: a.title,
-                        subtitle: a.level?.toString() ?? "",
-                        description: a.description ?? "",
-                        achieved: a.achieved,
-                      ),
-                    ))
-                        .toList(),
-                  );
-                }),
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    const columns = 3;
+                    const spacing = 16.0;
+                    final tileWidth =
+                        (constraints.maxWidth - spacing * (columns - 1)) /
+                        columns;
+                    return Wrap(
+                      spacing: spacing,
+                      runSpacing: spacing,
+                      children: category.achievements
+                          .map<Widget>(
+                            (a) => SizedBox(
+                              width: tileWidth,
+                              child: AchievementTile(
+                                icon: a.icon ?? category.icon,
+                                title: a.title,
+                                subtitle: a.level?.toString() ?? "",
+                                description: a.description ?? "",
+                                achieved: a.achieved,
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    );
+                  },
+                ),
                 const SizedBox(height: 24),
               ],
             );

@@ -4,74 +4,65 @@ class AchievementShareCard extends StatelessWidget {
   final IconData icon;
   final String title;
   final String description;
-  final Color color;
 
   const AchievementShareCard({
     super.key,
     required this.icon,
     required this.title,
     required this.description,
-    required this.color,
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Container(
       width: 800,
       height: 800,
-      color: Colors.white,
-      child: Row(
+      color: colorScheme.primary,
+      padding: const EdgeInsets.all(64),
+      child: Column(
         children: [
-          Expanded(
-            child: Container(
-              color: color.withOpacity(0.1),
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Bloody",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red,
-                    ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    description,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                  const Spacer(),
-                ],
-              ),
+          Text(
+            'Bloody',
+            style: TextStyle(
+              fontSize: 36,
+              fontWeight: FontWeight.bold,
+              color: colorScheme.onPrimary,
             ),
           ),
-
-          Expanded(
-            child: Container(
-              color: Colors.white,
-              child: Center(
-                child: Container(
-                  width: 120,
-                  height: 120,
-                  decoration: BoxDecoration(
-                    color: color.withOpacity(0.1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(icon, size: 70, color: color),
-                ),
-              ),
+          const Spacer(),
+          Container(
+            width: 280,
+            height: 280,
+            decoration: BoxDecoration(
+              color: colorScheme.onPrimary.withValues(alpha: 0.15),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(icon, size: 140, color: colorScheme.onPrimary),
+          ),
+          const SizedBox(height: 48),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 56,
+              fontWeight: FontWeight.bold,
+              color: colorScheme.onPrimary,
             ),
           ),
+          const SizedBox(height: 20),
+          Text(
+            description,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 30,
+              height: 1.3,
+              color: colorScheme.onPrimary.withValues(alpha: 0.85),
+            ),
+          ),
+          const Spacer(),
         ],
       ),
     );

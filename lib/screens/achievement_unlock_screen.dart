@@ -21,7 +21,6 @@ class AchievementUnlockScreen extends StatefulWidget {
 
 class _AchievementUnlockScreenState extends State<AchievementUnlockScreen>
     with SingleTickerProviderStateMixin {
-
   late final PageController _pageController;
 
   int _index = 0;
@@ -45,7 +44,7 @@ class _AchievementUnlockScreenState extends State<AchievementUnlockScreen>
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (_) => const AchievementsScreen()),
-            (route) => route.isFirst,
+        (route) => route.isFirst,
       );
     }
   }
@@ -53,6 +52,8 @@ class _AchievementUnlockScreenState extends State<AchievementUnlockScreen>
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
     final total = widget.achievements.length;
 
     return Scaffold(
@@ -67,15 +68,15 @@ class _AchievementUnlockScreenState extends State<AchievementUnlockScreen>
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
                     total,
-                        (i) => AnimatedContainer(
+                    (i) => AnimatedContainer(
                       duration: const Duration(milliseconds: 300),
                       margin: const EdgeInsets.symmetric(horizontal: 4),
                       width: i == _index ? 24 : 8,
                       height: 8,
                       decoration: BoxDecoration(
                         color: i == _index
-                            ? Theme.of(context).colorScheme.primary
-                            : Theme.of(context).colorScheme.outlineVariant,
+                            ? colorScheme.primary
+                            : colorScheme.outlineVariant,
                         borderRadius: BorderRadius.circular(4),
                       ),
                     ),
@@ -98,10 +99,6 @@ class _AchievementUnlockScreenState extends State<AchievementUnlockScreen>
 
                     return Center(
                       child: Card(
-                        elevation: 4,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24),
-                        ),
                         child: SizedBox(
                           width: double.infinity,
                           child: Padding(
@@ -114,17 +111,13 @@ class _AchievementUnlockScreenState extends State<AchievementUnlockScreen>
                                   Container(
                                     padding: const EdgeInsets.all(20),
                                     decoration: BoxDecoration(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .primaryContainer,
+                                      color: colorScheme.primaryContainer,
                                       shape: BoxShape.circle,
                                     ),
                                     child: Icon(
                                       a.icon,
                                       size: 64,
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onPrimaryContainer,
+                                      color: colorScheme.onPrimaryContainer,
                                     ),
                                   ),
 
@@ -135,11 +128,7 @@ class _AchievementUnlockScreenState extends State<AchievementUnlockScreen>
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelLarge
-                                        ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .primary,
-                                    ),
+                                        ?.copyWith(color: colorScheme.primary),
                                   ),
 
                                   const SizedBox(height: 8),
@@ -149,9 +138,7 @@ class _AchievementUnlockScreenState extends State<AchievementUnlockScreen>
                                     style: Theme.of(context)
                                         .textTheme
                                         .headlineSmall
-                                        ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                        ?.copyWith(fontWeight: FontWeight.bold),
                                     textAlign: TextAlign.center,
                                   ),
 
@@ -161,7 +148,10 @@ class _AchievementUnlockScreenState extends State<AchievementUnlockScreen>
                                       a.description,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .bodyMedium,
+                                          .bodyLarge
+                                          ?.copyWith(
+                                            color: colorScheme.onSurfaceVariant,
+                                          ),
                                       textAlign: TextAlign.center,
                                     ),
                                   ],
