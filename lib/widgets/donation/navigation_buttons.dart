@@ -11,12 +11,13 @@ class NavigationButtons extends StatelessWidget {
   final String? nextLabel;
 
   const NavigationButtons({
+    super.key,
     required this.currentStep,
     required this.totalSteps,
     this.onNext,
     this.onBack,
     this.onSave,
-    this.nextLabel
+    this.nextLabel,
   });
 
   @override
@@ -30,10 +31,7 @@ class NavigationButtons extends StatelessWidget {
         children: [
           if (onBack != null)
             Expanded(
-              child: OutlineButton(
-                label: t.back,
-                onPressed: onBack,
-              ),
+              child: OutlineButton(label: t.back, onPressed: onBack),
             ),
           if (onBack != null) const SizedBox(width: 12),
           Expanded(

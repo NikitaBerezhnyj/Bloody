@@ -7,6 +7,8 @@ class DonationPermissionDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
     return Dialog(
       insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
@@ -15,18 +17,11 @@ class DonationPermissionDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              Icons.health_and_safety,
-              size: 60,
-              color: Colors.red.shade400,
-            ),
+            Icon(Icons.health_and_safety, size: 60, color: colorScheme.error),
             const SizedBox(height: 16),
             Text(
               t.permissionDialogTitle,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
-              ),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 12),

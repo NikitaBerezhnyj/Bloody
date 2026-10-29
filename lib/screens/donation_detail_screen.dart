@@ -8,19 +8,19 @@ import '../widgets/common/button.dart';
 import '../widgets/common/header.dart';
 import '../widgets/donation/detail_card.dart';
 import '../widgets/common/detail_row.dart';
-import 'add_donation_screen.dart';
+import 'edit_donation_screen.dart';
 
 class DonationDetailScreen extends ConsumerWidget {
   final int donationId;
 
-  const DonationDetailScreen({
-    super.key,
-    required this.donationId,
-  });
+  const DonationDetailScreen({super.key, required this.donationId});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final t = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
 
     final donations = ref.watch(donationsProvider).value ?? [];
     final donation = donations.where((d) => d.id == donationId).firstOrNull;
@@ -41,7 +41,7 @@ class DonationDetailScreen extends ConsumerWidget {
           onPressed: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) => AddDonationScreen(existing: donation),
+              builder: (_) => EditDonationScreen(donation: donation),
             ),
           ),
         ),
@@ -58,27 +58,27 @@ class DonationDetailScreen extends ConsumerWidget {
                     width: 80,
                     height: 80,
                     decoration: BoxDecoration(
-                      color: Colors.red.shade50,
+                      color: colorScheme.primaryContainer,
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
                       typeIcon(d.type),
-                      color: Colors.red,
+                      color: colorScheme.primary,
                       size: 40,
                     ),
                   ),
                   const SizedBox(height: 12),
                   Text(
                     typeLabel(t, d.type),
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    style: textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     '$dateStr  •  $timeStr',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.grey,
+                    style: textTheme.bodyMedium?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ],
@@ -110,11 +110,7 @@ class DonationDetailScreen extends ConsumerWidget {
                   value: feelingLabelWithEmoji(t, d.feeling),
                 ),
                 if (d.notes.isNotEmpty)
-                  DetailRow(
-                    icon: Icons.notes,
-                    label: t.notes,
-                    value: d.notes,
-                  ),
+                  DetailRow(icon: Icons.notes, label: t.notes, value: d.notes),
               ],
             ),
 
@@ -134,6 +130,8 @@ class DonationDetailScreen extends ConsumerWidget {
 
   Future<void> _confirmAndDelete(BuildContext context, WidgetRef ref) async {
     final t = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
     final confirm = await showDialog<bool>(
       context: context,
@@ -146,9 +144,7 @@ class DonationDetailScreen extends ConsumerWidget {
             child: Text(t.cancel),
           ),
           TextButton(
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.red,
-            ),
+            style: TextButton.styleFrom(foregroundColor: colorScheme.primary),
             onPressed: () => Navigator.pop(ctx, true),
             child: Text(t.delete),
           ),

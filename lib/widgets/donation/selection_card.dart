@@ -8,6 +8,7 @@ class SelectionCard extends StatelessWidget {
   final VoidCallback onTap;
 
   const SelectionCard({
+    super.key,
     this.icon,
     this.emoji,
     required this.label,
@@ -17,6 +18,9 @@ class SelectionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
@@ -24,9 +28,11 @@ class SelectionCard extends StatelessWidget {
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.red.shade50 : null,
+          color: isSelected ? colorScheme.primaryContainer : null,
           border: Border.all(
-            color: isSelected ? Colors.red : Colors.grey.shade300,
+            color: isSelected
+                ? colorScheme.primary
+                : colorScheme.outlineVariant,
             width: isSelected ? 2 : 1,
           ),
           borderRadius: BorderRadius.circular(12),
@@ -34,7 +40,12 @@ class SelectionCard extends StatelessWidget {
         child: Row(
           children: [
             if (icon != null)
-              Icon(icon, color: isSelected ? Colors.red : Colors.grey),
+              Icon(
+                icon,
+                color: isSelected
+                    ? colorScheme.primary
+                    : colorScheme.onSurfaceVariant,
+              ),
             if (emoji != null)
               Text(emoji!, style: const TextStyle(fontSize: 22)),
             const SizedBox(width: 12),
@@ -42,12 +53,12 @@ class SelectionCard extends StatelessWidget {
               label,
               style: TextStyle(
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                color: isSelected ? Colors.red : null,
+                color: isSelected ? colorScheme.primary : null,
               ),
             ),
             const Spacer(),
             if (isSelected)
-              const Icon(Icons.check_circle, color: Colors.red, size: 20),
+              Icon(Icons.check_circle, color: colorScheme.primary, size: 20),
           ],
         ),
       ),
