@@ -6,10 +6,10 @@ permissions:
 on:
   push:
     branches:
-      - prod
+      - main
   pull_request:
     branches:
-      - prod
+      - main
 
 jobs:
   build-android:
@@ -80,7 +80,7 @@ jobs:
 
           gh release create "$VERSION" \
             --title "Bloody v$VERSION" \
-            --notes "Automated release build" || true
+            --generate-notes
 
           for file in ./artifacts/*; do
             gh release upload "$VERSION" "$file" --clobber
