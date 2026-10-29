@@ -20,6 +20,9 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return AppBar(
       automaticallyImplyLeading: false,
       title: Row(
@@ -30,19 +33,15 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
               onPressed: onBack ?? () => Navigator.pop(context),
             ),
           if (!showBackButton)
-            const Icon(Icons.opacity, color: Colors.red, size: 36),
+            Icon(Icons.opacity, color: colorScheme.primary, size: 36),
           const SizedBox(width: 8),
           Text(title ?? 'Bloody'),
         ],
       ),
       actions: [
         if (showSettingsButton)
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: onSettings,
-          ),
-        if (!showSettingsButton && action != null)
-          action!,
+          IconButton(icon: const Icon(Icons.settings), onPressed: onSettings),
+        if (!showSettingsButton && action != null) action!,
       ],
     );
   }

@@ -7,6 +7,7 @@ class DetailRow extends StatelessWidget {
   final String? trailing;
 
   const DetailRow({
+    super.key,
     required this.icon,
     required this.label,
     required this.value,
@@ -15,12 +16,15 @@ class DetailRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: Colors.red, size: 20),
+          Icon(icon, color: colorScheme.primary, size: 20),
           const SizedBox(width: 16),
           Expanded(
             child: Column(
@@ -30,7 +34,7 @@ class DetailRow extends StatelessWidget {
                   label,
                   style: TextStyle(
                     fontSize: 12,
-                    color: Colors.grey.shade500,
+                    color: colorScheme.onSurfaceVariant,
                   ),
                 ),
                 const SizedBox(height: 2),
@@ -50,7 +54,7 @@ class DetailRow extends StatelessWidget {
               trailing!,
               style: TextStyle(
                 fontSize: 13,
-                color: Colors.grey.shade500,
+                color: colorScheme.onSurfaceVariant,
               ),
             ),
           ],

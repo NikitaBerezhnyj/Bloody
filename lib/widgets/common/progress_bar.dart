@@ -5,10 +5,14 @@ class ProgressBar extends StatelessWidget {
   final int current;
   final int total;
 
-  const ProgressBar({required this.current, required this.total});
+  const ProgressBar({super.key, required this.current, required this.total});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Column(
@@ -19,14 +23,16 @@ class ProgressBar extends StatelessWidget {
             child: LinearProgressIndicator(
               value: (current + 1) / total,
               minHeight: 6,
-              backgroundColor: Colors.red.shade100,
-              valueColor: const AlwaysStoppedAnimation(Colors.red),
+              backgroundColor: Theme.of(
+                context,
+              ).colorScheme.surfaceContainerHighest,
+              valueColor: AlwaysStoppedAnimation(colorScheme.primary),
             ),
           ),
           const SizedBox(height: 6),
           Text(
             '${AppLocalizations.of(context)!.step} ${current + 1} / $total',
-            style: Theme.of(context).textTheme.bodySmall,
+            style: textTheme.bodySmall,
           ),
         ],
       ),
