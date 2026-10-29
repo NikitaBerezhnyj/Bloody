@@ -36,16 +36,17 @@ class DonationStats {
   factory DonationStats.forYear(List<Donation> all, int year) =>
       _compute(all.where((d) => d.date.year == year).toList(), all);
 
-  static DonationStats _compute(
-      List<Donation> donations,
-      List<Donation> all,
-      ) {
-    final now        = DateTime.now();
-    final total      = donations.length;
-    final wholeBlood = donations.where((d) => d.type == 'donationWholeBlood').length;
-    final plasma     = donations.where((d) => d.type == 'donationPlasma').length;
-    final platelets  = donations.where((d) => d.type == 'donationPlatelets').length;
-    final years      = all.map((d) => d.date.year).toSet().toList()..sort();
+  static DonationStats _compute(List<Donation> donations, List<Donation> all) {
+    final now = DateTime.now();
+    final total = donations.length;
+    final wholeBlood = donations
+        .where((d) => d.type == 'donationWholeBlood')
+        .length;
+    final plasma = donations.where((d) => d.type == 'donationPlasma').length;
+    final platelets = donations
+        .where((d) => d.type == 'donationPlatelets')
+        .length;
+    final years = all.map((d) => d.date.year).toSet().toList()..sort();
 
     int avg = 0;
     if (donations.length >= 2) {
@@ -65,7 +66,7 @@ class DonationStats {
     if (all.isNotEmpty) {
       final sorted = [...all]..sort((a, b) => a.date.compareTo(b.date));
       firstDt = sorted.first.date;
-      lastDt  = sorted.last.date;
+      lastDt = sorted.last.date;
     }
 
     int? bestYear;
@@ -75,8 +76,10 @@ class DonationStats {
       for (final d in all) {
         countByYear[d.date.year] = (countByYear[d.date.year] ?? 0) + 1;
       }
-      final best = countByYear.entries.reduce((a, b) => a.value >= b.value ? a : b);
-      bestYear      = best.key;
+      final best = countByYear.entries.reduce(
+        (a, b) => a.value >= b.value ? a : b,
+      );
+      bestYear = best.key;
       bestYearCount = best.value;
     }
 
