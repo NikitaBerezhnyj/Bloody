@@ -375,7 +375,7 @@ abstract class AppLocalizations {
   /// No description provided for @welcomeUser.
   ///
   /// In en, this message translates to:
-  /// **'Hello, {name} 👋'**
+  /// **'Hello, {name}!'**
   String welcomeUser(Object name);
 
   /// No description provided for @journalTitle.
